@@ -11,4 +11,5 @@
 |
 */
 
-$app->get('/{provider}', 'DispatcherController@call');
+$app->get('/', 'DispatcherController@index');
+$app->get('/{providerName}', 'DispatcherController@call');

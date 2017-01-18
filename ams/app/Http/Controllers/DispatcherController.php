@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AMSService;
+
 class DispatcherController extends Controller
 {
     /**
@@ -13,11 +15,19 @@ class DispatcherController extends Controller
     {
         //
     }
-		
-		public function call()
-		{
-			phpinfo();
-		}
 
-    //
+    public function index()
+    {
+        echo 'AMS.Connect Services';
+    }
+        
+    public function call($providerName)
+    {
+        $serviceHandler = AMSService::loadService($providerName);
+        if (!$serviceHandler) {
+            echo 'The service provider \''.$providerName.'\' does not exists';
+            return;
+        }
+        $serviceHandler->perform();
+    }
 }
