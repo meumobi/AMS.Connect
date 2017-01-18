@@ -1,0 +1,26 @@
+{
+  "name": "ams-connect",
+  "version": "1.0.0",
+  "description": "AdMySports Module to Connect to Reporting Platforms",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meumobi/AMS.Connect.git"
+  },
+  "author": "Victor Dias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meumobi/AMS.Connect/issues"
+  },
+  "homepage": "https://github.com/meumobi/AMS.Connect#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "gulp": "^3.9.1",
+    "gulp-connect-php": "0.0.8",
+    "gulp-task-listing": "^1.0.1",
+    "gulp-todo": "^5.2.0"
+  }
+}

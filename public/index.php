@@ -1,0 +1,3 @@
+<body>
+<?php phpinfo();?>
+</body>
