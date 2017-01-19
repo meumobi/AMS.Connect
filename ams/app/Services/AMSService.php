@@ -19,4 +19,10 @@ class AMSService
         //TODO: Log when the class is not found
         return null;
     }
+
+    protected function getParameter($params, $key, $defaultValue = null){
+        return (isset($params[$key]) && $params[$key])
+          ? $params[$key]
+          : $defaultValue;
+    }
 }

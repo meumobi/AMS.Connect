@@ -16,7 +16,7 @@ class AdsenseService extends AMSService implements AMSServiceInterface
         error_log('AdsenseService constructed');
     }
 
-    public function perform()
+    public function perform(Array $params)
     {
         error_log('AdsenseService Performed');
         $data = config('AMS.provider');

@@ -3,5 +3,5 @@ namespace App\Services;
 
 interface AMSServiceInterface
 {
-    public function perform();
+    public function perform(Array $params);
 }

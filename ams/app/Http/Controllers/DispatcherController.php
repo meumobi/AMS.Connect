@@ -23,11 +23,13 @@ class DispatcherController extends Controller
         
     public function call($providerName)
     {
+        //TODO: Get the params from the Request url and pass to the handler
+        $params = [];
         $serviceHandler = AMSService::loadService($providerName);
         if (!$serviceHandler) {
             echo 'The service provider \''.$providerName.'\' does not exists';
             return;
         }
-        $serviceHandler->perform();
+        $serviceHandler->perform($params);
     }
 }

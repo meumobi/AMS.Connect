@@ -3,12 +3,10 @@
 config(
     ['AMS.provider'=> 
         [
-            'url' => 'http://asdasd',
-            'auth' => 'basic', //basic, oauth, etc
-            'token'=>'alksdjalksdjasjdkasd',
-            'user' => 'username',
-            'pass' => 'password',
-            //Any other config option
+            'url' => 'https://publishers.criteo.com/api/2.0/stats.json',
+            'auth' => 'token', //token, http basic, oauth, etc
+            'token'=>'e36080a1-8f8b-44fb-9aef-1457f4223355',
+            //Any other config option must be setted here
         ]
     ]
 );
