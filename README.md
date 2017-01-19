@@ -25,7 +25,19 @@ Make sure to place the ~/.composer/vendor/bin directory in your PATH so the lume
 ## Setup Project
 Use a starter `lumen new blog`
 
-Create `blog/.env` to enable logging
+Create `ams/.env` to enable debugging
 ```
+APP_ENV=local
 APP_DEBUG=true
 ```
+
+## Run Project Using Docker
+
+You must have docker and docker-compose installed. Follow instructions [here](https://docs.docker.com/compose/install/)
+
+In the project root execute:
+```
+docker-compose up -d
+```
+Then open the browser on http://localhost:8000 to see the project running;
+
