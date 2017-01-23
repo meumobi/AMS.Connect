@@ -38,8 +38,8 @@ class CriteoService extends AMSService implements AMSServiceInterface
             echo "cURL Error #:" . $error;
             return;
         }
-        echo $response;
-      //$this->presenter->present($response);
+
+		$this->presenter->present($response);
         
         error_log('AdsenseService Performed');
     }
