@@ -3,5 +3,5 @@ namespace App\Services;
 
 interface AMSPresenterInterface
 {
-    public function present($data);
+    public function present($data, $format, $echo);
 }

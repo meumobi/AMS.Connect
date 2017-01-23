@@ -39,7 +39,7 @@ class CriteoService extends AMSService implements AMSServiceInterface
             return;
         }
 
-		$this->presenter->present($response);
+		$this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
     }

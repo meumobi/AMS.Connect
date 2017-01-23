@@ -4,6 +4,7 @@
 namespace App\Services\criteo;
 
 use App\Services\AMSPresenterInterface;
+use DateTime;
 
 /*
 	Inspired by https://gist.github.com/jakebathman/4fb8c55b13272eee9c88
@@ -12,13 +13,18 @@ use App\Services\AMSPresenterInterface;
 class CriteoPresenter implements AMSPresenterInterface
 {
 
+	var $date_format = 'Y-m-d';
+	
 	public function __construct()
 	{
 		error_log('AdsensePresenter Constructed');
 	}
 
-	public function present($data, $echo = true)
+	public function present($data, $format, $echo = true)
 	{
+		
+		$this->date_format = $format;
+		
 		// Passed a string, turn it into an array 
 	    if (is_array($data) === false) {
 	      $data = json_decode($data, true);
@@ -54,7 +60,7 @@ class CriteoPresenter implements AMSPresenterInterface
 	private function mapping($line)
 	{
 		$array = array(
-			"date" => date('Y-m-d', strtotime($line["date"])),
+			"date" => $this->convertDate($line["date"]),
 			"site" => $line["siteName"],
 			"impressions reçues" => $line["totalImpression"],
 			"impressions prises" => $line["impression"],
@@ -66,6 +72,13 @@ class CriteoPresenter implements AMSPresenterInterface
 		);
 		
 		return $array;
+	}
+	
+	private function convertDate($date)
+	{
+		$date = DateTime::createFromFormat($this->date_format, $date);
+		
+		return $date->format('Y-m-d'); 
 	}
 	
 	private function echoCsv($file)
