@@ -50,25 +50,6 @@ class RubiconService extends AMSService implements AMSServiceInterface
     {
 		$curl = curl_init();
 
-		/*
-		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "https://api.rubiconproject.com/analytics/v1/report/?account=publisher%2F14794&end=2016-10-25T23%3A59%3A59-07%3A00&dimensions=zone%2Csize%2Csize_id%2Csite_id%2Czone_id&metrics=revenue%2Cpaid_impression&start=2016-10-25T00%3A00%3A00-07%3A00",
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => "",
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 30,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "GET",
-		  CURLOPT_HTTPHEADER => array(
-		    "accept: application/json",
-		    "authorization: Basic MTEzNzgxOTdiYmQzYmVjNGIyMzIxNWEzMjE4NmQwNzliY2QyNGYzYTozMzUzYmJiMDNkNWQzNGU2NWUwZDk0YjliNmRjMGM3Zg==",
-		    "cache-control: no-cache",
-		    "postman-token: d1a33694-7b54-98f9-a40a-bd2b90c07de6"
-		  ),
-		));
-		*/
-		
-	
 		curl_setopt_array(
             $curl, 
             [
@@ -82,7 +63,6 @@ class RubiconService extends AMSService implements AMSServiceInterface
 					"cache-control: no-cache",
 					"Accept: application/json",
 					"Authorization: Basic " . base64_encode($user . ":" . $pass)
-					//"Authorization: Basic MTEzNzgxOTdiYmQzYmVjNGIyMzIxNWEzMjE4NmQwNzliY2QyNGYzYTozMzUzYmJiMDNkNWQzNGU2NWUwZDk0YjliNmRjMGM3Zg=="
 				],
             ]
 		);
