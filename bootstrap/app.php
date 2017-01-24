@@ -95,7 +95,6 @@ $app->singleton(
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../routes/web.php';
-	require __DIR__.'../vendor/autoload.php';
 });
 
 return $app;
