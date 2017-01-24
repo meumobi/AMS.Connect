@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\AMSService;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class DispatcherController extends Controller
 {
@@ -21,10 +23,24 @@ class DispatcherController extends Controller
         echo 'AMS.Connect Services';
     }
         
-    public function call($providerName)
+    public function call(Request $request, $providerName)
     {
-        //TODO: Get the params from the Request url and pass to the handler
-        $params = [];
+        try {
+            $this->validate(
+                $request, 
+                [
+                    'start' => 'date_format:Y-m-d',
+                    'end' => 'date_format:Y-m-d'
+                ]
+            );
+        }
+        catch (ValidationException $exception){
+            //TODO: Log and Handle the exception if needed
+            throw $exception;
+        }
+
+        //TODO: Filter the request->all using request->only or request->except if needed
+        $params = $request->all();
         $serviceHandler = AMSService::loadService($providerName);
         if (!$serviceHandler) {
             echo 'The service provider \''.$providerName.'\' does not exists';

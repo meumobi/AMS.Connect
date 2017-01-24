@@ -21,12 +21,12 @@ class CriteoService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
       
-        $beginDate = $this->getParameter($params, 'beginDate', (new DateTime())->format('Y-m-d'));
-        $endDate = $this->getParameter($params, 'endDate', (new DateTime())->format('Y-m-d'));
+        $startDate = $this->getParameter($params, 'start', (new DateTime())->format('Y-m-d'));
+        $endDate = $this->getParameter($params, 'end', (new DateTime())->format('Y-m-d'));
 
         $urlData = [
             'apitoken' => $configData['token'],
-            'begindate' => $beginDate,
+            'begindate' => $startDate,
             'enddate' => $endDate
         ];
 

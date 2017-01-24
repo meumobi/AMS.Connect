@@ -21,7 +21,7 @@ class SublimeService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
       
-        $date = $this->getParameter($params, 'beginDate', (new DateTime())->modify('-1 day')->format('Y-m-d'));
+        $date = $this->getParameter($params, 'start', (new DateTime())->modify('-1 day')->format('Y-m-d'));
 
 		$timestamp = time();
 		$urlData = [
