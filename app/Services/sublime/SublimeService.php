@@ -29,20 +29,18 @@ class SublimeService extends AMSService implements AMSServiceInterface
 			'timestamp' => $timestamp,
 			'hash' => base64_encode(password_hash($timestamp . $configData['apiSecret'], PASSWORD_BCRYPT))
         ];
-		var_dump($urlData);
 
         $url = $configData['url'] . $date . '?' . http_build_query($urlData);
       
-        echo $url;
-		list($response, $error) = $this->call($url);
+	list($response, $error) = $this->call($url);
 
         if ($error) {
             echo "cURL Error #:" . $error;
             return;
         }
 
-		echo $response;
-		//$this->presenter->present($response, $configData['date_format']);
+	echo $response;
+	//$this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
     }
