@@ -41,7 +41,6 @@ class DispatcherController extends Controller
 
         //TODO: Filter the request->all using request->only or request->except if needed
         $params = $request->all();
-        $params['end'] = $request->input('end', $request->input('start'));
         $serviceHandler = AMSService::loadService($providerName);
         if (!$serviceHandler) {
             echo 'The service provider \''.$providerName.'\' does not exists';

@@ -29,7 +29,7 @@ class CriteoService extends AMSService implements AMSServiceInterface
         $endDate = $this->getParameter(
             $params, 
             'end', 
-            $startDate
+            (new DateTime())->modify('-1 day')->format('Y-m-d')
         );
 
         $urlData = [
