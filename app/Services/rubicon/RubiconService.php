@@ -21,17 +21,25 @@ class RubiconService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
       
-        $startDate = $this->getParameter($params, 'start', (new DateTime())->modify('-1 day')->format(DATE_W3C)); // 2016-10-25T23:59:59-0700
-        $endDate = $this->getParameter($params, 'end', (new DateTime())->format(DATE_W3C));
+        $startDate = $this->getParameter($params, 'start')
+            ? (new DateTime())->createFromFormat('Y-m-d', $this->getParameter($params, 'start'))
+                 ->setTime(0, 0, 0)->format(DATE_W3C)
+            : (new DateTime())->modify('-1 day')
+                ->setTime(0, 0, 0)->format(DATE_W3C);
+        $endDate = $this->getParameter($params, 'end')
+            ? (new DateTime())->createFromFormat('Y-m-d', $this->getParameter($params, 'end'))
+                 ->setTime(23, 59, 59)->format(DATE_W3C)
+            : (new DateTime())->modify('-1 day')
+                ->setTime(23, 59, 59)->format(DATE_W3C);
 
-		$urlData = [
+        $urlData = [
             'start' => $startDate,
             'end' => $endDate,
-			'account' => 'publisher/14794',
-			'dimensions' => 'date,site,site_id,zone,zone_id,size,size_id',
-			'metrics' => 'ecpm,revenue,impressions,paid_impression'
+            'account' => 'publisher/14794',
+            'dimensions' => 'date,site,site_id,zone,zone_id,size,size_id',
+            'metrics' => 'ecpm,revenue,impressions,paid_impression'
         ];
-        echo json_encode($urlData);exit;
+        
         $url = $configData['url'] . '?' . http_build_query($urlData);
       
         list($response, $error) = $this->call($url, $configData['username'], $configData['password']);
@@ -41,17 +49,17 @@ class RubiconService extends AMSService implements AMSServiceInterface
             return;
         }
 
-		$this->presenter->present($response, $configData['date_format']);
+        $this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
     }
 
     protected function call($url, $user, $pass)
     {
-		$curl = curl_init();
+        $curl = curl_init();
 
-		curl_setopt_array(
-            $curl, 
+        curl_setopt_array(
+            $curl,
             [
                 CURLOPT_URL => $url,
                 CURLOPT_HEADER => 0,
@@ -60,13 +68,13 @@ class RubiconService extends AMSService implements AMSServiceInterface
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => [
-					"cache-control: no-cache",
-					"Accept: application/json",
-					"Authorization: Basic " . base64_encode($user . ":" . $pass)
-				],
+                    "cache-control: no-cache",
+                    "Accept: application/json",
+                    "Authorization: Basic " . base64_encode($user . ":" . $pass)
+                ],
             ]
-		);
-		
+        );
+        
         
         $response = curl_exec($curl);
         $err = curl_error($curl);

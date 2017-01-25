@@ -29,8 +29,8 @@ class DispatcherController extends Controller
             $this->validate(
                 $request, 
                 [
-                    'start' => 'date_format:Y-m-d',
-                    'end' => 'date_format:Y-m-d'
+                    'start' => 'required_with:end|date_format:Y-m-d|before:tomorrow',
+                    'end' => 'date_format:Y-m-d|after_or_equal:start|before:tomorrow'
                 ]
             );
         }
@@ -41,6 +41,7 @@ class DispatcherController extends Controller
 
         //TODO: Filter the request->all using request->only or request->except if needed
         $params = $request->all();
+        $params['end'] = $request->input('end', $request->input('start'));
         $serviceHandler = AMSService::loadService($providerName);
         if (!$serviceHandler) {
             echo 'The service provider \''.$providerName.'\' does not exists';

@@ -21,15 +21,23 @@ class CriteoService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
       
-        $startDate = $this->getParameter($params, 'start', (new DateTime())->format('Y-m-d'));
-        $endDate = $this->getParameter($params, 'end', (new DateTime())->format('Y-m-d'));
+        $startDate = $this->getParameter(
+            $params, 
+            'start', 
+            (new DateTime())->modify('-1 day')->format('Y-m-d')
+        );
+        $endDate = $this->getParameter(
+            $params, 
+            'end', 
+            $startDate
+        );
 
         $urlData = [
             'apitoken' => $configData['token'],
             'begindate' => $startDate,
             'enddate' => $endDate
         ];
-
+        
         $url = $configData['url'] . '?' . http_build_query($urlData);
       
         list($response, $error) = $this->call($url);
@@ -39,7 +47,7 @@ class CriteoService extends AMSService implements AMSServiceInterface
             return;
         }
 
-		$this->presenter->present($response, $configData['date_format']);
+        $this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
     }
