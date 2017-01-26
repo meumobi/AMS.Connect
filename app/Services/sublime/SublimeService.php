@@ -39,8 +39,8 @@ class SublimeService extends AMSService implements AMSServiceInterface
             return;
         }
 
-    echo $response;
-    //$this->presenter->present($response, $configData['date_format']);
+    //echo $response;
+    $this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
     }
