@@ -5,6 +5,7 @@ namespace App\Services\rubicon;
 use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
 use DateTime;
+use DateTimeZone;
 
 require('config.php');
 
@@ -22,14 +23,14 @@ class RubiconService extends AMSService implements AMSServiceInterface
         $configData = config('AMS.provider');
       
         $startDate = $this->getParameter($params, 'start')
-            ? (new DateTime())->createFromFormat('Y-m-d', $this->getParameter($params, 'start'))
+            ? (new DateTime('now', new DateTimeZone("-8")))->createFromFormat('Y-m-d', $this->getParameter($params, 'start'))
                  ->setTime(0, 0, 0)->format(DATE_W3C)
-            : (new DateTime())->modify('-1 day')
+            : (new DateTime('now', new DateTimeZone("-8")))->modify('-1 day')
                 ->setTime(0, 0, 0)->format(DATE_W3C);
         $endDate = $this->getParameter($params, 'end')
-            ? (new DateTime())->createFromFormat('Y-m-d', $this->getParameter($params, 'end'))
+            ? (new DateTime('now', new DateTimeZone("-8")))->createFromFormat('Y-m-d', $this->getParameter($params, 'end'))
                  ->setTime(23, 59, 59)->format(DATE_W3C)
-            : (new DateTime())->modify('-1 day')
+            : (new DateTime('now', new DateTimeZone("-8")))->modify('-1 day')
                 ->setTime(23, 59, 59)->format(DATE_W3C);
 
         $urlData = [
