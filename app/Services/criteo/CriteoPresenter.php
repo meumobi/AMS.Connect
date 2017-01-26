@@ -3,21 +3,23 @@
 
 namespace App\Services\criteo;
 
+use App\Services\AMSPresenter;
 use App\Services\AMSPresenterInterface;
+use Log;
 use DateTime;
 
 /*
     Inspired by https://gist.github.com/jakebathman/4fb8c55b13272eee9c88
 */
 
-class CriteoPresenter implements AMSPresenterInterface
+class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
 {
 
     var $date_format = 'Y-m-d';
     
     public function __construct()
     {
-        error_log('AdsensePresenter Constructed');
+        parent::__construct();
     }
 
     public function present($data, $format, $echo = true)

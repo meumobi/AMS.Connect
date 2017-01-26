@@ -3,14 +3,15 @@
 
 namespace App\Services\adsense;
 
+use App\Services\AMSPresenter;
 use App\Services\AMSPresenterInterface;
 
-class AdsensePresenter implements AMSPresenterInterface
+class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
 {
 
     public function __construct()
     {
-        error_log('AdsensePresenter Constructed');
+        parent::__construct();
     }
 
     public function present($data)
