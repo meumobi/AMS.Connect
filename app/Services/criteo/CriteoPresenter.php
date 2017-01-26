@@ -64,7 +64,7 @@ class CriteoPresenter implements AMSPresenterInterface
             "impressions prises" => $line["impression"],
             "revenu" => $line["revenue"]["value"],
             "key" => $line["placementId"],
-            "inventaire" => "AMS Market Place",
+            "inventaire" => "AdNetwork Fill",
             "cpm" => $line["cpm"]["value"],
             "annonceur" => "criteo"
         );
