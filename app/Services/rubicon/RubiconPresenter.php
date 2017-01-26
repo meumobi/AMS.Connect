@@ -5,7 +5,9 @@ namespace App\Services\rubicon;
 
 use App\Services\AMSPresenter;
 use App\Services\AMSPresenterInterface;
+use Log;
 use DateTime;
+use ErrorException;
 
 /*
     Inspired by https://gist.github.com/jakebathman/4fb8c55b13272eee9c88
@@ -14,16 +16,15 @@ use DateTime;
 class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
 {
 
-    var $date_format = 'Y-m-d';
-
     public function __construct()
     {
+        $this->_dateFormat = 'Y-m-d';
         parent::__construct();
     }
 
     public function present($data, $format, $echo = true)
     {
-        $this->date_format = $format;
+        $this->_dateFormat = $format;
                 
         // Passed a string, turn it into an array
         if (is_array($data) === false) {
@@ -31,33 +32,46 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
         }
                 
         $strTempFile = 'csvOutput' . date("U") . ".csv";
-        $f = fopen($strTempFile, "w+");
+        $tempFile = fopen($strTempFile, "w+");
+        Log::info('Temporary file created', ['file'=>$strTempFile]);
                 
         $firstLineKeys = false;
-        foreach ($data["data"]["items"] as $line) {
-            $array = $this->mapping($line);
-            if (empty($firstLineKeys)) {
-                $firstLineKeys = array_keys($array);
-                fputcsv($f, $firstLineKeys);
-                $firstLineKeys = array_flip($firstLineKeys);
+        try {
+            foreach ($data["data"]["items"] as $line) {
+                $array = $this->mapping($line);
+                if (empty($firstLineKeys)) {
+                    $firstLineKeys = array_keys($array);
+                    fputcsv($tempFile, $firstLineKeys);
+                    $firstLineKeys = array_flip($firstLineKeys);
+                }
+                
+                /*
+                    Using array_merge is important to maintain the 
+                    order of keys acording to the first element
+                */
+                fputcsv($tempFile, array_merge($firstLineKeys, $array));
             }
-            
-            /*
-                Using array_merge is important to maintain the order of keys acording to the first element
-            */
-            fputcsv($f, array_merge($firstLineKeys, $array));
+        } catch (ErrorException $exception) {
+            if (strpos($exception->getMessage(), 'Undefined index:') !== false) {
+                Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getMessage()]);
+                echo 'Mapping Error, field does not exists '.$exception->getMessage();
+                return false;
+            }
+            throw $exception;
+        } finally {
+            fclose($tempFile);
         }
-        fclose($f);
         
         $echo ? $this->echoCsv($strTempFile) : $this->attachCsv($strTempFile);
         
         // Delete the temp file
         unlink($strTempFile);
+        Log::info('Temporary file deleted', ['file'=>$strTempFile]);
     }
 
     private function convertDate($date)
     {
-        $date = DateTime::createFromFormat($this->date_format, $date);
+        $date = DateTime::createFromFormat($this->_dateFormat, $date);
         
         return $date->format('Y-m-d');
     }

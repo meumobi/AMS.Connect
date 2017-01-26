@@ -34,8 +34,7 @@ class DispatcherController extends Controller
                     'end' => 'date_format:Y-m-d|after_or_equal:start|before:tomorrow'
                 ]
             );
-        }
-        catch (ValidationException $exception){
+        } catch (ValidationException $exception) {
             //TODO: Handle the exception if needed
             Log::notice('Invalid Parameters', ['url'=>$request->fullUrl(), 'params'=>$request->all()]);
             throw $exception;
@@ -50,5 +49,6 @@ class DispatcherController extends Controller
             return;
         }
         $serviceHandler->perform($params);
+        Log::info('Service performed, finishing request', ['providerName'=>$providerName]);
     }
 }

@@ -36,7 +36,7 @@ class SublimeService extends AMSService implements AMSServiceInterface
         list($response, $error) = $this->call($url);
 
         if ($error) {
-            echo "cURL Error #:" . $error;
+            echo 'cURL Error :' . $error;
             return;
         }
 
@@ -69,7 +69,10 @@ class SublimeService extends AMSService implements AMSServiceInterface
         );
               
         $response = curl_exec($curl);
-        $err = curl_error($curl);
+        $errNum = curl_errno($curl);
+        $err = $errNum
+            ? '#'.$errNum.' => '.curl_error($curl)
+            : null;
         $curlInfo = curl_getinfo($curl);
         curl_close($curl);
         

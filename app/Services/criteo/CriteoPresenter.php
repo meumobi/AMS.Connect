@@ -7,6 +7,7 @@ use App\Services\AMSPresenter;
 use App\Services\AMSPresenterInterface;
 use Log;
 use DateTime;
+use ErrorException;
 
 /*
     Inspired by https://gist.github.com/jakebathman/4fb8c55b13272eee9c88
@@ -15,17 +16,16 @@ use DateTime;
 class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
 {
 
-    var $date_format = 'Y-m-d';
-    
     public function __construct()
     {
         parent::__construct();
+        $this->_dateFormat = 'Y-m-d';
     }
 
     public function present($data, $format, $echo = true)
     {
-        
-        $this->date_format = $format;
+
+        $this->_dateFormat = $format;
         
         // Passed a string, turn it into an array
         if (is_array($data) === false) {
@@ -34,27 +34,40 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
                 
         $strTempFile = 'csvOutput' . date("U") . ".csv";
         $tempFile = fopen($strTempFile, "w+");
-                
+        Log::info('Temporary file created', ['file'=>$strTempFile]);
+
         $firstLineKeys = false;
-        foreach ($data as $line) {
-            $array = $this->mapping($line);
-            if (empty($firstLineKeys)) {
-                $firstLineKeys = array_keys($array);
-                fputcsv($tempFile, $firstLineKeys);
-                $firstLineKeys = array_flip($firstLineKeys);
+        try {
+            foreach ($data as $line) {
+                $array = $this->mapping($line);
+                if (empty($firstLineKeys)) {
+                    $firstLineKeys = array_keys($array);
+                    fputcsv($tempFile, $firstLineKeys);
+                    $firstLineKeys = array_flip($firstLineKeys);
+                }
+                
+                /*
+                    Using array_merge is important to maintain the 
+                    order of keys acording to the first element
+                */
+                fputcsv($tempFile, array_merge($firstLineKeys, $array));
             }
-            
-            /*
-                Using array_merge is important to maintain the order of keys acording to the first element
-            */
-            fputcsv($tempFile, array_merge($firstLineKeys, $array));
+        } catch (ErrorException $exception) {
+            if (strpos($exception->getMessage(), 'Undefined index:') !== false) {
+                Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getMessage()]);
+                echo 'Mapping Error, field does not exists '.$exception->getMessage();
+                return false;
+            }
+            throw $exception;
+        } finally {
+            fclose($tempFile);
         }
-        fclose($tempFile);
         
         $echo ? $this->echoCsv($strTempFile) : $this->attachCsv($strTempFile);
         
         // Delete the temp file
         unlink($strTempFile);
+        Log::info('Temporary file deleted', ['file'=>$strTempFile]);
     }
     
     private function mapping($line)
@@ -76,8 +89,8 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
     
     private function convertDate($date)
     {
-        $date = DateTime::createFromFormat($this->date_format, $date);
-        
+        $date = DateTime::createFromFormat($this->_dateFormat, $date);
+
         return $date->format('Y-m-d');
     }
     
@@ -90,6 +103,7 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
             }
             fclose($handle);
         }
+        Log::info('CSV echoed successfully', ['file'=>$file]);
     }
     
     /*
@@ -101,5 +115,6 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
         header('Content-Disposition: attachment; filename='.basename($file));
         header('Content-Length: ' . filesize($file));
         readfile($file);
+        Log::info('CSV attached successfully', ['file'=>$file]);
     }
 }
