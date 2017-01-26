@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\AMSService;
 use Log;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -28,10 +29,10 @@ class DispatcherController extends Controller
     {
         try {
             $this->validate(
-                $request, 
+                $request,
                 [
-                    'start' => 'required_with:end|date_format:Y-m-d|before:tomorrow',
-                    'end' => 'date_format:Y-m-d|after_or_equal:start|before:tomorrow'
+                    'start' => 'required_with:end|date_format:Y-m-d|before:today',
+                    'end' => 'date_format:Y-m-d|after_or_equal:start|before:today'
                 ]
             );
         } catch (ValidationException $exception) {
@@ -42,6 +43,16 @@ class DispatcherController extends Controller
 
         //TODO: Filter the request->all using request->only or request->except if needed
         $params = $request->all();
+        //Converting the start and end parameters into DateTime objects
+        $params['start'] = $request->has('start')
+            ? (new DateTime)->createFromFormat('Y-m-d', $request->input('start'))
+            : (new DateTime)->modify('-1 day');
+        $params['start']->setTime(0, 0, 0);
+        $params['end'] = $request->has('end')
+            ? (new DateTime)->createFromFormat('Y-m-d', $request->input('end'))
+            : (new DateTime)->modify('-1 day');
+        $params['end']->setTime(23, 59, 59);
+
         $serviceHandler = AMSService::loadService($providerName);
         if (!$serviceHandler) {
             Log::notice('Inexistent Provider tried to be accessed', ['provider'=>$providerName]);
