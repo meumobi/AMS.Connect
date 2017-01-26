@@ -6,6 +6,7 @@ use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
 use Log;
 use DateTime;
+use DateTimeZone;
 
 require('config.php');
 
@@ -22,9 +23,12 @@ class RubiconService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
 
-        $startDate = $this->getParameter($params, 'start')->format(DATE_W3C);
-        $endDate = $this->getParameter($params, 'end')->format(DATE_W3C);
-
+        $startDateString = $this->getParameter($params, 'start')->format('Y-m-d');
+        $startDate = (new DateTime($startDateString . 'T00:00:00', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+        
+        $endDateString = $this->getParameter($params, 'end')->format('Y-m-d');
+        $endDate = (new DateTime($endDateString . 'T23:59:59', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+        
         $urlData = [
             'start' => $startDate,
             'end' => $endDate,
@@ -41,7 +45,7 @@ class RubiconService extends AMSService implements AMSServiceInterface
             echo 'cURL Error :' . $error;
             return;
         }
-
+        //echo $url;
         $this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');

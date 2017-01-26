@@ -36,8 +36,9 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         Log::info('Temporary file created', ['file'=>$strTempFile]);
                 
         $firstLineKeys = false;
+
         try {
-            foreach ($data["data"]["items"] as $line) {
+            foreach ($data as $line) {
                 $array = $this->mapping($line);
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
@@ -79,15 +80,14 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
     private function mapping($line)
     {
         $array = array(
-            "date" => $this->convertDate($line["date"]),
-            "site" => $line["site"],
-            "impressions reçues" => $line["impressions"],
-            "impressions prises" => $line["paid_impression"],
-            "revenu" => bcmul("0.85", $line["revenue"], 13),
+            //"date" => $this->convertDate($line["date"]),
+            "impressions reçues" => "NA",
+            "impressions prises" => $line["impr"],
+            "revenu" => $line["rev"],
             //"revenu" => 0.85 * (float)$line["revenue"],
-            "key" => $line["zone_id"] . "-" . $line["size_id"],
+            "key" => $line["zone"],
             "inventaire" => "AMS Market Place",
-            "cpm" => $line["ecpm"],
+            "cpm" => ((float)$line["rev"] / (float)$line["impr"]) * 1000,
             "annonceur" => "sublime"
         );
         
