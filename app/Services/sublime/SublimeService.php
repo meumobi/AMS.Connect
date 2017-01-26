@@ -4,6 +4,7 @@ namespace App\Services\sublime;
 
 use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
+use Log;
 use DateTime;
 
 require('config.php');
@@ -13,8 +14,8 @@ class SublimeService extends AMSService implements AMSServiceInterface
 
     public function __construct()
     {
+        parent::__construct();
         $this->presenter = new SublimePresenter;
-        error_log('AdsenseService constructed');
     }
 
     public function perform(array $params)
@@ -32,15 +33,15 @@ class SublimeService extends AMSService implements AMSServiceInterface
 
         $url = $configData['url'] . $date . '?' . http_build_query($urlData);
       
-    list($response, $error) = $this->call($url);
+        list($response, $error) = $this->call($url);
 
         if ($error) {
-            echo "cURL Error #:" . $error;
+            echo 'cURL Error :' . $error;
             return;
         }
 
-    //echo $response;
-    $this->presenter->present($response, $configData['date_format']);
+		//echo $response;
+    	$this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
     }
@@ -50,7 +51,7 @@ class SublimeService extends AMSService implements AMSServiceInterface
         $curl = curl_init();
     
         curl_setopt_array(
-            $curl, 
+            $curl,
             [
                 CURLOPT_URL => $url,
                 CURLOPT_HEADER => 0,
@@ -63,13 +64,29 @@ class SublimeService extends AMSService implements AMSServiceInterface
                     "cache-control: no-cache",
                     "Accept: application/json",
                 ],
+                CURLINFO_HEADER_OUT => true,
             ]
         );
               
         $response = curl_exec($curl);
-        $err = curl_error($curl);
-
+        $errNum = curl_errno($curl);
+        $err = $errNum
+            ? '#'.$errNum.' => '.curl_error($curl)
+            : null;
+        $curlInfo = curl_getinfo($curl);
         curl_close($curl);
+        
+        $requestData = [
+            'headers' => $curlInfo['request_header'],
+            'requestTime' => $curlInfo['total_time'],
+            'requestSize' => $curlInfo['request_size'],
+            'httpCode' => $curlInfo['http_code'],
+        ];
+        Log::info('Request finished', $requestData);
+
+        if ($err) {
+            Log::warning('Request Error', ['error' => $err]);
+        }
 
         return [$response, $err];
     }

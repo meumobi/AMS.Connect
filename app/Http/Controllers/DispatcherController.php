@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AMSService;
+use Log;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -13,9 +14,9 @@ class DispatcherController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        //
+        Log::info('Initializing Controller', ['url' => $request->fullUrl()]);
     }
 
     public function index()
@@ -33,9 +34,9 @@ class DispatcherController extends Controller
                     'end' => 'date_format:Y-m-d|after_or_equal:start|before:tomorrow'
                 ]
             );
-        }
-        catch (ValidationException $exception){
-            //TODO: Log and Handle the exception if needed
+        } catch (ValidationException $exception) {
+            //TODO: Handle the exception if needed
+            Log::notice('Invalid Parameters', ['url'=>$request->fullUrl(), 'params'=>$request->all()]);
             throw $exception;
         }
 
@@ -43,9 +44,11 @@ class DispatcherController extends Controller
         $params = $request->all();
         $serviceHandler = AMSService::loadService($providerName);
         if (!$serviceHandler) {
+            Log::notice('Inexistent Provider tried to be accessed', ['provider'=>$providerName]);
             echo 'The service provider \''.$providerName.'\' does not exists';
             return;
         }
         $serviceHandler->perform($params);
+        Log::info('Service performed, finishing request', ['providerName'=>$providerName]);
     }
 }

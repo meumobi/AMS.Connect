@@ -4,6 +4,7 @@ namespace App\Services\rubicon;
 
 use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
+use Log;
 use DateTime;
 use DateTimeZone;
 
@@ -14,8 +15,8 @@ class RubiconService extends AMSService implements AMSServiceInterface
 
     public function __construct()
     {
+        parent::__construct();
         $this->presenter = new RubiconPresenter;
-        error_log('AdsenseService constructed');
     }
 
     public function perform(array $params)
@@ -51,7 +52,7 @@ class RubiconService extends AMSService implements AMSServiceInterface
         list($response, $error) = $this->call($url, $configData['username'], $configData['password']);
 
         if ($error) {
-            echo "cURL Error #:" . $error;
+            echo 'cURL Error :' . $error;
             return;
         }
 		//echo $url;
@@ -78,14 +79,30 @@ class RubiconService extends AMSService implements AMSServiceInterface
                     "Accept: application/json",
                     "Authorization: Basic " . base64_encode($user . ":" . $pass)
                 ],
+                CURLINFO_HEADER_OUT => true,
             ]
         );
         
         
         $response = curl_exec($curl);
-        $err = curl_error($curl);
-
+        $errNum = curl_errno($curl);
+        $err = $errNum
+            ? '#'.$errNum.' => '.curl_error($curl)
+            : null;
+        $curlInfo = curl_getinfo($curl);
         curl_close($curl);
+        
+        $requestData = [
+            'headers' => $curlInfo['request_header'],
+            'requestTime' => $curlInfo['total_time'],
+            'requestSize' => $curlInfo['request_size'],
+            'httpCode' => $curlInfo['http_code'],
+        ];
+        Log::info('Request finished', $requestData);
+
+        if ($err) {
+            Log::warning('Request Error', ['error' => $err]);
+        }
 
         return [$response, $err];
     }
