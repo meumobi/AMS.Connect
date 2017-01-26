@@ -21,18 +21,23 @@ class RubiconService extends AMSService implements AMSServiceInterface
     public function perform(array $params)
     {
         $configData = config('AMS.provider');
-      
-        $startDate = $this->getParameter($params, 'start')
-            ? (new DateTime('now', new DateTimeZone("-8")))->createFromFormat('Y-m-d', $this->getParameter($params, 'start'))
-                 ->setTime(0, 0, 0)->format(DATE_W3C)
-            : (new DateTime('now', new DateTimeZone("-8")))->modify('-1 day')
-                ->setTime(0, 0, 0)->format(DATE_W3C);
-        $endDate = $this->getParameter($params, 'end')
-            ? (new DateTime('now', new DateTimeZone("-8")))->createFromFormat('Y-m-d', $this->getParameter($params, 'end'))
-                 ->setTime(23, 59, 59)->format(DATE_W3C)
-            : (new DateTime('now', new DateTimeZone("-8")))->modify('-1 day')
-                ->setTime(23, 59, 59)->format(DATE_W3C);
-
+		
+        $startDateString = $this->getParameter(
+            $params, 
+            'start', 
+            (new DateTime())->modify('-1 day')->format('Y-m-d')
+        );
+		
+		$startDate = (new DateTime($startDateString . 'T00:00:00', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+		
+        $endDateString = $this->getParameter(
+            $params, 
+            'end', 
+            (new DateTime())->modify('-1 day')->format('Y-m-d')
+        );
+		
+		$endDate = (new DateTime($endDateString . 'T23:59:59', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+		
         $urlData = [
             'start' => $startDate,
             'end' => $endDate,
@@ -49,7 +54,7 @@ class RubiconService extends AMSService implements AMSServiceInterface
             echo "cURL Error #:" . $error;
             return;
         }
-
+		//echo $url;
         $this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
