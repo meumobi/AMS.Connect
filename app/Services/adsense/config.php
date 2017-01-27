@@ -3,7 +3,8 @@
 config(
     ['AMS.provider'=> 
         [
-            'url' => 'http://asdasd',
+            'name' => 'adsense',
+            'url'  => 'http://asdasd',
             'auth' => 'basic', //basic, oauth, etc
             'token'=>'alksdjalksdjasjdkasd',
             'user' => 'username',

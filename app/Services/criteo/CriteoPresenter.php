@@ -26,7 +26,7 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
     {
 
         $this->_dateFormat = $format;
-        
+
         // Passed a string, turn it into an array
         if (is_array($data) === false) {
             $data = json_decode($data, true);
@@ -85,36 +85,5 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
         );
         
         return $array;
-    }
-    
-    private function convertDate($date)
-    {
-        $date = DateTime::createFromFormat($this->_dateFormat, $date);
-
-        return $date->format('Y-m-d');
-    }
-    
-    private function echoCsv($file)
-    {
-        if (($handle = fopen($file, "r")) !== false) {
-            while (($data = fgetcsv($handle)) !== false) {
-                echo implode(",", $data);
-                echo "<br />";
-            }
-            fclose($handle);
-        }
-        Log::info('CSV echoed successfully', ['file'=>$file]);
-    }
-    
-    /*
-    Output the file to the browser (for open/save)
-    */
-    private function attachCsv($file)
-    {
-        header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename='.basename($file));
-        header('Content-Length: ' . filesize($file));
-        readfile($file);
-        Log::info('CSV attached successfully', ['file'=>$file]);
     }
 }

@@ -70,13 +70,6 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         Log::info('Temporary file deleted', ['file'=>$strTempFile]);
     }
 
-    private function convertDate($date)
-    {
-        $date = DateTime::createFromFormat($this->_dateFormat, $date);
-        
-        return $date->format('Y-m-d');
-    }
-    
     private function mapping($line)
     {
         $array = array(
@@ -92,27 +85,5 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         );
         
         return $array;
-    }
-    
-    private function echoCsv($file)
-    {
-        if (($handle = fopen($file, "r")) !== false) {
-            while (($data = fgetcsv($handle)) !== false) {
-                echo implode(",", $data);
-                echo "<br />";
-            }
-            fclose($handle);
-        }
-    }
-    
-    /*
-    Output the file to the browser (for open/save)
-    */
-    private function attachCsv($file)
-    {
-        header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename='.basename($file));
-        header('Content-Length: ' . filesize($file));
-        readfile($file);
     }
 }
