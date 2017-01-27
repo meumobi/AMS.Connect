@@ -30,7 +30,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         if (is_array($data) === false) {
             $data = json_decode($data, true);
         }
-                
+
         $strTempFile = 'csvOutput' . date("U") . ".csv";
         $tempFile = fopen($strTempFile, "w+");
         Log::info('Temporary file created', ['file'=>$strTempFile]);
@@ -73,7 +73,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
     private function mapping($line)
     {
         $array = array(
-            //"date" => $this->convertDate($line["date"]),
+            "date" => $this->convertDate($line["date"]),
             "impressions reçues" => "NA",
             "impressions prises" => $line["impr"],
             "revenu" => $line["rev"],
