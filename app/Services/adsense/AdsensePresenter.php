@@ -17,8 +17,15 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         parent::__construct();
     }
 
-    public function present($data)
+    public function present($data, $format, $echo = true)
     {
-        echo 'Not Implemented yet!';
+        $this->_dateFormat = $format;
+
+        // Passed a string, turn it into an array
+        if (is_array($data) === false) {
+            $data = json_decode($data, true);
+        }
+
+        echo json_encode($data);
     }
 }

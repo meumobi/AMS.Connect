@@ -4,6 +4,7 @@ namespace App\Services\adsense;
 
 use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
+use Google_Client;
 
 require('config.php');
 
@@ -16,10 +17,40 @@ class AdsenseService extends AMSService implements AMSServiceInterface
         $this->presenter = new AdsensePresenter;
     }
 
-    public function perform(Array $params)
+    public function perform(array $params)
     {
-        $data = config('AMS.provider');
+        $configData = config('AMS.provider');
+
+        $startDate = $this->getParameter($params, 'start')->format('Y-m-d');
+        $endDate = $this->getParameter($params, 'end')->format('Y-m-d');
+
+        $urlData = [
+            'startDate' => $startDate,
+            'endDate' => $endDate
+        ];
+
+        $url = $configData['url'] . '?' . http_build_query($urlData);
         
-        $this->presenter->present($data);
+        list($response, $error) = $this->call($url, $configData['scope'], $configData['serviceAccountFile']);
+
+        if ($error) {
+            echo 'cURL Error :' . $error;
+            return;
+        }
+
+        $this->presenter->present($response, $configData['date_format']);
+    }
+
+    protected function call($url, $scope, $serviceAccountFile)
+    {
+        putenv('GOOGLE_APPLICATION_CREDENTIALS='.$serviceAccountFile);
+        $client = new Google_Client();
+        $client->useApplicationDefaultCredentials();
+        $client->addScope($scope);
+        
+        $httpClient = $client->authorize();
+        $response = $httpClient->get($url);
+        $error = null;
+        return [$response->getBody()->getContents(), $error];
     }
 }
