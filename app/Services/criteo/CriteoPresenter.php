@@ -75,14 +75,12 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
     {
         $array = array(
             "date" => $this->convertDate($line["date"]),
-            "site" => $line["siteName"],
             "impressions reçues" => $line["totalImpression"],
             "impressions prises" => $line["impression"],
             "revenu" => $line["revenue"]["value"],
             "key" => $line["placementId"],
             "inventaire" => "AdNetwork Fill",
-            "cpm" => $line["cpm"]["value"],
-            "annonceur" => "criteo"
+            "cpm" => $line["cpm"]["value"]
         );
         
         return $array;

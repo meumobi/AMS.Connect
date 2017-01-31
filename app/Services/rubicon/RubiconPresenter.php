@@ -74,14 +74,12 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
     {
         $array = array(
             "date" => $this->convertDate($line["date"]),
-            "site" => $line["site"],
             "impressions reçues" => $line["impressions"],
             "impressions prises" => $line["paid_impression"],
             "revenu" => 0.85 * (float)$line["revenue"],
             "key" => $line["zone_id"] . "-" . $line["size_id"],
             "inventaire" => "AMS Market Place",
-            "cpm" => $line["ecpm"],
-            "annonceur" => "rubicon"
+            "cpm" => $line["ecpm"]
         );
         
         return $array;
