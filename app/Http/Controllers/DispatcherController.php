@@ -7,7 +7,9 @@ use Log;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Google_Client;
 
+//TODO: Refactoring
 class DispatcherController extends Controller
 {
     /**
@@ -61,5 +63,23 @@ class DispatcherController extends Controller
         }
         $serviceHandler->perform($params);
         Log::info('Service performed, finishing request', ['providerName'=>$providerName]);
+    }
+
+    public function handleAdsenseToken(Request $request){
+        require(__DIR__.'/../../Services/adsense/config.php');
+        $configData = config('AMS.provider');
+        $client = new Google_Client();
+        $client->setAuthConfig($configData['serviceAccountFile']);
+        $client->addScope($configData['scope']);
+        $client->setRedirectUri((!empty($_SERVER['HTTPS'])? 'https://' : 'http://') . $_SERVER['HTTP_HOST'].'/oauth/adsense');
+        $client->setAccessType("offline");
+        $authUrl = $client->createAuthUrl();
+        $data = $request->all();
+        if ($request->has('code')) {
+            $token = $client->fetchAccessTokenWithAuthCode($request->input('code'));
+            $data['__token__'] = $token;
+            // $client->setAccessToken($token);
+        }
+        echo json_encode($data);
     }
 }

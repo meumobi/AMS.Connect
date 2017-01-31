@@ -12,4 +12,5 @@
 */
 
 $app->get('/', 'DispatcherController@index');
+$app->get('/oauth/adsense', 'DispatcherController@handleAdsenseToken');
 $app->get('/{providerName}', 'DispatcherController@call');
