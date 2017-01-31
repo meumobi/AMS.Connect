@@ -64,20 +64,17 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         Log::info('Temporary file deleted', ['file'=>$strTempFile]);
     }
     
-    //TODO: Make the right mapping correspondence to adsense data
     private function mapping($line)
     {
-        // $array = array(
-        //     "date" => $this->convertDate($line["date"]),
-        //     "site" => $line["siteName"],
-        //     "impressions reçues" => $line["totalImpression"],
-        //     "impressions prises" => $line["impression"],
-        //     "revenu" => $line["revenue"]["value"],
-        //     "key" => $line["placementId"],
-        //     "inventaire" => "AdNetwork Fill",
-        //     "cpm" => $line["cpm"]["value"],
-        //     "annonceur" => "adsense"
-        // );
+        $array = array(
+        	"date" => $this->convertDate($line["DATE"]),
+        	"impressions reçues" => $line["AD_REQUESTS"],
+        	"impressions prises" => $line["MATCHED_AD_REQUESTS"],
+        	"revenu" => $line["EARNINGS"] * 0.98,
+        	"key" => $line["AD_UNIT_CODE"],
+        	"inventaire" => "AdNetwork Fill",
+        	"cpm" => $line["AD_REQUESTS_RPM"]
+        );
         
         return $line;
     }

@@ -28,12 +28,10 @@ class AdsenseService extends AMSService implements AMSServiceInterface
             'startDate' => $startDate,
             'endDate' => $endDate,
             'dimension'=> [
-                'AD_CLIENT_ID', 'AD_UNIT_ID', 'AD_UNIT_NAME', 'DATE'
+                'AD_UNIT_CODE', 'DATE'
             ],
             'metric' => [
-                'AD_REQUESTS', 'CLICKS', 'EARNINGS',
-                'INDIVIDUAL_AD_IMPRESSIONS', 'INDIVIDUAL_AD_IMPRESSIONS_CTR', 'INDIVIDUAL_AD_IMPRESSIONS_RPM',
-                'PAGE_VIEWS', 'PAGE_VIEWS_CTR', 'PAGE_VIEWS_RPM'
+                'AD_REQUESTS', 'MATCHED_AD_REQUESTS', 'EARNINGS', 'AD_REQUESTS_RPM'
             ],
             'fields' => 'averages,endDate,headers,kind,rows,startDate,totalMatchedRows,totals,warnings'
         ];
