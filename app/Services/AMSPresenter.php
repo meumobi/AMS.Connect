@@ -44,4 +44,14 @@ class AMSPresenter
         readfile($file);
         Log::info('CSV attached successfully', ['file'=>$file]);
     }
+
+    protected function getCorrelatedFields($key)
+    {
+        $correlationTable = new CorrelationTable();
+        $row = $correlationTable->getRow($key);
+        if (empty($row)) {
+            Log::warning('Correlation Key Not Found', ['key' => $key]);
+        }
+        return $row;
+    }
 }
