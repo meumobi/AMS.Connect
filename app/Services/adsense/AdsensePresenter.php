@@ -76,6 +76,6 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         	"cpm" => $line["AD_REQUESTS_RPM"]
         );
         
-        return $line;
+        return $array;
     }
 }
