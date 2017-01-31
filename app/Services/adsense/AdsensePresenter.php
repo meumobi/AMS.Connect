@@ -34,6 +34,7 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
+                $array = $array + $this->getCorrelatedFields($array['key']);
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
