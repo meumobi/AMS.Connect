@@ -8,7 +8,6 @@ use Google_Client;
 
 require('config.php');
 
-//TODO: Refactoring
 class AdsenseService extends AMSService implements AMSServiceInterface
 {
 
@@ -39,26 +38,14 @@ class AdsenseService extends AMSService implements AMSServiceInterface
             'fields' => 'averages,endDate,headers,kind,rows,startDate,totalMatchedRows,totals,warnings'
         ];
         
-        $url = $configData['url'] . '?';
+        $url = $this->createUrl($configData['url'], $urlData);
 
-        foreach ($urlData as $key => $data) {
-            if (is_array($data)) {
-                $url = array_reduce(
-                    $data,
-                    function ($url, $item) use ($key) {
-                        $url .= '&'.http_build_query([$key => $item]);
-                        return $url;
-                    },
-                    $url
-                );
-            } else {
-                $url .= '&'.http_build_query([$key => $data]);
-            }
+        //To call Google Oath to generate the access and refresh tokens
+        if ($this->getParameter($params, 'callGoogleOAuth')) {
+            $this->callLoginUrl();
         }
 
         list($response, $error) = $this->call($url);
-
-        // list($response, $error) = $this->callLoginUrl($url);
 
         if ($error) {
             echo 'Request Error :' . $error;
@@ -70,18 +57,9 @@ class AdsenseService extends AMSService implements AMSServiceInterface
 
     protected function call($url)
     {
-        $configData = config('AMS.provider');
-        $token = $configData['token'];
-        $scope = $configData['scope'];
-        $serviceAccountFile =  $configData['serviceAccountFile'];
+        $client = $this->getGoogleClient();
+        $token = config('AMS.provider.token');
 
-        $client = new Google_Client();
-        $client->setAuthConfig($serviceAccountFile);
-        $client->addScope($scope);
-        $client->setRedirectUri((!empty($_SERVER['HTTPS'])? 'https://' : 'http://') . $_SERVER['HTTP_HOST'].'/oauth/adsense');
-        $client->setAccessType('offline');
-        $client->setApprovalPrompt('force');
-        $authUrl = $client->createAuthUrl();
         $client->setAccessToken($token);
         if ($client->isAccessTokenExpired()) {
             $client->refreshToken($token['refresh_token']);
@@ -95,20 +73,69 @@ class AdsenseService extends AMSService implements AMSServiceInterface
         $error = isset($response['error'])
             ? $response['error']['message']
             : null;
-        return [$response, $error];
+        
+        //Manipulate data keys
+        $data = [];
+        if (!$error) {
+            $keys = array_reduce(
+                $response['headers'],
+                function ($keys, $item) {
+                    $keys[] = $item['name'];
+                    return $keys;
+                },
+                []
+            );
+            $data = array_map(
+                function ($row) use ($keys) {
+                    return array_combine($keys, $row);
+                },
+                $response['rows']
+            );
+        }
+
+        return [$data, $error];
     }
 
-    protected function callLoginUrl($url)
+    protected function callLoginUrl()
+    {
+        $client = $this->getGoogleClient();
+        $authUrl = $client->createAuthUrl();
+        header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+    }
+
+    public function getGoogleClient()
     {
         $scope = config('AMS.provider.scope');
         $serviceAccountFile =  config('AMS.provider.serviceAccountFile');
         $client = new Google_Client();
         $client->setAuthConfig($serviceAccountFile);
         $client->addScope($scope);
-        $client->setRedirectUri((!empty($_SERVER['HTTPS'])? 'https://' : 'http://') . $_SERVER['HTTP_HOST'].'/oauth/adsense');
+        $client->setRedirectUri(config('AMS.provider.redirectUri'));
         $client->setAccessType('offline');
         $client->setApprovalPrompt('force');
-        $authUrl = $client->createAuthUrl();
-        header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+
+        return $client;
+    }
+
+    protected function createUrl($url, $urlData)
+    {
+        $url .= '?';
+
+        foreach ($urlData as $key => $data) {
+            if (is_array($data)) {
+                $url = array_reduce(
+                    $data,
+                    function ($url, $item) use ($key) {
+                        $url .= '&'.http_build_query([$key => $item]);
+                        return $url;
+                    },
+                    $url
+                );
+                continue;
+            }
+            $url .= '&'.http_build_query([$key => $data]);
+        }
+
+        return $url;
     }
 }

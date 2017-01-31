@@ -8,7 +8,13 @@ config(
             'date_format' => 'Y-m-d',
             'auth' => 'oauth', //basic, oauth, etc
             'scope'=> 'https://www.googleapis.com/auth/adsense.readonly',
-            //Any other config option
+            'redirectUri' => 
+                (!empty($_SERVER['HTTPS'])
+                    ? 'https://' 
+                    : 'http://'
+                )
+                . $_SERVER['HTTP_HOST']
+                .'/oauth/adsense',
             'serviceAccountFile' => realpath(dirname(__FILE__)).'/credentials.json',
             'token'=> [
                     'access_token'=> 'ya29.GlvkA_1rEmH-HFPTx56BxsGO43BX6O6dUvNzLO0FSKNw3iqoBSrjqi_61N7URRCnyCCOnz6EpipfTJsR3D-FA2ye73ZZ6GLalvYc_vrOUKRDRugXGdPX9lc-bmSh',
