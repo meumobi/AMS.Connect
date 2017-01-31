@@ -81,7 +81,6 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
             "key" => $line["zone"],
             "inventaire" => "AMS Market Place",
             "cpm" => ((float)$line["rev"] / (float)$line["impr"]) * 1000,
-            "annonceur" => "sublime"
         );
         
         return $array;

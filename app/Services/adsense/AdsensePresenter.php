@@ -70,7 +70,7 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         	"date" => $this->convertDate($line["DATE"]),
         	"impressions reçues" => $line["AD_REQUESTS"],
         	"impressions prises" => $line["MATCHED_AD_REQUESTS"],
-        	"revenu" => $line["EARNINGS"] * 0.98,
+        	"revenu" => (float)$line["EARNINGS"] * 0.98,
         	"key" => $line["AD_UNIT_CODE"],
         	"inventaire" => "AdNetwork Fill",
         	"cpm" => $line["AD_REQUESTS_RPM"]
