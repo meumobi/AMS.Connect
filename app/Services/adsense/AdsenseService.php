@@ -27,6 +27,7 @@ class AdsenseService extends AMSService implements AMSServiceInterface
         $urlData = [
             'startDate' => $startDate,
             'endDate' => $endDate,
+			'useTimezoneReporting' => 'true',
             'dimension'=> [
                 'AD_UNIT_CODE', 'DATE'
             ],
