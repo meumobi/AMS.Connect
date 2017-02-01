@@ -79,9 +79,10 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
             "impressions prises" => $line["impression"],
             "revenu" => $line["revenue"]["value"],
             "key" => $line["placementId"],
-            "inventaire" => "AdNetwork Fill",
-            "cpm" => $line["cpm"]["value"]
+            "inventaire" => "AdNetwork Fill"
         );
+		
+		$array["cpm"] = ((float)$array["revenu"]/(float)$array["impressions prises"]) * 1000;
         
         return $array;
     }

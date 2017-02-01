@@ -79,8 +79,13 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
             "revenu" => 0.85 * (float)$line["revenue"],
             "key" => $line["zone_id"] . "-" . $line["size_id"],
             "inventaire" => "AMS Market Place",
-            "cpm" => $line["ecpm"]
+			"cpm" => 0
         );
+		
+		if ((float)$array["impressions prises"]) 
+		{
+			$array["cpm"] = ((float)$array["revenu"]/(float)$array["impressions prises"]) * 1000;
+		}
         
         return $array;
     }
