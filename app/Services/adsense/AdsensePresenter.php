@@ -34,7 +34,6 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
-                $array = $array + $this->getCorrelatedFields($array['key']);
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
@@ -73,9 +72,10 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         	"impressions prises" => $line["MATCHED_AD_REQUESTS"],
         	"revenu" => (float)$line["EARNINGS"] * 0.98,
         	"key" => $line["AD_UNIT_CODE"],
-        	"inventaire" => "AdNetwork Fill",
-        	"cpm" => $line["AD_REQUESTS_RPM"]
-        );
+        	"inventaire" => "AdNetwork Fill"
+		);
+		
+		$array["cpm"] = ((float)$array["revenu"]/(float)$array["impressions prises"]) * 1000;
         
         return $array;
     }
