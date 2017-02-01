@@ -72,10 +72,14 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         	"impressions prises" => $line["MATCHED_AD_REQUESTS"],
         	"revenu" => (float)$line["EARNINGS"] * 0.98,
         	"key" => $line["AD_UNIT_CODE"],
-        	"inventaire" => "AdNetwork Fill"
-		);
+        	"inventaire" => "AdNetwork Fill",
+			"cpm" => 0
+        );
 		
-		$array["cpm"] = ((float)$array["revenu"]/(float)$array["impressions prises"]) * 1000;
+		if ((float)$array["impressions prises"]) 
+		{
+			$array["cpm"] = ((float)$array["revenu"]/(float)$array["impressions prises"]) * 1000;
+		}
         
         return $array;
     }
