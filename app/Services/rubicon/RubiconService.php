@@ -34,7 +34,8 @@ class RubiconService extends AMSService implements AMSServiceInterface
             'end' => $endDate,
             'account' => 'publisher/14794',
             'dimensions' => 'date,site,site_id,zone,zone_id,size,size_id',
-            'metrics' => 'ecpm,revenue,impressions,paid_impression'
+            'metrics' => 'ecpm,revenue,impressions,paid_impression',
+            'currency' => 'EUR'
         ];
         
         $url = $configData['url'] . '?' . http_build_query($urlData);
