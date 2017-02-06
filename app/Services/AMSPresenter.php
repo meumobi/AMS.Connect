@@ -54,4 +54,17 @@ class AMSPresenter
         }
         return $row;
     }
+
+    protected function getFillRate($received, $matched)
+    {
+        $row = array('fillRate' => '0%');
+
+        if ($received == 'NA') {
+            $row['fillRate'] = 'NA';
+        } else if ($matched != 0) {
+            $row['fillRate'] = (($matched / $received) * 100) . '%';
+        } 
+
+        return $row;
+    }
 }

@@ -34,6 +34,7 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
+                $array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
 				$array = $array + $this->getCorrelatedFields($array['key']);
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
@@ -64,7 +65,7 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
         unlink($strTempFile);
         Log::info('Temporary file deleted', ['file'=>$strTempFile]);
     }
-    
+
     private function mapping($line)
     {
         $array = array(
