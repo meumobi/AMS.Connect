@@ -55,6 +55,17 @@ class AMSPresenter
         return $row;
     }
 
+    protected function getCpm($impressions, $revenue) 
+    {
+        $row = array('cpm' => 'NA');
+
+        if ($impressions != 0) {
+            $row['cpm'] = ($revenue / $impressions) * 1000;
+        }
+
+        return $row;
+    }
+    
     protected function getFillRate($received, $matched)
     {
         $row = array('fillRate' => '0%');

@@ -41,6 +41,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
             foreach ($data as $line) {
                 $array = $this->mapping($line);
                 $array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
+                $array += $this->getCpm($array['impressions prises'], $array['revenu']);
                 $array = $array + $this->getCorrelatedFields($array['key']);
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
@@ -81,15 +82,9 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
             "revenu" => $line["rev"],
             //"revenu" => 0.85 * (float)$line["revenue"],
             "key" => $line["zone"],
-            "inventaire" => "AMS Market Place",
-			"cpm" => 0
+            "inventaire" => "AMS Market Place"
         );
-		
-		if ((float)$array["impressions prises"]) 
-		{
-			$array["cpm"] = ((float)$array["revenu"]/(float)$array["impressions prises"]) * 1000;
-		}
-        
+
         return $array;
     }
 }
