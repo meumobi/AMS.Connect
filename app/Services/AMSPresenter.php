@@ -64,6 +64,12 @@ class AMSPresenter
         if (empty($row)) {
             Log::warning('AdServing Key Not Found', ['key' => $key, 'date' => $date]);
         }
+        if (isset($row['impressions envoyees'])) {
+            $row['impressions envoyees'] = preg_replace("/[^0-9]/", "", $row['impressions envoyees']);
+        } else {
+            $row['impressions envoyees'] = 'NA';
+        }
+
         return $row;
     }
 
@@ -81,11 +87,9 @@ class AMSPresenter
     protected function getDiscrepencies($sent, $received) 
     {
         $row = array('discrepencies' => 'NA');
-        $sent = preg_replace("/[^0-9]/", "", $sent);
-        $received = preg_replace("/[^0-9]/", "", $received);
 
-        if ($received != 0) {
-            $row['discrepencies'] = (1 - ((int)$sent / (int)$received)) * 100 . '%';
+        if ($received != 0 && $received != 'NA' && $sent != 'NA') {
+            $row['discrepencies'] = (1 - ((int)$received / (int)$sent)) * 100 . '%';
         }
 
         return $row;
@@ -102,5 +106,16 @@ class AMSPresenter
         } 
 
         return $row;
+    }
+
+    protected function addFields($array)
+    {
+        $array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
+        $array += $this->getCpm($array['impressions prises'], $array['revenu']);
+        $array += $this->getCorrelatedFields($array['key']);
+        $array += $this->getAdServingFields($array['key'], $array['date']);
+        $array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
+
+        return $array;
     }
 }

@@ -39,15 +39,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data["data"]["items"] as $line) {
                 $array = $this->mapping($line);
-                $array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
-                $array += $this->getCpm($array['impressions prises'], $array['revenu']);
-                $array = $array + $this->getCorrelatedFields($array['key']);
-                $array = $array + $this->getAdServingFields($array['key'], $array['date']);
-                if (isset($array['impressions envoyees'])) {
-                    $array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
-                } else {
-                    //$array += array('NA');
-                }
+                $array = $this->addFields($array);
+                
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
