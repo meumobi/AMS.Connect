@@ -55,12 +55,37 @@ class AMSPresenter
         return $row;
     }
 
+    protected function getAdServingFields($key, $date)
+    {
+        $AdServingTable = new AdServingTable();
+        $dateTime = (new DateTime)->createFromFormat('Y-m-d', $date);
+
+        $row = $AdServingTable->getRow($key . $dateTime->format('d/m/Y'));
+        if (empty($row)) {
+            Log::warning('AdServing Key Not Found', ['key' => $key, 'date' => $date]);
+        }
+        return $row;
+    }
+
     protected function getCpm($impressions, $revenue) 
     {
         $row = array('cpm' => 'NA');
 
         if ($impressions != 0) {
             $row['cpm'] = ($revenue / $impressions) * 1000;
+        }
+
+        return $row;
+    }
+
+    protected function getDiscrepencies($sent, $received) 
+    {
+        $row = array('discrepencies' => 'NA');
+        $sent = preg_replace("/[^0-9]/", "", $sent);
+        $received = preg_replace("/[^0-9]/", "", $received);
+
+        if ($received != 0) {
+            $row['discrepencies'] = (1 - ((int)$sent / (int)$received)) * 100 . '%';
         }
 
         return $row;

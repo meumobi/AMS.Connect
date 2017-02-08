@@ -43,6 +43,13 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
                 $array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
                 $array += $this->getCpm($array['impressions prises'], $array['revenu']);
                 $array = $array + $this->getCorrelatedFields($array['key']);
+                $array = $array + $this->getAdServingFields($array['key'], $array['date']);
+                if (isset($array['impressions envoyees'])) {
+                    $array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
+                } else {
+                    $array += array('NA');
+                }
+
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
