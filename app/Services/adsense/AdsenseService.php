@@ -8,8 +8,7 @@ use Google_Client;
 
 require('config.php');
 
-class AdsenseService extends AMSService implements AMSServiceInterface
-{
+class AdsenseService extends AMSService implements AMSServiceInterface {
 
     public function __construct()
     {
@@ -27,6 +26,7 @@ class AdsenseService extends AMSService implements AMSServiceInterface
         $urlData = [
             'startDate' => $startDate,
             'endDate' => $endDate,
+            'useTimezoneReporting' => 'true',
             'dimension'=> [
                 'AD_UNIT_CODE', 'DATE'
             ],

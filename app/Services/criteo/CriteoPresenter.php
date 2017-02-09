@@ -40,7 +40,8 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
-                $array = $array + $this->getCorrelatedFields($array['key']);
+                $array = $this->addFields($array);
+                
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
@@ -79,8 +80,7 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
             "impressions prises" => $line["impression"],
             "revenu" => $line["revenue"]["value"],
             "key" => $line["placementId"],
-            "inventaire" => "AdNetwork Fill",
-            "cpm" => $line["cpm"]["value"]
+            "inventaire" => "AdNetwork Fill"
         );
         
         return $array;

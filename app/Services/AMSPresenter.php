@@ -54,4 +54,68 @@ class AMSPresenter
         }
         return $row;
     }
+
+    protected function getAdServingFields($key, $date)
+    {
+        $AdServingTable = new AdServingTable();
+        $dateTime = (new DateTime)->createFromFormat('Y-m-d', $date);
+
+        $row = $AdServingTable->getRow($key . $dateTime->format('d/m/Y'));
+        if (empty($row)) {
+            Log::warning('AdServing Key Not Found', ['key' => $key, 'date' => $date]);
+        }
+        if (isset($row['impressions envoyees'])) {
+            $row['impressions envoyees'] = preg_replace("/[^0-9]/", "", $row['impressions envoyees']);
+        } else {
+            $row['impressions envoyees'] = 'NA';
+        }
+
+        return $row;
+    }
+
+    protected function getCpm($impressions, $revenue) 
+    {
+        $row = array('cpm' => 'NA');
+
+        if ($impressions != 0) {
+            $row['cpm'] = ($revenue / $impressions) * 1000;
+        }
+
+        return $row;
+    }
+
+    protected function getDiscrepencies($sent, $received) 
+    {
+        $row = array('discrepencies' => 'NA');
+
+        if ($received != 0 && $received != 'NA' && $sent != 'NA') {
+            $row['discrepencies'] = (1 - ((int)$received / (int)$sent)) * 100 . '%';
+        }
+
+        return $row;
+    }
+    
+    protected function getFillRate($received, $matched)
+    {
+        $row = array('fillRate' => '0%');
+
+        if ($received == 'NA') {
+            $row['fillRate'] = 'NA';
+        } else if ($matched != 0) {
+            $row['fillRate'] = (($matched / $received) * 100) . '%';
+        } 
+
+        return $row;
+    }
+
+    protected function addFields($array)
+    {
+        $array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
+        $array += $this->getCpm($array['impressions prises'], $array['revenu']);
+        $array += $this->getCorrelatedFields($array['key']);
+        $array += $this->getAdServingFields($array['key'], $array['date']);
+        $array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
+
+        return $array;
+    }
 }

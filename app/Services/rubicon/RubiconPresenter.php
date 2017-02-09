@@ -39,7 +39,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data["data"]["items"] as $line) {
                 $array = $this->mapping($line);
-                $array = $array + $this->getCorrelatedFields($array['key']);
+                $array = $this->addFields($array);
+                
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
@@ -78,8 +79,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
             "impressions prises" => $line["paid_impression"],
             "revenu" => 0.85 * (float)$line["revenue"],
             "key" => $line["zone_id"] . "-" . $line["size_id"],
-            "inventaire" => "AMS Market Place",
-            "cpm" => $line["ecpm"]
+            "inventaire" => "AMS Market Place"
         );
         
         return $array;

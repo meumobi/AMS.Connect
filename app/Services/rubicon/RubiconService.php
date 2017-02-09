@@ -24,17 +24,18 @@ class RubiconService extends AMSService implements AMSServiceInterface
         $configData = config('AMS.provider');
 
         $startDateString = $this->getParameter($params, 'start')->format('Y-m-d');
-        $startDate = (new DateTime($startDateString . 'T00:00:00', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+        $startDate = (new DateTime($startDateString . 'T00:00:00', new DateTimeZone('Europe/Paris')))->format(DATE_W3C);
         
         $endDateString = $this->getParameter($params, 'end')->format('Y-m-d');
-        $endDate = (new DateTime($endDateString . 'T23:59:59', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+        $endDate = (new DateTime($endDateString . 'T23:59:59', new DateTimeZone('Europe/Paris')))->format(DATE_W3C);
 
         $urlData = [
             'start' => $startDate,
             'end' => $endDate,
             'account' => 'publisher/14794',
             'dimensions' => 'date,site,site_id,zone,zone_id,size,size_id',
-            'metrics' => 'ecpm,revenue,impressions,paid_impression'
+            'metrics' => 'ecpm,revenue,impressions,paid_impression',
+            'currency' => 'EUR'
         ];
         
         $url = $configData['url'] . '?' . http_build_query($urlData);
