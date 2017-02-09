@@ -24,10 +24,10 @@ class RubiconService extends AMSService implements AMSServiceInterface
         $configData = config('AMS.provider');
 
         $startDateString = $this->getParameter($params, 'start')->format('Y-m-d');
-        $startDate = (new DateTime($startDateString . 'T00:00:00', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+        $startDate = (new DateTime($startDateString . 'T00:00:00', new DateTimeZone('Europe/Paris')))->format(DATE_W3C);
         
         $endDateString = $this->getParameter($params, 'end')->format('Y-m-d');
-        $endDate = (new DateTime($endDateString . 'T23:59:59', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+        $endDate = (new DateTime($endDateString . 'T23:59:59', new DateTimeZone('Europe/Paris')))->format(DATE_W3C);
 
         $urlData = [
             'start' => $startDate,
@@ -46,8 +46,8 @@ class RubiconService extends AMSService implements AMSServiceInterface
             echo 'cURL Error :' . $error;
             return;
         }
-        //echo $url;
-        $this->presenter->present($response, $configData['date_format']);
+        echo $url;
+        // $this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
     }
