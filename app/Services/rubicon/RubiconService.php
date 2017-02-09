@@ -46,8 +46,8 @@ class RubiconService extends AMSService implements AMSServiceInterface
             echo 'cURL Error :' . $error;
             return;
         }
-        echo $url;
-        // $this->presenter->present($response, $configData['date_format']);
+        //echo $url;
+        $this->presenter->present($response, $configData['date_format']);
         
         error_log('AdsenseService Performed');
     }
