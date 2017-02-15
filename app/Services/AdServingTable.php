@@ -2,12 +2,14 @@
 
 namespace App\Services;
 
+use Log;
+
 class AdServingTable
 {
 
     private $_tableData;
 
-    public function __construct()
+    private function __construct()
     {
         $csv = array_map('str_getcsv', file('adserving.csv'));
         $header = array_map('strtolower', array_shift($csv));
@@ -21,6 +23,7 @@ class AdServingTable
             },
             []
         );
+        Log::info('AdServingTable initialized');
     }
 
     public function getRow($key)
@@ -30,5 +33,23 @@ class AdServingTable
         }
         
         return [];
+    }
+
+    public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new static();
+        }
+
+        return $instance;
+    }
+
+    private function __clone()
+    {
+    }
+
+    private function __wakeup()
+    {
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Services;
 
+use Log;
+
 class CorrelationTable
 {
 
     private $_tableData;
 
-    public function __construct()
+    private function __construct()
     {
         $csv = array_map('str_getcsv', file('ams-correlation-table.csv'));
         $header = array_map('strtolower', array_shift($csv));
@@ -20,6 +22,7 @@ class CorrelationTable
             },
             []
         );
+        Log::info('CorrelationTable initialized');
     }
 
     public function getRow($key)
@@ -29,5 +32,23 @@ class CorrelationTable
         }
         
         return [];
+    }
+
+    public static function getInstance()
+    {
+        static $instance = null;
+        if (null === $instance) {
+            $instance = new static();
+        }
+
+        return $instance;
+    }
+
+    private function __clone()
+    {
+    }
+
+    private function __wakeup()
+    {
     }
 }

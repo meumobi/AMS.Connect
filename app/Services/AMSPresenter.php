@@ -47,7 +47,7 @@ class AMSPresenter
 
     protected function getCorrelatedFields($key)
     {
-        $correlationTable = new CorrelationTable();
+        $correlationTable = CorrelationTable::getInstance();
         $row = $correlationTable->getRow($key);
         if (empty($row)) {
             Log::warning('Correlation Key Not Found', ['key' => $key]);
@@ -57,17 +57,16 @@ class AMSPresenter
 
     protected function getAdServingFields($key, $date)
     {
-        $AdServingTable = new AdServingTable();
+        $adServingTable = AdServingTable::getInstance();
         $dateTime = (new DateTime)->createFromFormat('Y-m-d', $date);
 
-        $row = $AdServingTable->getRow($key . $dateTime->format('d/m/Y'));
+        $row = $adServingTable->getRow($key . $dateTime->format('d/m/Y'));
         if (empty($row)) {
             Log::warning('AdServing Key Not Found', ['key' => $key, 'date' => $date]);
         }
+        $row['impressions envoyees'] = 'NA';
         if (isset($row['impressions envoyees'])) {
             $row['impressions envoyees'] = preg_replace("/[^0-9]/", "", $row['impressions envoyees']);
-        } else {
-            $row['impressions envoyees'] = 'NA';
         }
 
         return $row;
