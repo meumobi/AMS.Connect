@@ -87,7 +87,7 @@ class AMSPresenter
     {
         $row = array('discrepencies' => 'NA');
 
-        if ($received != 0 && $received != 'NA' && $sent != 'NA') {
+        if ($received != 0 && $received != 'NA' && $sent != 0 && $sent != 'NA') {
             $row['discrepencies'] = (1 - ((int)$received / (int)$sent)) * 100 . '%';
         }
 
@@ -98,7 +98,7 @@ class AMSPresenter
     {
         $row = array('fillRate' => '0%');
 
-        if ($received == 'NA') {
+        if ($received == 'NA' || $received == 0) {
             $row['fillRate'] = 'NA';
         } else if ($matched != 0) {
             $row['fillRate'] = (($matched / $received) * 100) . '%';
