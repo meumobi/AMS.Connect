@@ -19,6 +19,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
     public function __construct()
     {
         $this->_dateFormat = 'Y-m-d';
+        $this->_data = [];
         parent::__construct();
     }
 
@@ -30,23 +31,32 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
         if (is_array($data) === false) {
             $data = json_decode($data, true);
         }
-                
+
         $strTempFile = 'csvOutput' . date("U") . ".csv";
         $tempFile = fopen($strTempFile, "w+");
         Log::info('Temporary file created', ['file'=>$strTempFile]);
                 
         $firstLineKeys = false;
         try {
-            foreach ($data["data"]["items"] as $line) {
-                $array = $this->mapping($line);
-                $array = $this->addFields($array);
-                
+            $this->_data = array_reduce(
+                $data["data"]["items"],
+                function ($data, $line) {
+                    $array = $this->mapping($line);
+                    $array = $this->addFields($array);
+                    $data[$array['key']] = $array;
+                    return $data;
+                },
+                []
+            );
+            
+            foreach ($this->_data as $line) {
+                $array = $this->adjustFields($line);
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
                 }
-                
+
                 /*
                     Using array_merge is important to maintain the 
                     order of keys acording to the first element
@@ -81,7 +91,43 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
             "key" => $line["zone_id"] . "-" . $line["size_id"],
             "inventaire" => "AMS Market Place"
         );
-        
+
         return $array;
+    }
+
+    protected function adjustFields($array)
+    {
+        if ($this->hasToCheckAlternativeKey($array)) {
+            $altKey = $this->getAlternateKey($array['key']);
+            if (isset($this->_data[$altKey]) && !empty($this->_data[$altKey])) {
+                $altRow = $this->_data[$altKey];
+                $array['impressions envoyees'] = $altRow['impressions reçues'] - $altRow['impressions prises'];
+                Log::info('Rubicon, Adjusting fields for key', ['key'=>$array['key'], 'altKey'=>$altKey]);
+                $altDiscrepencies = $this->getDiscrepencies(
+                    $array['impressions envoyees'],
+                    $array['impressions reçues']
+                );
+                $array['discrepencies'] = $altDiscrepencies['discrepencies'];
+            }
+        }
+        return $array;
+    }
+
+    private function hasToCheckAlternativeKey($array)
+    {
+        $regexEndKeys = '/\-(2|10)$/';
+        if ((!$array['impressions envoyees'] || $array['impressions envoyees'] == 'NA')
+            && preg_match($regexEndKeys, $array['key'])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function getAlternateKey($key)
+    {
+        $search = ['-2', '-10'];
+        $replace = ['-57', '-15'];
+        return str_replace($search, $replace, $key);
     }
 }

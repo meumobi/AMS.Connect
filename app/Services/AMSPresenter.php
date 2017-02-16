@@ -64,15 +64,16 @@ class AMSPresenter
         if (empty($row)) {
             Log::warning('AdServing Key Not Found', ['key' => $key, 'date' => $date]);
         }
-        $row['impressions envoyees'] = 'NA';
         if (isset($row['impressions envoyees'])) {
             $row['impressions envoyees'] = preg_replace("/[^0-9]/", "", $row['impressions envoyees']);
+        } else {
+            $row['impressions envoyees'] = 'NA';
         }
 
         return $row;
     }
 
-    protected function getCpm($impressions, $revenue) 
+    protected function getCpm($impressions, $revenue)
     {
         $row = array('cpm' => 'NA');
 
@@ -83,7 +84,7 @@ class AMSPresenter
         return $row;
     }
 
-    protected function getDiscrepencies($sent, $received) 
+    protected function getDiscrepencies($sent, $received)
     {
         $row = array('discrepencies' => 'NA');
 
@@ -100,9 +101,9 @@ class AMSPresenter
 
         if ($received == 'NA' || $received == 0) {
             $row['fillRate'] = 'NA';
-        } else if ($matched != 0) {
+        } elseif ($matched != 0) {
             $row['fillRate'] = (($matched / $received) * 100) . '%';
-        } 
+        }
 
         return $row;
     }
