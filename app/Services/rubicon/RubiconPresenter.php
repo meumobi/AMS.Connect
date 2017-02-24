@@ -115,7 +115,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
 
     private function hasToCheckAlternativeKey($array)
     {
-        $regexEndKeys = '/\-(2|10)$/';
+        $regexEndKeys = '/\-(2|15)$/';
         if ((!$array['impressions envoyees'] || $array['impressions envoyees'] == 'NA')
             && preg_match($regexEndKeys, $array['key'])) {
             return true;
@@ -126,8 +126,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
 
     private function getAlternateKey($key)
     {
-        $search = ['-2', '-10'];
-        $replace = ['-57', '-15'];
+        $search = ['-2', '-15'];
+        $replace = ['-57', '-10'];
         return str_replace($search, $replace, $key);
     }
 }
