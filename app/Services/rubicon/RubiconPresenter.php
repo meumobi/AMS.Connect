@@ -26,7 +26,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
     public function present($data, $format, $echo = true)
     {
         $this->_dateFormat = $format;
-                
+
         // Passed a string, turn it into an array
         if (is_array($data) === false) {
             $data = json_decode($data, true);
@@ -43,7 +43,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
                 function ($data, $line) {
                     $array = $this->mapping($line);
                     $array = $this->addFields($array);
-                    $data[$array['key']] = $array;
+                    $data[] = $array;
                     return $data;
                 },
                 []
