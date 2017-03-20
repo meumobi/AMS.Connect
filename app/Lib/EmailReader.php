@@ -6,44 +6,35 @@ use Log;
 
 class EmailReader
 {
-    // email login credentials
-    private $_server = '{imap.gmail.com:993/imap/ssl}INBOX';
-    private $_user   = 'daniel.indiano8@gmail.com';
-    private $_pass   = 'limiteradical';
-    
-    
+
     private $_inbox;
 
     // connect to the server and get the inbox emails
-    function __construct($server, $user, $pass)
+    function __construct()
     {
-        $this->_server = $server;
-        $this->_user = $user;
-        $this->_pass = $pass;
-        $this->connect();
+
     }
     
     // open the server connection
     // the imap_open function parameters will need to be changed for the particular server
     // these are laid out to connect to a Dreamhost IMAP server
-    private function connect()
+    public function connect($server, $user, $pass)
     {
-        $this->_inbox = imap_open($this->_server, $this->_user, $this->_pass, OP_READONLY);
+        $this->_inbox = imap_open($server, $user, $pass, OP_READONLY);
     }
 
     // close the server connection
-    private function close()
+    public function close()
     {
-        $this->inbox = array();
-        imap_close($this->conn);
+        imap_close($this->_inbox);
     }
 
-    function searchEmails($to = '', $date = '', $title = '')
+    function searchEmails($recipient = '', $date = '', $title = '')
     {
         $searchString = '';
 
-        if ($to) {
-            $searchString .= 'TO "' . $to . '" ';
+        if ($recipient) {
+            $searchString .= 'TO "' . $recipient . '" ';
         }
 
         if ($title) {
@@ -53,9 +44,67 @@ class EmailReader
         if ($date) {
             $searchString .= 'ON "' . $date . '" ';
         }
-        
-        $emails = imap_search($this->_inbox, $searchString, SE_UID);
 
+        $emails = imap_search($this->_inbox, $searchString);
+        
         return $emails;
+    }
+
+    public function getEmailAttachments($index)
+    {
+        $structure = imap_fetchstructure($this->_inbox, $index);
+        
+        $attachments = [];
+        // check for attachments
+        if (isset($structure->parts) && count($structure->parts)) {
+            // loop through all attachments
+            for ($i = 0; $i < count($structure->parts); $i++) {
+                // set up an empty attachment
+                $isAttachment = false;
+                $attachment = array(
+                    'filename'      => '',
+                    'name'          => '',
+                    'attachment'    => ''
+                );
+
+                // if this attachment has idfparameters, then proceed
+                if ($structure->parts[$i]->ifdparameters) {
+                    foreach ($structure->parts[$i]->dparameters as $object) {
+                        // if this attachment is a file, mark the attachment and filename
+                        if (strtolower($object->attribute) == 'filename') {
+                            $isAttachment = true;
+                            $attachment['filename']      = $object->value;
+                        }
+                    }
+                }
+
+                // if this attachment has ifparameters, then proceed as above
+                if ($structure->parts[$i]->ifparameters) {
+                    foreach ($structure->parts[$i]->parameters as $object) {
+                        if (strtolower($object->attribute) == 'name') {
+                            $isAttachment = true;
+                            $attachment['name']          = $object->value;
+                        }
+                    }
+                }
+
+                // if we found a valid attachment for this 'part' of the email, process the attachment
+                if ($isAttachment) {
+                    // get the content of the attachment
+                    $attachment['attachment'] = imap_fetchbody($this->_inbox, $index, $i+1);
+
+                    // check if this is base64 encoding
+                    if ($structure->parts[$i]->encoding == 3) { // 3 = BASE64
+                        $attachment['attachment'] = base64_decode($attachment['attachment']);
+                    // otherwise, check if this is "quoted-printable" format
+                    } elseif ($structure->parts[$i]->encoding == 4) { // 4 = QUOTED-PRINTABLE
+                        $attachment['attachment'] = quoted_printable_decode($attachment['attachment']);
+                    }
+                    $attachments[] = $attachment;
+                }
+            }
+        }
+        
+        return $attachments;
     }
 }
