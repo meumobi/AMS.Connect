@@ -31,6 +31,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         if (is_array($data) === false) {
             $data = json_decode($data, true);
         }
+        
                 
         $strTempFile = 'csvOutput' . date("U") . ".csv";
         $tempFile = fopen($strTempFile, "w+");
@@ -40,7 +41,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
-                $array = $this->addFields($array);
+                // $array = $this->addFields($array);
                 
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
@@ -74,15 +75,15 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     
     private function mapping($line)
     {
-        $array = array(
-            "date" => $this->convertDate($line["date"]),
-            "impressions reçues" => $line["totalImpression"],
-            "impressions prises" => $line["impression"],
-            "revenu" => $line["revenue"]["value"],
-            "key" => $line["placementId"],
-            "inventaire" => "AdNetwork Fill"
-        );
+        // $array = array(
+        //     "date" => $this->convertDate($line["date"]),
+        //     "impressions reçues" => $line["totalImpression"],
+        //     "impressions prises" => $line["impression"],
+        //     "revenu" => $line["revenue"]["value"],
+        //     "key" => $line["placementId"],
+        //     "inventaire" => "AdNetwork Fill"
+        // );
         
-        return $array;
+        return $line;
     }
 }

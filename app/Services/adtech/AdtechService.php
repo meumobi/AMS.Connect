@@ -23,41 +23,75 @@ class AdtechService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
 
-        $startDate = $this->getParameter($params, 'start')->format('Y-m-d');
-        //$endDate = $this->getParameter($params, 'end')->format('Y-m-d');
+        $date = $this->getParameter($params, 'start')->format('d-M-Y');
         
-        list($response, $error) = $this->call();
+        list($response, $error) = $this->call($date);
 
-        echo json_encode($response);
 
         if ($error) {
-            echo 'cURL Error :' . $error;
+            echo 'Request Error :' . $error;
             return;
         }
 
-        //$this->presenter->present($response, $configData['date_format']);
+        $this->presenter->present($response, $configData['date_format']);
 
         error_log('AdsenseService Performed');
     }
 
-    protected function call()
+    protected function call($date)
     {
         $configData = config('AMS.provider');
 
         Log::info('Initializing Request', ['email' => $configData['email_username']]);
         
-        $response = $configData;
-        $err = false;
+        $response = null;
+        $error = false;
 
-        $emailReader = new EmailReader($configData['email_server'], $configData['email_username'], $configData['email_password']);
-        $response = $emailReader->searchEmails(null, null, 'Premium');
+        $emailReader = new EmailReader();
+        $emailReader->connect($configData['email_server'], $configData['email_username'], $configData['email_password']);
+        //Change to filter by recipient
+        $emails = $emailReader->searchEmails(null, $date, 'Premium');
+
+        if (empty($emails)) {
+            $error = 'No Emails Found';
+            $emails = [];
+        }
+        //TODO: Ensure this heuristic to work, check if will be always the first email and first attachment
+        //Get the first attachment for the first email
+        $index = array_shift($emails);
+        $attachments = $emailReader->getEmailAttachments($index);
+        $firstAttachment = array_shift($attachments);
+        $response = $this->getArrayFromCsvString($firstAttachment['attachment'], ';');
         
+        $emailReader->close();
+
         Log::info('Request finished', ['response'=>$response]);
 
-        if ($err) {
-            Log::warning('Request Error', ['error' => $err]);
+        if ($error) {
+            Log::warning('Request Error', ['error' => $error]);
         }
 
-        return [$response, $err];
+        return [$response, $error];
+    }
+
+    private function getArrayFromCsvString($csvString, $delimiter = ',')
+    {
+        $csvString = trim($csvString, "\r\n");
+        $rowsArray = explode("\r\n", $csvString);
+        $data = array_map(
+            function($row) use ($delimiter) {
+                return str_getcsv($row, $delimiter);
+            }, 
+            $rowsArray
+        );
+        $header = array_map('strtolower', array_shift($data));
+        $data = array_map(
+            function ($row) use ($header){
+                return array_combine($header, $row);
+            },
+            $data
+        );
+        
+        return $data;
     }
 }
