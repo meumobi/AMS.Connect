@@ -23,13 +23,13 @@ class AdtechService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
 
-        $date = $this->getParameter($params, 'start')->format('d-M-Y');
+        $date = $this->getParameter($params, 'start')->modify('+ 1 day')->format('d-M-Y');
         
         list($response, $error) = $this->call($date);
 
 
         if ($error) {
-            echo 'Request Error :' . $error;
+            echo 'Request Error: ' . $error;
             return;
         }
 
@@ -50,23 +50,27 @@ class AdtechService extends AMSService implements AMSServiceInterface
         $emailReader = new EmailReader();
         $emailReader->connect($configData['email_server'], $configData['email_username'], $configData['email_password']);
         //Change to filter by recipient
-        $emails = $emailReader->searchEmails(null, $date, 'Premium');
-
+        $emails = $emailReader->searchEmails($configData['email_to'], $date);
         if (empty($emails)) {
             $error = 'No Emails Found';
             $emails = [];
         }
         //TODO: Ensure this heuristic to work, check if will be always the first email and first attachment
-        //Get the first attachment for the first email
-        $index = array_shift($emails);
-        $attachments = $emailReader->getEmailAttachments($index);
-        $firstAttachment = array_shift($attachments);
-        $response = $this->getArrayFromCsvString($firstAttachment['attachment'], ';');
-        
-        $emailReader->close();
+        if (!$error) {
+            //Get the first attachment for the first email
+            $index = array_shift($emails);
+            $attachments = $emailReader->getEmailAttachments($index);
+            $firstAttachment = array_shift($attachments);
+            $response = $this->getArrayFromCsvString($firstAttachment['attachment'], ';');
+            
+            $emailReader->close();
 
-        Log::info('Request finished', ['response'=>$response]);
+            Log::info('Request finished', ['response'=>$response]);
 
+            if (empty($response)) {
+                $error = 'No Data Found';
+            }
+        }
         if ($error) {
             Log::warning('Request Error', ['error' => $error]);
         }
@@ -79,14 +83,14 @@ class AdtechService extends AMSService implements AMSServiceInterface
         $csvString = trim($csvString, "\r\n");
         $rowsArray = explode("\r\n", $csvString);
         $data = array_map(
-            function($row) use ($delimiter) {
+            function ($row) use ($delimiter) {
                 return str_getcsv($row, $delimiter);
-            }, 
+            },
             $rowsArray
         );
         $header = array_map('strtolower', array_shift($data));
         $data = array_map(
-            function ($row) use ($header){
+            function ($row) use ($header) {
                 return array_combine($header, $row);
             },
             $data

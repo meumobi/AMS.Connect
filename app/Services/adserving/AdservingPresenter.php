@@ -60,9 +60,11 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
                 fputcsv($tempFile, array_merge($firstLineKeys, $array));
             }
         } catch (ErrorException $exception) {
+            //Erasing the temp file when a error is catch
+            unlink($strTempFile);
             if (strpos($exception->getMessage(), 'Undefined index:') !== false) {
                 Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getMessage()]);
-                echo 'Mapping Error, field does not exists '.$exception->getMessage();
+                echo 'Mapping Error, field does not exists '.$exception->getMessage();                
                 return false;
             }
             throw $exception;

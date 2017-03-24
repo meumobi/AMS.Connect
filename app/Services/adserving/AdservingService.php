@@ -23,7 +23,7 @@ class AdservingService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
 
-        $date = $this->getParameter($params, 'start')->format('d-M-Y');
+        $date = $this->getParameter($params, 'start')->modify('+ 1 day')->format('d-M-Y');
 
         list($response, $error) = $this->call($date);
         if ($error) {
@@ -36,12 +36,18 @@ class AdservingService extends AMSService implements AMSServiceInterface
         $pidDate = $this->getDateOfPidLock();
 
         if ($pidDate >= $dataDate) {
-            echo 'Request Error : This date was already imported';
+            echo 'Request Error: This date was already imported';
             return;
         }
 
         //Getting the formated content to append in the file
         $formatedContent = $this->presenter->format($response, $configData['date_format']);
+        if (!$formatedContent) {
+            //Error on presenter
+            return;
+        }
+
+        //Update the Adserving File
         $adservingFile = fopen($configData['file_path'], 'a+');
         fwrite($adservingFile, $formatedContent);
         fclose($adservingFile);
@@ -98,7 +104,7 @@ class AdservingService extends AMSService implements AMSServiceInterface
         $emailReader = new EmailReader();
         $emailReader->connect($configData['email_server'], $configData['email_username'], $configData['email_password']);
         //Change to filter by recipient
-        $emails = $emailReader->searchEmails(null, $date, 'Adserving');
+        $emails = $emailReader->searchEmails($configData['email_to'], $date);
 
         if (empty($emails)) {
             $error = 'No Emails Found';
