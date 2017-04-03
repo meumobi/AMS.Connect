@@ -38,6 +38,17 @@ class AdtechService extends AMSService implements AMSServiceInterface
         error_log('AdsenseService Performed');
     }
 
+    protected function callStub($date)
+    {
+        $response = null;
+        $error = false;
+        
+        $strTempFile = "adtech.csv";
+        $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), ';');
+
+        return [$response, $error];
+    }
+
     protected function call($date)
     {
         $configData = config('AMS.provider');
@@ -88,14 +99,19 @@ class AdtechService extends AMSService implements AMSServiceInterface
             },
             $rowsArray
         );
-        $header = array_map('strtolower', array_shift($data));
+        /*
+         Set internal encoding of mb to utf-8
+         to convert string that contains special characters
+         http://stackoverflow.com/a/2516482
+        */
+        mb_internal_encoding('UTF-8');
+        $header = array_map('mb_strtolower', array_shift($data));
         $data = array_map(
             function ($row) use ($header) {
                 return array_combine($header, $row);
             },
             $data
         );
-        
         return $data;
     }
 }
