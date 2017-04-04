@@ -41,7 +41,6 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
-                //$array = $this->addFields($array);
                 
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
@@ -57,7 +56,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
             }
         } catch (ErrorException $exception) {
             if (strpos($exception->getMessage(), 'Undefined index:') !== false) {
-                Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getMessage()]);
+                Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getMessage(), $line]);
                 echo 'Mapping Error, field does not exists '.$exception->getMessage();
                 return false;
             }
