@@ -156,18 +156,27 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
 
         $diff = $end->diff($start)->format("%a");
 
-        return $diff;
+        return $diff + 1;
     }
     
     private function getImprFacturables($line)
     {   
         $data = "FORFAIT";
-        $days = 0;
+        $days = 1;
 
         if ($line["campaign flat fee"] == 0) {
             $end = $line["date de fin du flight"];
-            $start = $line["flight date de début"]; 
-            $days = $this->calcDaysBetweenDates($start, $end);
+            $start = $line["flight date de début"];
+            /*
+                If dates are "unknown" return default diff 1
+            */
+            if ($start != "unknown" && $end != "unknown") {
+                $days = $this->calcDaysBetweenDates($start, $end);
+            } else {
+                $date = $line["par jour"];
+                $key = $line["emplacement"];
+                Log::info('Flight dates unknown', [$date, $key]);
+            }     
 
             $data = number_format($line["campaign billable imps."] / $days, 2);
         }
