@@ -97,4 +97,14 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../routes/web.php';
 });
 
+/*
+    Logging on stderr to aggregate logs on heroku
+    https://devcenter.heroku.com/articles/php-logging
+*/
+
+$app->configureMonologUsing(function($monolog) {
+    $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr', \Monolog\Logger::WARNING));
+    return $monolog;
+});
+
 return $app;
