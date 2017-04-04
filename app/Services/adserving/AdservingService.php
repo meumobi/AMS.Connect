@@ -23,9 +23,11 @@ class AdservingService extends AMSService implements AMSServiceInterface
     {
         $configData = config('AMS.provider');
 
+        $email = $this->getParameter($params, 'email');
+
         $date = $this->getParameter($params, 'start')->modify('+ 1 day')->format('d-M-Y');
 
-        list($response, $error) = $this->call($date);
+        list($response, $error) = $this->call($date, $email);
         if ($error) {
             echo 'Request Error :' . $error;
             return;
@@ -92,9 +94,11 @@ class AdservingService extends AMSService implements AMSServiceInterface
         );
     }
 
-    protected function call($date)
+    protected function call($date, $email_to)
     {
         $configData = config('AMS.provider');
+
+        $email_to = ($email_to != null) ? $email_to : $configData['email_to'];
 
         Log::info('Initializing Request', ['email' => $configData['email_username']]);
 
@@ -104,7 +108,7 @@ class AdservingService extends AMSService implements AMSServiceInterface
         $emailReader = new EmailReader();
         $emailReader->connect($configData['email_server'], $configData['email_username'], $configData['email_password']);
         //Change to filter by recipient
-        $emails = $emailReader->searchEmails($configData['email_to'], $date);
+        $emails = $emailReader->searchEmails($email_to, $date);
 
         if (empty($emails)) {
             $error = 'No Emails Found';
