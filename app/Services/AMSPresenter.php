@@ -50,7 +50,7 @@ class AMSPresenter
         $correlationTable = CorrelationTable::getInstance();
         $row = $correlationTable->getRow($key);
         if (empty($row)) {
-            Log::warning('Correlation Key Not Found', ['key' => $key]);
+            Log::warning('Correlation Key Not Found', ['key' => (string)$key]);
         }
         return $row;
     }
@@ -62,7 +62,7 @@ class AMSPresenter
 
         $row = $adServingTable->getRow($key . $dateTime->format('d/m/Y'));
         if (empty($row)) {
-            Log::warning('AdServing Key Not Found', ['key' => $key, 'date' => $date]);
+            Log::warning('AdServing Key Not Found', ['key' => (string)$key, 'date' => $date]);
         }
         if (isset($row['impressions envoyees'])) {
             $row['impressions envoyees'] = preg_replace("/[^0-9]/", "", $row['impressions envoyees']);
