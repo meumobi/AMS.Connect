@@ -115,6 +115,8 @@ class AMSPresenter
         $array += $this->getCorrelatedFields($array['key']);
         $array += $this->getAdServingFields($array['key'], $array['date']);
         $array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
+        $array += array('impressions facturables' => 'ND');
+        $array += array('campagne' => 'ND');
 
         return $array;
     }
