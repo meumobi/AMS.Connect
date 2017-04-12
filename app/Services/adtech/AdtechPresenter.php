@@ -77,29 +77,29 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         // Log::info('Line mapped', $line);
         $array = array(
             "date" => $this->convertDate($line["par jour"]),
+            "impressions reçues" => "ND",
+            "key" => "ND",
+            "inventaire" => "Premium",
+            "fillRate" => "ND",
+            "cpm" => $this->getCustomCpm($line),
             "site" => $line["site web"],
             "emplacement" => $line["emplacement"],
             "position" => $line["position de l'emplacement"],
             "format" => $line["banner size to report"],
-            "impressions envoyees" => $this->getImprEnvoyees($line),
-            "impressions facturables" => $this->getImprFacturables($line),
-            "impressions reçues" => "ND",
-            "key" => "ND",
-            "inventaire" => "Premium",
-            "cpm" => $this->getCustomCpm($line),
-            "discrepencies" => "ND",
-            "fillRate" => "ND",
             "annonceur" => $line["annonceur"],
-            "campagne" => $line["flight description"],
+            "impressions envoyees" => $this->getImprEnvoyees($line),
+            "discrepencies" => "ND",
+            "impressions facturables" => $this->getImprFacturables($line),     
+            "campagne" => $line["flight description"]
         );
 
         $array += $this->getImprPrises(
-            $line["campaign flat fee"], 
+            str_replace(",", ".", $line["campaign flat fee"]), 
             $array["impressions envoyees"], 
             $array["impressions facturables"]);
 
         $array += $this->getRevenu(
-            $line["campaign flat fee"],
+            str_replace(",", ".", $line["campaign flat fee"]),
             $array["impressions prises"],
             $array["cpm"]);
         
@@ -129,8 +129,9 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     private function getImprEnvoyees($line)
     {   
         $data = "FORFAIT";
+        $fee = str_replace(",", ".", $line["campaign flat fee"]);
 
-        if ($line["campaign flat fee"] == 0) {
+        if ($fee == 0) {
             $data = $line["imps. sans défaut"];
         }
 
@@ -140,9 +141,13 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     private function getCustomCpm($line)
     {   
         $data = "FORFAIT";
+        /*
+         Convert french number format, ie. "14,40", to 14.40 format
+        */
+        $fee = str_replace(",", ".", $line["campaign flat fee"]);
 
-        if ($line["campaign flat fee"] == 0) {
-            $data = $line["campaign cpm"];
+        if ($fee == 0) {
+            $data = str_replace(",", ".", $line["campaign cpm"]);            
         }
 
         return $data;
@@ -162,8 +167,9 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     {   
         $data = "FORFAIT";
         $days = 1;
+        $fee = str_replace(",", ".", $line["campaign flat fee"]);
 
-        if ($line["campaign flat fee"] == 0) {
+        if ($fee == 0) {
             $end = $line["date de fin du flight"];
             $start = $line["flight date de début"];
             /*
@@ -177,7 +183,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
                 Log::info('Flight dates unknown', [$date, $key]);
             }     
 
-            $data = number_format($line["campaign billable imps."] / $days, 2);
+            $data = intval($line["campaign billable imps."] / $days);
         }
 
         Log::info('Line mapped', [$line["campaign billable imps."], $days, $data]);
@@ -190,10 +196,10 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         $val = $fee;
 
         if ($fee == 0) {
-            $val = (int)$prises * (int)$cpm / 1000;
+            $val = (int)$prises * (float)$cpm / 1000;
         }
         
-        $row["revenu"] = $val;
+        $row["revenu"] = number_format((float)$val, 2, '.', '');
 
         return $row;
     }
