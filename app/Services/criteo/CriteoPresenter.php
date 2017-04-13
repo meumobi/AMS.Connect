@@ -78,7 +78,7 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
             "date" => $this->convertDate($line["date"]),
             "impressions reçues" => $line["totalImpression"],
             "impressions prises" => $line["impression"],
-            "revenu" => $line["revenue"]["value"],
+            "revenu" => number_format((float)$line["revenue"]["value"], 2, '.', ''),
             "key" => $line["placementId"],
             "inventaire" => "AdNetwork Fill"
         );
