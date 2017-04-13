@@ -78,7 +78,8 @@ class AMSPresenter
         $row = array('cpm' => 'NA');
 
         if ($impressions != 0) {
-            $row['cpm'] = ($revenue / $impressions) * 1000;
+            $data = ($revenue / $impressions) * 1000;
+            $row['cpm'] = number_format($data, 2, '.', '');
         }
 
         return $row;
@@ -89,7 +90,8 @@ class AMSPresenter
         $row = array('discrepencies' => 'NA');
 
         if ($received != 0 && $received != 'NA' && $sent != 0 && $sent != 'NA') {
-            $row['discrepencies'] = (1 - ((int)$received / (int)$sent)) * 100 . '%';
+            $data = (1 - ((int)$received / (int)$sent)) * 100;
+            $row['discrepencies'] = number_format($data, 2, '.', '') . '%';
         }
 
         return $row;
@@ -102,7 +104,8 @@ class AMSPresenter
         if ($received == 'NA' || $received == 0) {
             $row['fillRate'] = 'NA';
         } elseif ($matched != 0) {
-            $row['fillRate'] = (($matched / $received) * 100) . '%';
+            $data = (($matched / $received) * 100);
+            $row['fillRate'] = number_format($data, 2, '.', '') . '%';
         }
 
         return $row;

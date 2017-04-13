@@ -49,7 +49,7 @@ class RubiconService extends AMSService implements AMSServiceInterface
 
         $this->presenter->present($response, $configData['date_format']);
         
-        error_log('AdsenseService Performed');
+        Log::info('RubiconService Performed', []);
     }
 
     protected function call($url, $user, $pass)
