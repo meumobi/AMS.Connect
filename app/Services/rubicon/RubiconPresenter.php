@@ -43,7 +43,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
                 function ($data, $line) {
                     $array = $this->mapping($line);
                     $array = $this->addFields($array);
-                    $data[] = $array;
+                    $data[$array['date'] . $array['key']] = $array;
                     return $data;
                 },
                 []
@@ -98,9 +98,11 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
     protected function adjustFields($array)
     {
         if ($this->hasToCheckAlternativeKey($array)) {
+            
             $altKey = $this->getAlternateKey($array['key']);
-            if (isset($this->_data[$altKey]) && !empty($this->_data[$altKey])) {
-                $altRow = $this->_data[$altKey];
+            $dataIndex = $array['date'] . $altKey;
+            if (isset($this->_data[$dataIndex]) && !empty($this->_data[$dataIndex])) {
+                $altRow = $this->_data[$dataIndex];
                 $array['impressions envoyees'] = $altRow['impressions reçues'] - $altRow['impressions prises'];
                 Log::info('Rubicon, Adjusting fields for key', ['key'=>$array['key'], 'altKey'=>$altKey]);
                 $altDiscrepencies = $this->getDiscrepencies(
@@ -108,6 +110,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
                     $array['impressions reçues']
                 );
                 $array['discrepencies'] = $altDiscrepencies['discrepencies'];
+            } else {
+                Log::info('No alternative key available on adserving', ['key'=>$array['key'], 'altKey'=>$altKey]);    
             }
         }
         return $array;
