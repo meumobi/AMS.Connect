@@ -41,7 +41,12 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
             foreach ($data as $line) {
                 $array = $this->mapping($line);
                 $array = $this->addFields($array);
-                $array += $this->getFillRate($array['impressions envoyees'], $array['impressions prises']);
+
+                /*
+                    overwrite fillRate for sublime, impressions reçues = impressions envoyées
+                */
+                $extraRow = $this->getFillRate($array['impressions envoyees'], $array['impressions prises']);
+                $array['fillRate'] = $extraRow['fillRate'];
 
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
