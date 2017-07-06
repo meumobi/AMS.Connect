@@ -9,7 +9,8 @@
         "ext-imap": "*",
         "laravel/lumen-framework": "5.4.*",
         "vlucas/phpdotenv": "~2.2",
-        "google/apiclient": "^2.1"
+        "google/apiclient": "^2.1",
+        "kreait/firebase-php": "^3.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

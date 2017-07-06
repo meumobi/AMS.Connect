@@ -4,6 +4,8 @@ namespace App\Services;
 
 use Log;
 use DateTime;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
 
 class AMSPresenter
 {
@@ -43,6 +45,25 @@ class AMSPresenter
         header('Content-Length: ' . filesize($file));
         readfile($file);
         Log::info('CSV attached successfully', ['file'=>$file]);
+    }
+
+    protected function pushToFirebase(){
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ams-report-firebase-adminsdk-5i6gp-1b1735f7ea.json');
+
+        $firebase = (new Factory)
+            ->withServiceAccount($serviceAccount)
+            ->withDatabaseUri('https://ams-report.firebaseio.com')
+            ->create();
+
+        $database = $firebase->getDatabase();
+
+        $newPost = $database
+            ->getReference('blog/posts')
+            ->push([
+                'title' => 'Post title',
+                'body' => 'This should probably be longer.'
+            ]);
+        echo "Data successfully pushed";
     }
 
     protected function getCorrelatedFields($key)

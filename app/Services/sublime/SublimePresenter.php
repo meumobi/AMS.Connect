@@ -22,7 +22,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         parent::__construct();
     }
 
-    public function present($data, $format, $echo = true)
+    public function present($data, $format, $echo = false)
     {
         $this->_dateFormat = $format;
                 
@@ -71,7 +71,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
             fclose($tempFile);
         }
         
-        $echo ? $this->echoCsv($strTempFile) : $this->attachCsv($strTempFile);
+        $echo ? $this->echoCsv($strTempFile) : $this->pushToFirebase(); //$this->attachCsv($strTempFile);
         
         // Delete the temp file
         unlink($strTempFile);
