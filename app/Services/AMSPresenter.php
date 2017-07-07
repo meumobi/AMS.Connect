@@ -60,18 +60,12 @@ class AMSPresenter
             ->create();
 
         $database = $firebase->getDatabase();
-        //Log::info('Records', $records);
 
-        $newPost = $database
-            ->getReference('blog')->remove();
-        Log::info('Remove data', $newPost);
-
-        $newPost = $database
+        $database
             ->getReference('reporting')
             ->set($records);
-        Log::info('Set data', $newPost);
 
-        echo "Data successfully pushed";
+        echo "Data successfully pushed for following sites: \n" . implode(', ', array_keys($records));
     }
 
     protected function getCorrelatedFields($key)
