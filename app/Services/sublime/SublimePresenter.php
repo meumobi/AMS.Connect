@@ -22,7 +22,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         parent::__construct();
     }
 
-    public function present($data, $format, $echo = false)
+    public function present($data, $format, $mode = self::MODE_ECHO)
     {
         $this->_dateFormat = $format;
                 
@@ -70,9 +70,18 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         } finally {
             fclose($tempFile);
         }
-        
-        $echo ? $this->echoCsv($strTempFile) : $this->pushToFirebase(); //$this->attachCsv($strTempFile);
-        
+                
+        switch ($mode) {
+            case self::MODE_ATTACH:
+                $this->attachCsv($strTempFile);
+                break;
+            case self::MODE_PUBLISH:
+                $this->pushToFirebase($strTempFile);
+                break;
+            default:
+                $this->echoCsv($strTempFile);
+        }
+
         // Delete the temp file
         unlink($strTempFile);
         Log::info('Temporary file deleted', ['file'=>$strTempFile]);

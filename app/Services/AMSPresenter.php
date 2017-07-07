@@ -9,6 +9,10 @@ use Kreait\Firebase\ServiceAccount;
 
 class AMSPresenter
 {
+    const MODE_ECHO = "echo";
+    const MODE_ATTACH = "attach";
+    const MODE_PUBLISH = "publish";
+    
     protected $_dateFormat;
     
     public function __construct()

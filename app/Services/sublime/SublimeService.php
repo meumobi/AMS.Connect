@@ -24,6 +24,7 @@ class SublimeService extends AMSService implements AMSServiceInterface
       
         $startDate = $this->getParameter($params, 'start');
         $endDate = $this->getParameter($params, 'end');
+        $mode = $this->getParameter($params, 'mode');
 
         $timestamp = time();
         $urlData = [
@@ -38,7 +39,7 @@ class SublimeService extends AMSService implements AMSServiceInterface
             return;
         }
 
-        $this->presenter->present($responses, $configData['date_format']);
+        $this->presenter->present($responses, $configData['date_format'], $mode);
     }
 
     protected function batchCall($url, $queryString, $startDate, $endDate)
