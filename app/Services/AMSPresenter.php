@@ -61,11 +61,16 @@ class AMSPresenter
 
         $database = $firebase->getDatabase();
 
+        $database->getReference('reports')
+            ->remove();
+        $database->getReference('reporting')
+            ->remove();
         $database
-            ->getReference('reporting')
+            ->getReference('reports')
             ->set($records);
 
-        echo "Data successfully pushed for following sites: \n" . implode(', ', array_keys($records));
+        header('Content-Type: text/plain');
+        echo "Data successfully pushed for following sites: \n" . implode('\n ', array_keys($records));
     }
 
     protected function getCorrelatedFields($key)

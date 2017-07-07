@@ -23,7 +23,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
         parent::__construct();
     }
 
-    public function present($data, $format, $echo = true)
+    public function present($data, $format, $mode = self::MODE_ECHO)
     {
         $this->_dateFormat = $format;
 
@@ -37,6 +37,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
         Log::info('Temporary file created', ['file'=>$strTempFile]);
                 
         $firstLineKeys = false;
+        $records = [];
+
         try {
             $this->_data = array_reduce(
                 $data["data"]["items"],
@@ -55,6 +57,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
+                } else {
+                    $records[$array['site']][$array['uid']] = $array;
                 }
 
                 /*
@@ -74,8 +78,17 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
             fclose($tempFile);
         }
         
-        $echo ? $this->echoCsv($strTempFile) : $this->attachCsv($strTempFile);
-        
+        switch ($mode) {
+            case self::MODE_ATTACH:
+                $this->attachCsv($strTempFile);
+                break;
+            case self::MODE_PUBLISH:
+                $this->pushToFirebase($records);
+                break;
+            default:
+                $this->echoCsv($strTempFile);
+        }
+                
         // Delete the temp file
         unlink($strTempFile);
         Log::info('Temporary file deleted', ['file'=>$strTempFile]);
