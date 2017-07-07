@@ -36,6 +36,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         Log::info('Temporary file created', ['file'=>$strTempFile]);
                 
         $firstLineKeys = false;
+        $records = [];
 
         try {
             foreach ($data as $line) {
@@ -52,6 +53,8 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
+                } else {
+                    $records[$array['site']][$array['uid']] = $array;
                 }
             
                 /*
@@ -76,7 +79,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
                 $this->attachCsv($strTempFile);
                 break;
             case self::MODE_PUBLISH:
-                $this->pushToFirebase($strTempFile);
+                $this->pushToFirebase($records);
                 break;
             default:
                 $this->echoCsv($strTempFile);

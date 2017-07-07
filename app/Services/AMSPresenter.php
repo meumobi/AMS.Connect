@@ -51,7 +51,7 @@ class AMSPresenter
         Log::info('CSV attached successfully', ['file'=>$file]);
     }
 
-    protected function pushToFirebase(){
+    protected function pushToFirebase($records){
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ams-report-firebase-adminsdk-5i6gp-1b1735f7ea.json');
 
         $firebase = (new Factory)
@@ -60,13 +60,17 @@ class AMSPresenter
             ->create();
 
         $database = $firebase->getDatabase();
+        //Log::info('Records', $records);
 
         $newPost = $database
-            ->getReference('blog/posts')
-            ->push([
-                'title' => 'Post title',
-                'body' => 'This should probably be longer.'
-            ]);
+            ->getReference('blog')->remove();
+        Log::info('Remove data', $newPost);
+
+        $newPost = $database
+            ->getReference('reporting')
+            ->set($records);
+        Log::info('Set data', $newPost);
+
         echo "Data successfully pushed";
     }
 
@@ -136,6 +140,12 @@ class AMSPresenter
         return $row;
     }
 
+    protected function getUID($date, $emplacement) {
+        $row = array('uid' => $date . '_' . $emplacement);
+
+        return $row;
+    }
+
     protected function addFields($array)
     {
         $array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
@@ -145,6 +155,7 @@ class AMSPresenter
         $array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
         $array += array('impressions facturables' => 'ND');
         $array += array('campagne' => 'ND');
+        $array += $this->getUID($array['date'], $array['emplacement']);
 
         return $array;
     }
