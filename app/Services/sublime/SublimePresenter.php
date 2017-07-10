@@ -69,21 +69,13 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
                 echo 'Mapping Error, field does not exists '.$exception->getMessage();
                 return false;
             }
+            unlink($strTempFile);
             throw $exception;
         } finally {
             fclose($tempFile);
         }
-                
-        switch ($mode) {
-            case self::MODE_ATTACH:
-                $this->attachCsv($strTempFile);
-                break;
-            case self::MODE_PUBLISH:
-                $this->pushToFirebase($records);
-                break;
-            default:
-                $this->echoCsv($strTempFile);
-        }
+        
+        $this->presentAsMode($strTempFile, $records, $mode);
 
         // Delete the temp file
         unlink($strTempFile);

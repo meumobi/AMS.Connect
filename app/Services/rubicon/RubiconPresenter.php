@@ -78,17 +78,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
             fclose($tempFile);
         }
         
-        switch ($mode) {
-            case self::MODE_ATTACH:
-                $this->attachCsv($strTempFile);
-                break;
-            case self::MODE_PUBLISH:
-                $this->pushToFirebase($records);
-                break;
-            default:
-                $this->echoCsv($strTempFile);
-        }
-                
+        $this->presentAsMode($strTempFile, $records, $mode);
+
         // Delete the temp file
         unlink($strTempFile);
         Log::info('Temporary file deleted', ['file'=>$strTempFile]);

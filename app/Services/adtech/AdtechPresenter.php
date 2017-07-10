@@ -22,9 +22,8 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         $this->_dateFormat = 'Y-m-d';
     }
 
-    public function present($data, $format, $echo = true)
+    public function present($data, $format, $mode = self::MODE_ECHO)
     {
-
         $this->_dateFormat = $format;
 
         // Passed a string, turn it into an array
@@ -38,14 +37,19 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         Log::info('Temporary file created', ['file'=>$strTempFile]);
 
         $firstLineKeys = false;
+        $records = [];
+
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
+                $array += $this->getUID($array['date'], $array['key']);
                 
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
+                } else {
+                    $records[$array['site']][$array['uid']] = $array;
                 }
                 
                 /*
@@ -65,7 +69,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
             fclose($tempFile);
         }
         
-        $echo ? $this->echoCsv($strTempFile) : $this->attachCsv($strTempFile);
+        $this->presentAsMode($strTempFile, $records, $mode);
         
         // Delete the temp file
         unlink($strTempFile);
@@ -78,7 +82,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         $array = array(
             "date" => $this->convertDate($line["par jour"]),
             "impressions reçues" => "ND",
-            "key" => "ND",
+            "key" => $line["emplacement"],
             "inventaire" => "Premium",
             "fillRate" => "ND",
             "cpm" => $this->getCustomCpm($line),

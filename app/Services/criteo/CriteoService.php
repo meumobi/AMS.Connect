@@ -24,6 +24,7 @@ class CriteoService extends AMSService implements AMSServiceInterface
 
         $startDate = $this->getParameter($params, 'start')->format('Y-m-d');
         $endDate = $this->getParameter($params, 'end')->format('Y-m-d');
+        $mode = $this->getParameter($params, 'mode');
 
         $urlData = [
             'apitoken' => $configData['token'],
@@ -40,7 +41,7 @@ class CriteoService extends AMSService implements AMSServiceInterface
             return;
         }
 
-        $this->presenter->present($response, $configData['date_format']);
+        $this->presenter->present($response, $configData['date_format'], $mode);
 
         error_log('AdsenseService Performed');
     }

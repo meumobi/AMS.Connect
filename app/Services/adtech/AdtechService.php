@@ -25,7 +25,8 @@ class AdtechService extends AMSService implements AMSServiceInterface
 
         $email = $this->getParameter($params, 'email');
         $date = $this->getParameter($params, 'start')->modify('+ 1 day')->format('d-M-Y');
-        
+        $mode = $this->getParameter($params, 'mode');
+
         list($response, $error) = $this->call($date, $email);
 
 
@@ -34,7 +35,7 @@ class AdtechService extends AMSService implements AMSServiceInterface
             return;
         }
 
-        $this->presenter->present($response, $configData['date_format']);
+        $this->presenter->present($response, $configData['date_format'], $mode);
 
         error_log('AdsenseService Performed');
     }

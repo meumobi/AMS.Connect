@@ -12,6 +12,7 @@ class AMSPresenter
     const MODE_ECHO = "echo";
     const MODE_ATTACH = "attach";
     const MODE_PUBLISH = "publish";
+    const MODE_PREVIEW = "preview";
     
     protected $_dateFormat;
     
@@ -61,25 +62,42 @@ class AMSPresenter
 
         $database = $firebase->getDatabase();
 
-        $database->getReference('reports')
-            ->remove();
-        $database->getReference('reporting')
-            ->remove();
         $database
             ->getReference('reports')
             ->set($records);
 
         header('Content-Type: text/plain');
-        echo "Data successfully pushed for following sites: \n" . implode('\n ', array_keys($records));
+        echo "Data successfully pushed for following sites: \n";
+        print_r($this->countLines($records));
+    }
+
+    protected function previewTreeToPublish($records) {
+        header('Content-Type: text/plain');
+        echo "Preview data ready to publish: \n";
+        print_r($this->countLines($records));
+    }
+
+    private function countLines($report) {
+       $lineCounts = array();
+
+       foreach ($report as $key => $value) {
+           $lineCounts[$key] = count($value);
+       }
+
+       return $lineCounts;
     }
 
     protected function getCorrelatedFields($key)
     {
         $correlationTable = CorrelationTable::getInstance();
         $row = $correlationTable->getRow($key);
+        
         if (empty($row)) {
+            $row = ['site' => 'Unknown'];
             Log::warning('Correlation Key Not Found', ['key' => (string)$key]);
         }
+
+        Log::info('Correlation line: ', $row);
         return $row;
     }
 
@@ -139,8 +157,9 @@ class AMSPresenter
         return $row;
     }
 
-    protected function getUID($date, $emplacement) {
-        $row = array('uid' => $date . '_' . $emplacement);
+    protected function getUID($date, $key)
+    {
+        $row = array('uid' => $date . '_' . $key);
 
         return $row;
     }
@@ -154,8 +173,26 @@ class AMSPresenter
         $array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
         $array += array('impressions facturables' => 'ND');
         $array += array('campagne' => 'ND');
-        $array += $this->getUID($array['date'], $array['emplacement']);
+        $array += $this->getUID($array['date'], $array['key']);
 
         return $array;
     }
+
+    protected function presentAsMode($strTempFile, $records, $mode)
+    {
+        switch ($mode) {
+            case self::MODE_ATTACH:
+                $this->attachCsv($strTempFile);
+                break;
+            case self::MODE_PUBLISH:
+                $this->pushToFirebase($records);
+                break;
+            case self::MODE_PREVIEW:
+                $this->previewTreeToPublish($records);
+                break;
+            default:
+                $this->echoCsv($strTempFile);
+        }
+    }
+
 }

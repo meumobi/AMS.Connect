@@ -22,12 +22,15 @@ class RubiconService extends AMSService implements AMSServiceInterface
     public function perform(array $params)
     {
         $configData = config('AMS.provider');
+        
 
         $startDateString = $this->getParameter($params, 'start')->format('Y-m-d');
         $startDate = (new DateTime($startDateString . 'T00:00:00', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
         
         $endDateString = $this->getParameter($params, 'end')->format('Y-m-d');
         $endDate = (new DateTime($endDateString . 'T23:59:59', new DateTimeZone('America/Los_Angeles')))->format(DATE_W3C);
+
+        $mode = $this->getParameter($params, 'mode');
 
         $urlData = [
             'start' => $startDate,
@@ -47,7 +50,7 @@ class RubiconService extends AMSService implements AMSServiceInterface
             return;
         }
 
-        $this->presenter->present($response, $configData['date_format']);
+        $this->presenter->present($response, $configData['date_format'], $mode);
         
         Log::info('RubiconService Performed', []);
     }
