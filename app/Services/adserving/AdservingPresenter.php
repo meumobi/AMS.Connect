@@ -87,7 +87,8 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
     {
         $array = array(
             "Date" => $line['par jour'],
-            "Impressions Envoyees" => $line['imps. avec par défaut'],
+            //Remove white space due to digit grouping (grouped thousands)
+            "Impressions Envoyees" => intval(preg_replace('/[^0-9]/', '', $line['imps. avec par défaut'])),
             "Key" => $line['description de la bannière'],
         );
         
