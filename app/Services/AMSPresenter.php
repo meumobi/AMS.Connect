@@ -62,27 +62,54 @@ class AMSPresenter
 
         $database = $firebase->getDatabase();
 
-        $database
-            ->getReference('reports')
-            ->set($records);
+        foreach($records as $site => $dates) {
+            foreach($dates as $date => $partenaires) {
+                foreach($partenaires as $partenaire => $value) {
+                    $path = implode('/', ['reports', strtolower($site), $date, strtolower($partenaire)]);
+            
+                    $database
+                        ->getReference($path)
+                        ->set($value);
+                }
+            }
+        }
 
         header('Content-Type: text/plain');
-        echo "Data successfully pushed for following sites: \n";
-        print_r($this->countLines($records));
+        echo "Data published successfully! \n";
     }
 
     protected function previewTreeToPublish($records) {
         header('Content-Type: text/plain');
         echo "Preview data ready to publish: \n";
         print_r($this->countLines($records));
+
+        //$this->printRecords($records);
     }
 
-    private function countLines($report) {
+    private function printRecords($records) {
+        foreach($records as $site => $dates) {
+            foreach($dates as $date => $partenaires) {
+                foreach($partenaires as $partenaire => $value) {
+                    $path = implode('/', ['reports', strtolower($site), $date, strtolower($partenaire)]);
+            
+                    echo $path . "\n";
+                    var_dump($value);
+                }
+            }
+        }
+    }
+
+    private function countLines($records) {
        $lineCounts = array();
 
-       foreach ($report as $key => $value) {
-           $lineCounts[$key] = count($value);
-       }
+        foreach($records as $site => $dates) {
+            foreach($dates as $date => $partenaires) {
+                foreach($partenaires as $partenaire => $value) {
+                    $path = implode('/', ['reports', strtolower($site), $date, strtolower($partenaire)]);
+                    $lineCounts[$path] = count($value);
+                }
+            }
+        }
 
        return $lineCounts;
     }

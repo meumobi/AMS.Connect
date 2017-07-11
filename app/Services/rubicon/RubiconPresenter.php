@@ -58,7 +58,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
                 } else {
-                    $records[$array['site']][$array['uid']] = $array;
+                     $records[$array['site']][$array['date']][$array['partenaire']][$array['uid']] = $array;
                 }
 
                 /*
@@ -93,7 +93,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
             "impressions prises" => $line["paid_impression"],
             "revenu" => number_format(0.85 * (float)$line["revenue"], 2, '.', ''),
             "key" => $line["zone_id"] . "-" . $line["size_id"],
-            "inventaire" => "AMS Market Place"
+            "inventaire" => "AMS Market Place",
+            "partenaire" => "Rubicon"
         );
 
         return $array;

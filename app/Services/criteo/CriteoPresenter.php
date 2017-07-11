@@ -49,7 +49,7 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
                 } else {
-                    $records[$array['site']][$array['uid']] = $array;
+                     $records[$array['site']][$array['date']][$array['partenaire']][$array['uid']] = $array;
                 }
                 
                 /*
@@ -84,7 +84,8 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
             "impressions prises" => $line["impression"],
             "revenu" => number_format((float)$line["revenue"]["value"], 2, '.', ''),
             "key" => $line["placementId"],
-            "inventaire" => "AdNetwork Fill"
+            "inventaire" => "AdNetwork Fill",
+            "partenaire" => "Criteo"
         );
         
         return $array;

@@ -54,7 +54,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
                 } else {
-                    $records[$array['site']][$array['uid']] = $array;
+                    $records[$array['site']][$array['date']][$array['partenaire']][$array['uid']] = $array;
                 }
             
                 /*
@@ -91,7 +91,8 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
             "revenu" => $line["rev"],
             //"revenu" => 0.85 * (float)$line["revenue"],
             "key" => $line["zone"],
-            "inventaire" => "AMS Market Place"
+            "inventaire" => "AMS Market Place",
+            "partenaire" => "Sublime"
         );
 
         return $array;

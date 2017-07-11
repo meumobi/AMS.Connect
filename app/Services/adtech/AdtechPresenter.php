@@ -49,7 +49,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
                 } else {
-                    $records[$array['site']][$array['uid']] = $array;
+                     $records[$array['site']][$array['date']][$array['partenaire']][$array['uid']] = $array;
                 }
                 
                 /*
@@ -94,7 +94,8 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
             "impressions envoyees" => $this->getImprEnvoyees($line),
             "discrepencies" => "ND",
             "impressions facturables" => $this->getImprFacturables($line),     
-            "campagne" => $line["flight description"]
+            "campagne" => $line["flight description"],
+            "partenaire" => "Adtech"
         );
 
         $array += $this->getImprPrises(
