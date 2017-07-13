@@ -42,7 +42,7 @@ class AdsensePresenter extends AMSPresenter implements AMSPresenterInterface
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
                 } else {
-                     $records[$array['site']][$array['date']][$array['partenaire']][$array['uid']] = $array;
+                    array_push($records, $array);
                 }
                 
                 /*

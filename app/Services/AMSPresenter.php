@@ -61,54 +61,60 @@ class AMSPresenter
             ->create();
 
         $database = $firebase->getDatabase();
+        $structuresData = $this->structureData($records);
 
-        foreach($records as $site => $dates) {
-            foreach($dates as $date => $partenaires) {
-                foreach($partenaires as $partenaire => $value) {
-                    $path = implode('/', ['reports', strtolower($site), $date, strtolower($partenaire)]);
-            
-                    $database
-                        ->getReference($path)
-                        ->set($value);
-                }
-            }
+        foreach($structuresData as $key => $value) {
+            $path = implode('/', ['reports', strtolower($key)]);
+    
+            $database
+                ->getReference($path)
+                ->set($value);
         }
 
         header('Content-Type: text/plain');
         echo "Data published successfully! \n";
     }
 
-    protected function previewTreeToPublish($records) {
+    protected function previewTreeToPublish($records)
+    {
         header('Content-Type: text/plain');
         echo "Preview data ready to publish: \n";
-        print_r($this->countLines($records));
+        $structuresData = $this->structureData($records);
+        print_r($this->countLines($structuresData));
 
-        //$this->printRecords($records);
+        $this->printRecords($structuresData);
     }
 
-    private function printRecords($records) {
-        foreach($records as $site => $dates) {
-            foreach($dates as $date => $partenaires) {
-                foreach($partenaires as $partenaire => $value) {
-                    $path = implode('/', ['reports', strtolower($site), $date, strtolower($partenaire)]);
-            
-                    echo $path . "\n";
-                    var_dump($value);
-                }
+    private function structureData($records)
+    {
+        $result = [];
+        
+        foreach($records as $raw) {
+            $key = $raw["date"] . "_" . $raw["site"] . "_" . $raw["partenaire"];
+
+            if (!array_key_exists($key, $result)) {
+                $result[$key] = array(
+                    "date" => $raw["date"],
+                    "group" =>  strtolower($raw["site"] . "_" . $raw["date"]),
+                );
             }
+
+            $result[$key]["raws"][$raw["uid"]] = $raw;
         }
+
+        return $result;
+    }
+
+    private function printRecords($records)
+    {
+        var_dump($records);
     }
 
     private function countLines($records) {
        $lineCounts = array();
 
-        foreach($records as $site => $dates) {
-            foreach($dates as $date => $partenaires) {
-                foreach($partenaires as $partenaire => $value) {
-                    $path = implode('/', ['reports', strtolower($site), $date, strtolower($partenaire)]);
-                    $lineCounts[$path] = count($value);
-                }
-            }
+        foreach($records as $key => $group) {
+            $lineCounts[$key] = count($group['raws']);
         }
 
        return $lineCounts;
