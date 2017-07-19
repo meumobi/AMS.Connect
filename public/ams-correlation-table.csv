@@ -89,17 +89,17 @@ Key,Site,Emplacement,Position,Format,Annonceur
 394154-15,Hockey Hebdo,HockeyHebdo_300x250_RG_ATF,Haut,300 x 250,Rubicon
 394166-15,Hockey Hebdo,HockeyHebdo_300x250_RG_BTF,Bas,300 x 250,Rubicon
 413522-15,Hockey Hebdo,HockeyHebdo_300x250_RG_2_BTF,STF,300 x 250,Rubicon
-395228-10,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 600,Rubicon
-395228-57,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,970 x 250,Rubicon
-395228-2,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Rubicon
-444938-2,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Rubicon
-395230-2,Le Rugbynistere,Rugbynistere_728x90_RG_BTF,Bas,728 x 90,Rubicon
-395228-15,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Rubicon
-444938-15,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Rubicon
-395230-15,Le Rugbynistere,Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Rubicon
-394466-15,Le Rugbynistere,Rugbynistere_300x250_MOB,Haut,300 x 250,Rubicon
-394466-43,Le Rugbynistere,Rugbynistere_320x50_MOB_ATF,Haut,320 x 50,Rubicon
-394466-67,Le Rugbynistere,Responsive-Rugbynistere-320x480,Haut,320 x 480,Rubicon
+395228-10,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 600,Rubicon
+395228-57,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,970 x 250,Rubicon
+395228-2,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Rubicon
+444938-2,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Rubicon
+395230-2,Le Rugbynistère,Rugbynistere_728x90_RG_BTF,Bas,728 x 90,Rubicon
+395228-15,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Rubicon
+444938-15,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Rubicon
+395230-15,Le Rugbynistère,Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Rubicon
+394466-15,Le Rugbynistère,Rugbynistere_300x250_MOB,Haut,300 x 250,Rubicon
+394466-43,Le Rugbynistère,Rugbynistere_320x50_MOB_ATF,Haut,320 x 50,Rubicon
+394466-67,Le Rugbynistère,Responsive-Rugbynistere-320x480,Haut,320 x 480,Rubicon
 529906-10,Le Sport Dauphinois,LeSportDauphinois_300x250_ATF_RG,Haut,300 x 600,Rubicon
 529908-10,Le Sport Dauphinois,LeSportDauphinois_300x250_BTF_RG,Bas,300 x 600,Rubicon
 529906-2,Le Sport Dauphinois,LeSportDauphinois_728x90_ATF_RG,Haut,728 x 90,Rubicon
@@ -158,7 +158,7 @@ Key,Site,Emplacement,Position,Format,Annonceur
 393766-15,Trimes,Trimes_300x250_RG_ATF,Haut,300 x 250,Rubicon
 540566-43,Trimes,Trimes_320x50_MOB,Haut,320 x 50,Rubicon
 1113,DZFoot,DZFoot_1x1_habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
-1801,Le Rugbynistere,Rugbynistere_Habillage_RG_ATF,Haut,1600x1000,Sublime Skinz
+1801,Le Rugbynistère,Rugbynistere_Habillage_RG_ATF,Haut,1600x1000,Sublime Skinz
 1802,Rugby Transferts,RugbyTransferts_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 2437,Hockey Hebdo,HockeyHebdo_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 4565,Sportune,Sportune_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
@@ -167,7 +167,7 @@ Key,Site,Emplacement,Position,Format,Annonceur
 4571,Footito,Footito_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 8100,Actu Rugby,ActuRugby_1x1_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 13359,Scorecast,Scorecast_habillage_1x1_RG_ATF,Haut,1600 x 1000,Sublime Skinz
-388228,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Criteo
+388228,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Criteo
 389610,Sportune,Sportune_728x90_RG_ATF,Haut,728 x 90,Criteo
 390132,Actu Rugby,ActuRugby_300x250_RG_ATF,Haut,300 x 250,Criteo
 390133,Sportune,Sportune_728x90_RG_ATF,Haut,970 x 250,Criteo
@@ -183,15 +183,15 @@ Key,Site,Emplacement,Position,Format,Annonceur
 391000,Trimes,Trimes_300x250_RG_ATF,Haut,300 x 250,Criteo
 481804,Rugby Amateur,RugbyAmateur_728x90_RG_ATF,Haut,728 x 90,Criteo
 383689,Mango Surf,MangoSurf_300x250_RG_ATF,Haut,300 x 600,Criteo
-388229,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Criteo
-389606,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,970 x 250,Criteo
-389607,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 600,Criteo
+388229,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Criteo
+389606,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,970 x 250,Criteo
+389607,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 600,Criteo
 390202,Les Violets,AllezTFC_728x90_RG_ATF,Haut,728 x 90,Criteo
 390231,Hockey Hebdo,HockeyHebdo_728x90_RG_ATF,Haut,728 x 90,Criteo
 390251,Rugby Transferts,RugbyTransferts_728x90_RG_ATF,Haut,728 x 90,Criteo
 390256,Scorecast,Scorecast_728x90_RG_ATF,Haut,728 x 90,Criteo
 446675,DZFoot,DZFoot_728x90_RG_ATF,Haut,728 x 90,Criteo
-474239,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Criteo
+474239,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Criteo
 390254,Rugbyto,Rugbyto_728x90_RG_ATF,Haut,728 x 90,Criteo
 390448,Statistiks,Statistiks_300x250_RG_ATF,Haut,300 x 250,Criteo
 390752,Cahiers du Football,CahierDuFootball_300x250_RG_ATF,Haut,300 x 250,Criteo
@@ -254,20 +254,20 @@ Key,Site,Emplacement,Position,Format,Annonceur
 1499755808,Les Violets,AllezTFC_300x250_RG_ATF,Haut,320 x 50,Google Adsense
 4453222202,Les Violets,AllezTFC_320x50_BTF,Bas,320 x 50,Google Adsense
 1896598203,Les Violets,AllezTFC_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-9469811408,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-4115145006,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-6516345000,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Google Adsense
-1292239802,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-3800983803,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Google Adsense
-2768973002,Le Rugbynistere,Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Google Adsense
-4245706201,Le Rugbynistere,Rugbynistere_728x90_RG_BTF,Bas,728 x 90,Google Adsense
-3423277805,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-1946544600,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Google Adsense
-9779145002,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-5277717004,Le Rugbynistere,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-9786798027,Le Rugbynistere,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Google Adsense
-4118223650,Le Rugbynistere,Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Google Adsense
-2175034127,Le Rugbynistere,Rugbynistere_728x90_RG_BTF,Bas,728 x 90,Google Adsense
+9469811408,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+4115145006,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+6516345000,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Google Adsense
+1292239802,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+3800983803,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Google Adsense
+2768973002,Le Rugbynistère,Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Google Adsense
+4245706201,Le Rugbynistère,Rugbynistere_728x90_RG_BTF,Bas,728 x 90,Google Adsense
+3423277805,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+1946544600,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Google Adsense
+9779145002,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+5277717004,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+9786798027,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Google Adsense
+4118223650,Le Rugbynistère,Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Google Adsense
+2175034127,Le Rugbynistère,Rugbynistere_728x90_RG_BTF,Bas,728 x 90,Google Adsense
 3845519402,Le Sport Dauphinois,LeSportDauphinois_320x50_MOB_ATF,Haut,320 x 50,Google Adsense
 1881642602,Mango Surf,MangoSurf_300x250_RG_ATF,Haut,300 x 250,Google Adsense
 9404909403,Mango Surf,MangoSurf_728x90_RG_ATF,Haut,728 x 90,Google Adsense
@@ -321,7 +321,7 @@ Key,Site,Emplacement,Position,Format,Annonceur
 391854-15,180 Back,180Back_300x250_RG_ATF,Haut,300 x 250,Rubicon
 392902-10,Les Violets,AllezTFC_300x250_RG_ATF,Haut,300 x 600,Rubicon
 394166-10,Hockey Hebdo,HockeyHebdo_300x250_RG_BTF,Haut,300 x 600,Rubicon
-394466-101,Le Rugbynistere_Mweb,Rugbynistere_1x1_RG_ATF-MOB,Haut,1 x 1,Rubicon
+394466-101,Le Rugbynistère_Mweb,Rugbynistere_1x1_RG_ATF-MOB,Haut,1 x 1,Rubicon
 420446-43,FFTT,FFTT_320x50_RG_ATF-MOB,Haut,320 x 50,Rubicon
 595704-10,180 Back,180Back_300x250_RG_ATF,Haut,300 x 600,Rubicon
 595704-15,180 Back,180Back_300x250_RG_ATF,Haut,300 x 250,Rubicon
@@ -330,7 +330,53 @@ Key,Site,Emplacement,Position,Format,Annonceur
 598040-117,Rugby Transferts,RugbyTransferts_320x50_ATF_RG-MOB,Haut,320 x 50,Rubicon
 598040-15,Rugby Transferts,RugbyTransferts_300x250_ATF_RG-MOB,Haut,300 x 250,Rubicon
 598040-43,Rugby Transferts,RugbyTransferts_320x50_ATF_RG-MOB,Haut,320 x 100,Rubicon
-616554-43,Le Rugbynistere,Rugbynistere_320x50_RG_BTF-MOB,Bas,320 x 50,Rubicon
-616768-15,Le Rugbynistere,Rugbynistere_300x250_HP1_ATF-MOB,Bas,300 x 250,Rubicon
-616770-15,Le Rugbynistere,Rugbynistere_300x250_HP2_ATF-MOB,Bas,300 x 250,Rubicon
-616772-15,Le Rugbynistere,Rugbynistere_300x250_HP3_ATF-MOB,Bas,300 x 250,Rubicon
+616554-43,Le Rugbynistère,Rugbynistere_320x50_RG_BTF-MOB,Bas,320 x 50,Rubicon
+616768-15,Le Rugbynistère,Rugbynistere_300x250_HP1_ATF-MOB,Bas,300 x 250,Rubicon
+616770-15,Le Rugbynistère,Rugbynistere_300x250_HP2_ATF-MOB,Bas,300 x 250,Rubicon
+616772-15,Le Rugbynistère,Rugbynistere_300x250_HP3_ATF-MOB,Bas,300 x 250,Rubicon
+456346-10,Track And Life,TrackAndLife_300x250_ATF_RG,Haut,300 x 600,Rubicon
+456346-57,Track And Life,TrackAndLife_728x90_ATF_RG,Haut,970 x 250,Rubicon
+456350-15,Track And Life,TrackAndLife_300x250_ATF_RG-MOB,Haut,300 x 250,Rubicon
+456350-43,Track And Life,TrackAndLife_320x50_ATF_RG-MOB,Haut,320 x 50,Rubicon
+460246-15,Footpack,Footpack_300x250_ATF_RG,Haut,300 x 250,Rubicon
+484786-117,Les Violets,Lesviolets_320x50_ATF_RG-MOB,Haut,320 x 100,Rubicon
+523402-15,AllezMarseille,AllezMarseille_300x250_ATF_RG,Haut,300 x 250,Rubicon
+523402-2,AllezMarseille,AllezMarseille_728x90_ATF_RG,Haut,728 x 90,Rubicon
+569746-10,Plongeur,Plongeur_300x250_ATF_RG,Haut,300 x 600,Rubicon
+569746-15,Plongeur,Plongeur_300x250_ATF_RG,Haut,300 x 250,Rubicon
+569746-2,Plongeur,Plongeur_728x90_ATF_RG,Haut,728 x 90,Rubicon
+569746-55,Plongeur,Plongeur_728x90_ATF_RG,Haut,970 x 90,Rubicon
+569748-15,Plongeur,Plongeur_300x250_BTF_RG,Bas,300 x 250,Rubicon
+569748-2,Plongeur,Plongeur_728x90_BTF_RG,Bas,728 x 90,Rubicon
+571454-43,Plongeur,Plongeur_320x50_ATF_RG-MOB,Haut,320 x 50,Rubicon
+571460-15,Plongeur,Plongeur_300x250_ATF_RG-MOB,Bas,300 x 250,Rubicon
+571460-43,Plongeur,Plongeur_320x50_BTF_RG-MOB,Bas,320 x 50,Rubicon
+587624-10,DZFoot,DzFoot_300x250_RG_ATF,Haut,300 x 600,Rubicon
+587624-15,DZFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
+591326-15,Track And Life,TrackAndLife_300x250_BTF_RG,Bas,300 x 250,Rubicon
+591326-2,Track And Life,TrackAndLife_728x90_BTF_RG,Bas,728 x 90,Rubicon
+595706-10,Actu Rugby,ActuRugby_300x250_ATF_RG,Haut,300 x 600,Rubicon
+595706-2,Actu Rugby,ActuRugby_728x90_ATF_RG,Haut,728 x 90,Rubicon
+595706-57,Actu Rugby,ActuRugby_728x90_ATF_RG,Haut,970 x 250,Rubicon
+686600-15,French Blues,FrenchBlues_300x250_RG_ATF,Haut,300 x 250,Rubicon
+686610-15,French Blues,FrenchBlues_300x250_RG_ATF-MOB,Haut,300 x 250,Rubicon
+684380-15,Real France,RealFrance_300x250_ATF_RG-MOB,Bas,300 x 250,Rubicon
+686602-15,French Blues,FrenchBlues_300x250_RG_BTF,Bas,300 x 250,Rubicon
+686612-15,French Blues,FrenchBlues_300x250_RG_BTF-MOB,Bas,300 x 250,Rubicon
+2997471007,Surf Prevention,SurfPrevention_728x90_RG_ATF,Haut,728 x 90,Google Adsense
+3106008607,AdMySports,AdMySports,Haut,1 x 1,Google Adsense
+3709468206,Sportune,Sportune_300x250_RG_ATF-MOB,Haut,300 x 250,Google Adsense
+4474204204,Surf Prevention,SurfPrevention_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+4582741805,AdMySports,AdMySports,Haut,1 x 1,Google Adsense
+4812281404,AdMySports,AdMySports,Haut,1 x 1,Google Adsense
+5186201403,Sportune,Sportune_320x50_RG_ATF-MOB,Haut,320 x 50,Google Adsense
+5970988208,AdMySports,AdMySports,Haut,1 x 1,Google Adsense
+7110480605,Rugby Amateur,RugbyAmateur_728x90_ATF_RG,Haut,728 x 90,Google Adsense
+7389461407,Plongeur,Plongeur_320x50_ATF_RG-MOB,Haut,320 x 50,Google Adsense
+7433491808,Le Rugbynistère,Lerugbynistere_320x50_ATF_RG-MOB,Haut,320 x 50,Google Adsense
+7447721407,AdMySports,AdMySports,Haut,1 x 1,Google Adsense
+8580240603,AdMySports,AdMySports,Haut,1 x 1,Google Adsense
+8587213803,Rugby Amateur,RugbyAmateur_728x90_ATF_RG,Haut,728 x 90,Google Adsense
+8807319008,Plongeur,Plongeur_300x250_BTF_RG-MOB,Bas,300 x 250,Google Adsense
+8866194608,Plongeur,Plongeur_320x50_BTF_RG-MOB,Bas,320 x 50,Google Adsense
+8900428206,Mercato Football Club,MercatoFC_300x250_ATF_RG,Haut,300 x 250,Google Adsense
