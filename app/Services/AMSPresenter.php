@@ -130,7 +130,6 @@ class AMSPresenter
             Log::warning('Correlation Key Not Found', ['key' => (string)$key]);
         }
 
-        Log::info('Correlation line: ', $row);
         return $row;
     }
 
