@@ -23,12 +23,12 @@ Key,Site,Emplacement,Position,Format,Annonceur
 486650-43,Les Violets,AllezTFC_320x50_ATF,Haut,320 x 50,Rubicon
 484786-67,Les Violets,AllezTFC_1x1_ATF_mob,Haut,320 x 480,Rubicon
 392902-68,Les Violets,AllezTFC_Habillage_RG_ATF,Haut,1600 x 1000,Rubicon
-523402-10,Allez Marseille,AllezMarseille_300x250_ATF_RG,Haut,300 x 600,Rubicon
-523402-57,Allez Marseille,AllezMarseille_728x90_ATF_RG,Haut,970 x 250,Rubicon
-523404-2,Allez Marseille,AllezMarseille_728x90_BTF_RG,Bas,728 x 90,Rubicon
-523404-15,Allez Marseille,AllezMarseille_300x250_BTF_RG,Bas,300 x 250,Rubicon
-523406-15,Allez Marseille,AllezMarseille_300x250_ATF_RG,Haut,300 x 250,Rubicon
-523406-43,Allez Marseille,AllezMarseille_320x50_ATF_MOB,Haut,320 x 50,Rubicon
+523402-10,Allez Marseille,Allez Marseille_300x250_ATF_RG,Haut,300 x 600,Rubicon
+523402-57,Allez Marseille,Allez Marseille_728x90_ATF_RG,Haut,970 x 250,Rubicon
+523404-2,Allez Marseille,Allez Marseille_728x90_BTF_RG,Bas,728 x 90,Rubicon
+523404-15,Allez Marseille,Allez Marseille_300x250_BTF_RG,Bas,300 x 250,Rubicon
+523406-15,Allez Marseille,Allez Marseille_300x250_ATF_RG,Haut,300 x 250,Rubicon
+523406-43,Allez Marseille,Allez Marseille_320x50_ATF_MOB,Haut,320 x 50,Rubicon
 393178-10,Allo Surf,AlloSurf_300x250_RG_ATF,Haut,300 x 600,Rubicon
 393178-57,Allo Surf,AlloSurf_728x90_RG_ATF,Haut,970 x 250,Rubicon
 393178-2,Allo Surf,AlloSurf_728x90_RG_ATF,Haut,728 x 90,Rubicon
@@ -41,17 +41,17 @@ Key,Site,Emplacement,Position,Format,Annonceur
 393322-15,Cahiers du Football,CahierDuFootball_300x250_RG_ATF,Haut,300 x 250,Rubicon
 393342-15,Cahiers du Football,CahierDuFootball_300x250_RG_BTF,Bas,300 x 250,Rubicon
 454952-68,Cahiers du Football,CahierDuFootball_Habillage_RG_ATF,Haut,1600 x 1000,Rubicon
-471996-10,DZFoot,DZFoot_300x250_RG_ATF,Haut,300 x 600,Rubicon
-471998-10,DZFoot,DZFoot_300x250_RG_BTF,Bas,300 x 600,Rubicon
-471996-2,DZFoot,DZFoot_728x90_RG_ATF,Haut,728 x 90,Rubicon
-471998-2,DZFoot,DZFoot_728x90_RG_BTF,Bas,728 x 90,Rubicon
-471996-58,DZFoot,DZFoot_728x90_RG_ATF,Haut,1000 x 90 ,Rubicon
-471996-15,DZFoot,DZFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
-471998-15,DZFoot,DZFoot_300x250_RG_BTF,Bas,300 x 250,Rubicon
-472004-15,DZFOOT,DZFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
-472004-43,DZFOOT,DZFoot_320x50_RG_MOB,Haut,320 x 50,Rubicon
-472004-67,DZFOOT,DZFoot_1x1_inter_RG_MOB,Haut,320 x 480,Rubicon
-471996-68,DZFoot,DZFoot_1x1_habillage_RG_ATF,Haut,1600 x 1000,Rubicon
+471996-10,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 600,Rubicon
+471998-10,DzFoot,DzFoot_300x250_RG_BTF,Bas,300 x 600,Rubicon
+471996-2,DzFoot,DzFoot_728x90_RG_ATF,Haut,728 x 90,Rubicon
+471998-2,DzFoot,DzFoot_728x90_RG_BTF,Bas,728 x 90,Rubicon
+471996-58,DzFoot,DzFoot_728x90_RG_ATF,Haut,1000 x 90 ,Rubicon
+471996-15,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
+471998-15,DzFoot,DzFoot_300x250_RG_BTF,Bas,300 x 250,Rubicon
+472004-15,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
+472004-43,DzFoot,DzFoot_320x50_RG_MOB,Haut,320 x 50,Rubicon
+472004-67,DzFoot,DzFoot_1x1_inter_RG_MOB,Haut,320 x 480,Rubicon
+471996-68,DzFoot,DzFoot_1x1_habillage_RG_ATF,Haut,1600 x 1000,Rubicon
 460206-10,Football Club de Marseille,FCMarseille_300x250_RG_ATF,Haut,300 x 600,Rubicon
 460206-57,Football Club de Marseille,FCMarseille_728x90_RG_ATF,Haut,970 x 250,Rubicon
 460206-2,Football Club de Marseille,FCMarseille_728x90_RG_ATF,Haut,728 x 90,Rubicon
@@ -157,7 +157,7 @@ Key,Site,Emplacement,Position,Format,Annonceur
 393766-2,Trimes,Trimes_728x90_RG_ATF,Haut,728 x 90,Rubicon
 393766-15,Trimes,Trimes_300x250_RG_ATF,Haut,300 x 250,Rubicon
 540566-43,Trimes,Trimes_320x50_MOB,Haut,320 x 50,Rubicon
-1113,DZFoot,DZFoot_1x1_habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
+1113,DzFoot,DzFoot_1x1_habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 1801,Le Rugbynistère,Rugbynistere_Habillage_RG_ATF,Haut,1600x1000,Sublime Skinz
 1802,Rugby Transferts,RugbyTransferts_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 2437,Hockey Hebdo,HockeyHebdo_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
@@ -190,7 +190,7 @@ Key,Site,Emplacement,Position,Format,Annonceur
 390231,Hockey Hebdo,HockeyHebdo_728x90_RG_ATF,Haut,728 x 90,Criteo
 390251,Rugby Transferts,RugbyTransferts_728x90_RG_ATF,Haut,728 x 90,Criteo
 390256,Scorecast,Scorecast_728x90_RG_ATF,Haut,728 x 90,Criteo
-446675,DZFoot,DZFoot_728x90_RG_ATF,Haut,728 x 90,Criteo
+446675,DzFoot,DzFoot_728x90_RG_ATF,Haut,728 x 90,Criteo
 474239,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Criteo
 390254,Rugbyto,Rugbyto_728x90_RG_ATF,Haut,728 x 90,Criteo
 390448,Statistiks,Statistiks_300x250_RG_ATF,Haut,300 x 250,Criteo
@@ -205,7 +205,7 @@ Key,Site,Emplacement,Position,Format,Annonceur
 390199,180 Back,180Back_728x90_RG_ATF,Haut,728 x 90,Criteo
 390440,Les Violets,AllezTFC_300x250_RG_ATF,Haut,300 x 250,Criteo
 383686,Mango Surf,MangoSurf_728x90_RG_ATF,Haut,728 x 90,Criteo
-446676,DZFoot,DZFoot_300x250_RG_ATF,Haut,300 x 250,Criteo
+446676,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Criteo
 383690,Mango Surf,MangoSurf_300x250_RG_ATF,Haut,300 x 250,Criteo
 9179619802,180 Back,180Back_300x250_RG_ATF,Haut,300 x 250,Google Adsense
 6687190140,180 Back,180Back_728x90_RG_ATF,Haut,728 x 90,Google Adsense
@@ -216,20 +216,20 @@ Key,Site,Emplacement,Position,Format,Annonceur
 2697287402,Actu Rugby,ActuRugby_300x250_RG_BTF,Bas,300 x 250,Google Adsense
 7068611408,Actu Rugby,ActuRugby_300x250_RG_ATF,Haut,300 x 250,Google Adsense
 8545344600,Actu Rugby,ActuRugby_728x90_RG_ATF,Haut,728 x 90,Google Adsense
-2979391809,Allez Marseille,AllezMarseille_300x250_ATF_RG,Haut,300 x 250,Google Adsense
-1502658602,Allez Marseille,AllezMarseille_320x50_ATF_MOB,Haut,320 x 50,Google Adsense
-1516762208,Allez Marseille,AllezMarseille_300x250_ATF_RG,Haut,300 x 250,Google Adsense
+2979391809,Allez Marseille,Allez Marseille_300x250_ATF_RG,Haut,300 x 250,Google Adsense
+1502658602,Allez Marseille,Allez Marseille_320x50_ATF_MOB,Haut,320 x 50,Google Adsense
+1516762208,Allez Marseille,Allez Marseille_300x250_ATF_RG,Haut,300 x 250,Google Adsense
 2912770208,Allez Toulouse,AllezToulouse_300x250_RG_ATF,Haut,300 x 250,Google Adsense
 5866236606,Allez Toulouse,AllezToulouse_728x90_RG_ATF,Haut,728 x 90,Google Adsense
 3189747006,Cahiers du Football,CahierDuFootball_300x250_RG_ATF,Haut,300 x 250,Google Adsense
 2168842209,Cahiers du Football,CahierDuFootball_728x90_RG_ATF,Haut,728 x 90,Google Adsense
-1440880204,DZFoot,DZFoot_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-6010680608,DZFoot,DZFoot_728x90_RG_ATF,Haut,728 x 90,Google Adsense
-2917613400,DZFoot,DZFoot_300x250_RG_BTF,Bas,300 x 250,Google Adsense
-4394346604,DZFoot,DZFoot_728x90_RG_BTF,Bas,728 x 90,Google Adsense
-1022077801,DZFoot,DZFoot_300x250_RG_ATF,Haut,300 x 250,Google Adsense
-2498811009,DZFoot,DZFoot_728x90_RG_ATF,Haut,728 x 90,Google Adsense
-8302411809,DZFoot,DZFoot_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+1440880204,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+6010680608,DzFoot,DzFoot_728x90_RG_ATF,Haut,728 x 90,Google Adsense
+2917613400,DzFoot,DzFoot_300x250_RG_BTF,Bas,300 x 250,Google Adsense
+4394346604,DzFoot,DzFoot_728x90_RG_BTF,Bas,728 x 90,Google Adsense
+1022077801,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Google Adsense
+2498811009,DzFoot,DzFoot_728x90_RG_ATF,Haut,728 x 90,Google Adsense
+8302411809,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Google Adsense
 1511919008,Football Club de Marseille,FCMarseille_300x250_RG_ATF,Haut,300 x 250,Google Adsense
 2988652200,Football Club de Marseille,FCMarseille_320x50_MOB,Haut,320 x 50,Google Adsense
 2702241000,Footito,Footito_300x250_RG_ATF,Haut,300 x 250,Google Adsense
@@ -340,8 +340,8 @@ Key,Site,Emplacement,Position,Format,Annonceur
 456350-43,Track And Life,TrackAndLife_320x50_ATF_RG-MOB,Haut,320 x 50,Rubicon
 460246-15,Footpack,Footpack_300x250_ATF_RG,Haut,300 x 250,Rubicon
 484786-117,Les Violets,Lesviolets_320x50_ATF_RG-MOB,Haut,320 x 100,Rubicon
-523402-15,AllezMarseille,AllezMarseille_300x250_ATF_RG,Haut,300 x 250,Rubicon
-523402-2,AllezMarseille,AllezMarseille_728x90_ATF_RG,Haut,728 x 90,Rubicon
+523402-15,Allez Marseille,Allez Marseille_300x250_ATF_RG,Haut,300 x 250,Rubicon
+523402-2,Allez Marseille,Allez Marseille_728x90_ATF_RG,Haut,728 x 90,Rubicon
 569746-10,Plongeur,Plongeur_300x250_ATF_RG,Haut,300 x 600,Rubicon
 569746-15,Plongeur,Plongeur_300x250_ATF_RG,Haut,300 x 250,Rubicon
 569746-2,Plongeur,Plongeur_728x90_ATF_RG,Haut,728 x 90,Rubicon
@@ -351,8 +351,8 @@ Key,Site,Emplacement,Position,Format,Annonceur
 571454-43,Plongeur,Plongeur_320x50_ATF_RG-MOB,Haut,320 x 50,Rubicon
 571460-15,Plongeur,Plongeur_300x250_ATF_RG-MOB,Bas,300 x 250,Rubicon
 571460-43,Plongeur,Plongeur_320x50_BTF_RG-MOB,Bas,320 x 50,Rubicon
-587624-10,DZFoot,DzFoot_300x250_RG_ATF,Haut,300 x 600,Rubicon
-587624-15,DZFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
+587624-10,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 600,Rubicon
+587624-15,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
 591326-15,Track And Life,TrackAndLife_300x250_BTF_RG,Bas,300 x 250,Rubicon
 591326-2,Track And Life,TrackAndLife_728x90_BTF_RG,Bas,728 x 90,Rubicon
 595706-10,Actu Rugby,ActuRugby_300x250_ATF_RG,Haut,300 x 600,Rubicon
