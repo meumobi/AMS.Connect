@@ -57,9 +57,9 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
                     $firstLineKeys = array_flip($firstLineKeys);
-                } else {
-                    array_push($records, $array);
-                }
+                } 
+                
+                array_push($records, $array);
 
                 /*
                     Using array_merge is important to maintain the 
