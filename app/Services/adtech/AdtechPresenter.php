@@ -99,12 +99,13 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         );
 
         $array += $this->getImprPrises(
-            str_replace(",", ".", $line["campaign flat fee"]), 
-            $array["impressions envoyees"], 
-            $array["impressions facturables"]);
+            $line["campaign flat fee"],
+            $array["impressions envoyees"],
+            $array["impressions facturables"]
+        );
 
         $array += $this->getRevenu(
-            str_replace(",", ".", $line["campaign flat fee"]),
+            $line["campaign flat fee"],
             $array["impressions prises"],
             $array["cpm"]);
         
@@ -116,12 +117,15 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         $row = [];
         $val = "FORFAIT";
 
-        if ($fee == 0) {
+        if (intval($fee) == 0) {
             if ($facturables == 0) {
+                // ex on stub: 2017-03-24_AllezTFC_300x250_geoloc_ATF
                 $val = $envoyees;
             } elseif ($envoyees > $facturables) {
+                // ex on stub: 2017-03-24_RG_1997Media_300x600-ATF
                 $val = $facturables;
             } elseif ($envoyees < $facturables) {
+                // ex on stub: 2017-03-24_AllezLyon_320x50_MOB_ATF
                 $val = $envoyees;
             }
         }
@@ -134,10 +138,9 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     private function getImprEnvoyees($line)
     {   
         $data = "FORFAIT";
-        $fee = str_replace(",", ".", $line["campaign flat fee"]);
 
-        if ($fee == 0) {
-            $data = $line["imps. sans défaut"];
+        if (intval($line["campaign flat fee"]) == 0) {
+            $data = intval(preg_replace('/[^0-9]/', '', $line["imps. sans défaut"]));
         }
 
         return $data;
@@ -146,12 +149,8 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     private function getCustomCpm($line)
     {   
         $data = "FORFAIT";
-        /*
-         Convert french number format, ie. "14,40", to 14.40 format
-        */
-        $fee = str_replace(",", ".", $line["campaign flat fee"]);
 
-        if ($fee == 0) {
+        if (intval($fee) == 0) {
             $data = str_replace(",", ".", $line["campaign cpm"]);            
         }
 
@@ -172,9 +171,8 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     {   
         $data = "FORFAIT";
         $days = 1;
-        $fee = str_replace(",", ".", $line["campaign flat fee"]);
 
-        if ($fee == 0) {
+        if (intval($fee) == 0) {
             $end = $line["date de fin du flight"];
             $start = $line["flight date de début"];
             /*
@@ -200,7 +198,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         $row = [];
         $val = $fee;
 
-        if ($fee == 0) {
+        if (intval($fee) == 0) {
             $val = (int)$prises * (float)$cpm / 1000;
         }
         
