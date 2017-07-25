@@ -150,7 +150,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     {   
         $data = "FORFAIT";
 
-        if (intval($fee) == 0) {
+        if (intval($line["campaign flat fee"]) == 0) {
             $data = str_replace(",", ".", $line["campaign cpm"]);            
         }
 
@@ -172,7 +172,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         $data = "FORFAIT";
         $days = 1;
 
-        if (intval($fee) == 0) {
+        if (intval($line["campaign flat fee"]) == 0) {
             $end = $line["date de fin du flight"];
             $start = $line["flight date de début"];
             /*
