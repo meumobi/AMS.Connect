@@ -158,7 +158,7 @@ Key,Site,Emplacement,Position,Format,Annonceur
 393766-15,Trimes,Trimes_300x250_RG_ATF,Haut,300 x 250,Rubicon
 540566-43,Trimes,Trimes_320x50_MOB,Haut,320 x 50,Rubicon
 1113,DzFoot,DzFoot_1x1_habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
-1801,Le Rugbynistère,Rugbynistere_Habillage_RG_ATF,Haut,1600x1000,Sublime Skinz
+1801,Le Rugbynistère,Rugbynistere_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 1802,Rugby Transferts,RugbyTransferts_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 2437,Hockey Hebdo,HockeyHebdo_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
 4565,Sportune,Sportune_Habillage_RG_ATF,Haut,1600 x 1000,Sublime Skinz
@@ -321,7 +321,7 @@ Key,Site,Emplacement,Position,Format,Annonceur
 391854-15,180 Back,180Back_300x250_RG_ATF,Haut,300 x 250,Rubicon
 392902-10,Les Violets,AllezTFC_300x250_RG_ATF,Haut,300 x 600,Rubicon
 394166-10,Hockey Hebdo,HockeyHebdo_300x250_RG_BTF,Haut,300 x 600,Rubicon
-394466-101,Le Rugbynistère_Mweb,Rugbynistere_1x1_RG_ATF-MOB,Haut,1 x 1,Rubicon
+394466-101,Le Rugbynistère,Rugbynistere_1x1_RG_ATF-MOB,Haut,1 x 1,Rubicon
 420446-43,FFTT,FFTT_320x50_RG_ATF-MOB,Haut,320 x 50,Rubicon
 595704-10,180 Back,180Back_300x250_RG_ATF,Haut,300 x 600,Rubicon
 595704-15,180 Back,180Back_300x250_RG_ATF,Haut,300 x 250,Rubicon
@@ -384,3 +384,205 @@ Key,Site,Emplacement,Position,Format,Annonceur
 6872280602,Rugby Amateur,RugbyAmateur_300x250_RG_ATF,Haut,300 x 250,Google Adsense
 6732679805,Les Violets,AllezTFC_320x50_RG_ATF,Haut,320 x 50,Google Adsense
 9686146204,Les Violets,AllezTFC_728x90_RG_ATF,Haut,728 x 90,Google Adsense
+T-01,Les Violets,LesViolets_reco-contenu_ATF,Haut,Recommendations Contenu,Taboola
+T-02,Hockey Hebdo,HockeyHebdo_reco-contenu_ATF,Haut,Recommendations Contenu,Taboola
+T-03,Allez Toulouse,AllezToulouse_reco-contenu_ATF,Haut,Recommendations Contenu,Taboola
+T-04,Allez Lyon,AllezLyon_reco-contenu_ATF,Haut,Recommendations Contenu,Taboola
+T-05,Paris Direct,ParisDirect_reco-contenu_ATF,Haut,Recommendations Contenu,Taboola
+TF-CA-300-AR-ATF,Actu Rugby,ActuRugby_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-AR-BTF,Actu Rugby,ActuRugby_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-LV-ATF,Les Violets,AllezTFC_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-CDF-ATF,Cahiers du Football,CahierDuFootball_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-CDF-BTF,Cahiers du Football,CahierDuFootball_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-Foo-ATF,Footito,Footito_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-HN-ATF,HandNews,Handnews_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-HN-BTF,HandNews,Handnews_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-HH-BTF-2,Hockey Hebdo,HockeyHebdo_300x250_RG_2_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-HH-ATF,Hockey Hebdo,HockeyHebdo_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-HH-BTF,Hockey Hebdo,HockeyHebdo_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-RXV-ATF,Rencontre a XV,RencontresAXV_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-LRN-ATF,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-LRN-BTF,Le Rugbynistère,Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-RUT-ATF,Rugby Transferts,RugbyTransferts_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-RUT-BTF,Rugby Transferts,RugbyTransferts_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-SPT-BTF,Sportune,Sportune_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-SPT-ATF,Sportune,Statistiks_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-UTRAIL-ATF,Utrail,UTrail_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-728-AR-ATF,Actu Rugby,ActuRugby_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-LV-ATF,Les Violets,AllezTFC_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-LV-BTF,Les Violets,AllezTFC_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-CA-728-AS-ATF,Allo Surf,AlloSurf_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-CDF-ATF,Cahiers du Football,CahierDuFootball_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-Foo-ATF,Footito,Footito_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-HN-ATF,HandNews,Handnews_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-HN-BTF,HandNews,Handnews_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-CA-728-HH-ATF,Hockey Hebdo,HockeyHebdo_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-HH-BTF,Hockey Hebdo,HockeyHebdo_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-CA-728-RXV-ATF,Rencontre a XV,RencontresAXV_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-LRN-ATF,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-RUT-ATF,Rugby Transferts,RugbyTransferts_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-RUT-BTF,Rugby Transferts,RugbyTransferts_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-CA-728-SPT-ATF,Sportune,Sportune_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-STA-ATF,Statistiks,Statistiks_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-TRI-ATF,Trimes,Trimes_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-300-DZ-ATF,DzFoot,PB_DZFoot_300x250_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-DZ-BTF,DzFoot,PB_DZFoot_300x250_BTF,Bas,300 x 250,Tribal Fusion
+TF-728-DZ-ATF,DzFoot,PB_DZFoot_728x90_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-DZ-BTF,DzFoot,PB_DZFoot_728x90_BTF,Bas,728 x 90,Tribal Fusion
+TF-300-LRN-ATF,Le Rugbynistère,PB_Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-LRN-BTF,Le Rugbynistère,PB_Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-728-LRN-ATF,Le Rugbynistère,PB_Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-LRN-BTF,Le Rugbynistère,PB_Rugbynistere_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-300-PQT-ATF,ParcequeToulon,ParceQueToulon_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-PLG-BTF,Plongeur,PB-300x250,Bas,300 x 250,Tribal Fusion
+TF-300-AR-ATF,Actu Rugby,PB_ActuRugby_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-AR-BTF,Actu Rugby,PB_ActuRugby_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-300-LV-ATF,Les Violets,PB_AllezTFC_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-CDF-ATF,Cahiers du Football,PB_CahierDuFootball_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-CDF-BTF,Cahiers du Football,PB_CahierDuFootball_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-300-Foo-ATF,Footito,PB_Footito_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-HN-ATF,HandNews,PB_Handnews_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-HN-BTF,HandNews,PB_Handnews_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-300-HH-ATF,Hockey Hebdo,PB_HockeyHebdo_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-HH-BTF,Hockey Hebdo,PB_HockeyHebdo_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-300-MS-ATF,Mango Surf,PB_MangoSurf_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-RUT-ATF,Rugby Transferts,PB_RugbyTransferts_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-RUT-BTF,Rugby Transferts,PB_RugbyTransferts_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-300-Stat-ATF,Statistiks,Statistiks_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-728-PLG-BTF,Plongeur,PB-728x90,Bas,728 x 90,Tribal Fusion
+TF-728-AR-ATF,Actu Rugby,PB_ActuRugby_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-LV-ATF,Les Violets,PB_AllezTFC_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-LV-BTF,Les Violets,PB_AllezTFC_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-728-CDF-ATF,Cahiers du Football,PB_CahierDuFootball_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-Foo-ATF,Footito,PB_Footito_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-HN-ATF,HandNews,PB_Handnews_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-HN-BTF,HandNews,PB_Handnews_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-728-HH-ATF,Hockey Hebdo,PB_HockeyHebdo_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-HH-BTF,Hockey Hebdo,PB_HockeyHebdo_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-728-MS-ATF,Mango Surf,PB_MangoSurf_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-RUG-ATF,Rugbyto,PB_Rugbyto_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-RUT-ATF,Rugby Transferts,PB_RugbyTransferts_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-RUT-BTF,Rugby Transferts,PB_RugbyTransferts_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-728-SPT-ATF,Sportune,PB_Sportune_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-Stat-ATF,Statistiks,Scorecast_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-TAL-ATF,Track And Life,PB_TrackandLife_728x90_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-TRI-ATF,Trimes,PB_Trimes_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+A-SPT-InRead-Desk,Sportune,Sportune_InRead_RG_ATF,Haut,InRead,Adikteev
+A-SC-InRead-Desk,ScoreCast,Scorecast_InRead_RG_ATF,Haut,InRead,Adikteev
+A-LRN-InRead-Desk,Le Rugbynistère,LeRugbynistere_InRead_RG_ATF,Haut,InRead,Adikteev
+A-DZ-InRead-Desk,DzFoot,DzFoot_InRead_RG_ATF,Haut,InRead,Adikteev
+A-AR-InRead-Desk,Actu Rugby,ActuRugby_InRead_RG_ATF,Haut,InRead,Adikteev
+A-RUT-InRead-Desk,Rugby Transferts,RugbyTransferts_InRead_RG_ATF,Haut,InRead,Adikteev
+A-LRN-InRead-Mob,Le Rugbynistère,LeRugbynistere_InRead_RG_ATF-MOB,Haut,InRead,Adikteev
+WS-320x50_LRN,Le Rugbynistère,LeRugbynistere_320x50_ATF-MOB,Haut,320 x 50,WideSpace
+WS-320x480_LRN,Le Rugbynistère,LeRugbynistere_320x480_ATF-MOB,Haut,320 x 480,WideSpace
+WS-320x50_AR,Actu Rugby,ActuRugby_320x50_ATF-MOB,Haut,320 x 50,WideSpace
+WS-320x480_AR,Actu Rugby,ActuRugby_320x480_ATF-MOB,Haut,320 x 480,WideSpace
+WS-320x50_SC,ScoreCast,ScoreCast_320x50_ATF-MOB,Haut,320 x 50,WideSpace
+WS-320x480_DZ,DzFoot,DzFoot_320x480_ATF-MOB,Haut,320 x 480,WideSpace
+WS-320x50_DZ,DzFoot,DzFoot_320x50_ATF-MOB,Haut,320 x 50,WideSpace
+WS-320x50_LV,Les Violets,LesViolets_320x50_ATF-MOB,Haut,320 x 50,WideSpace
+WS-320x50_LRN-2,Le Rugbynistère,LeRugbynistere_320x50_ATF-MOB,Haut,320 x 50,WideSpace
+P-AR-728,Actu Rugby,ActuRugby_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-CDF-728,Cahiers du Football,CahierDuFootball_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-DZ-728,DzFoot,DzFoot_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-Foo-728,Footito,Footito_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-HJ-728,Hors Jeu,HorsJeu_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-LRN-728,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-LV-728,Les Violets,AllezTFC_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-RUT-728,Rugby Transferts,RugbyTransferts_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-SC-728,ScoreCast,Scorecast_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-SPT-728,Sportune,Sportune_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-STA-728,Statistiks,Statistiks_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-TRI-728,Trimes,Trimes_728x90_RG_ATF,Haut,728 x 90,Piximedia
+P-AR-300,Actu Rugby,ActuRugby_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-CDF-300,Cahiers du Football,CahierDuFootball_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-DZ-300,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-Foo-300,Footito,Footito_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-HJ-300,Hors Jeu,HorsJeu_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-LRN-300,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-LV-300,Les Violets,AllezTFC_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-RUT-300,Rugby Transferts,RugbyTransferts_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-SC-300,ScoreCast,Scorecast_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-SPT-300,Sportune,Sportune_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-STA-300,Statistiks,Statistiks_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-TRI-300,Trimes,Trimes_300x250_RG_ATF,Haut,300 x 250,Piximedia
+P-AR-1x1,Actu Rugby,ActuRugby_1x1_RG_ATF,Haut,1 x 1,Piximedia
+P-CDF-1x1,Cahiers du Football,CahierDuFootball_Habillage_RG_ATF,Haut,1 x 1,Piximedia
+P-DZ-1x1,DzFoot,DzFoot_1x1_habillage_RG_ATF,Haut,1 x 1,Piximedia
+P-Foo-1x1,Footito,Footito_1x1_RG_ATF,Haut,1 x 1,Piximedia
+P-HJ-1x1,Hors Jeu,HorsJeu_1x1_RG_ATF,Haut,1 x 1,Piximedia
+P-LRN-1x1,Le Rugbynistère,Rugbynistere_Habillage_RG_ATF,Haut,1 x 1,Piximedia
+P-LV-1x1,Les Violets,AllezTFC_Habillage_RG_ATF,Haut,1600 x 1000,Piximedia
+P-RUT-1x1,Rugby Transferts,RugbyTransferts_Habillage_RG_ATF,Haut,1 x 1,Piximedia
+P-SC-1x1,ScoreCast,Scorecast_habillage_1x1_RG_ATF,Haut,1 x 1,Piximedia
+P-SPT-1x1,Sportune,Sportune_Habillage_RG_ATF,Haut,1 x 1,Piximedia
+P-STA-1x1,Statistiks,Statistiks_1x1_RG_ATF,Haut,1 x 1,Piximedia
+P-TRI-1x1,Trimes,Trimes_1x1_RG_ATF,Haut,1 x 1,Piximedia
+SAS-123317-38231-45838-300*250,Sportune,Sportune_300x250_RG_ATF,Haut,300 x 250,SmartAdserver
+SAS-123317-38231-45838-300*600,Sportune,Sportune_300x250_RG_ATF,Haut,300 x 600,SmartAdserver
+SAS-123317-38231-45846-728*90,Sportune,Sportune_728x90_RG_ATF,Haut,728 x 90,SmartAdserver
+SAS-123317-38231-45846-970*250,Sportune,Sportune_728x90_RG_ATF,Haut,970 x 250,SmartAdserver
+SAS-123317-38231-45846-1000*90,Sportune,Sportune_728x90_RG_ATF,Haut,1000 x 90,SmartAdserver
+SAS-123317-38231-45838-300*250,Sportune,Sportune_300x250_RG_ATF,Haut,300 x 250,SmartAdserver
+SAS-123317-56033-46034-1800*1000,Sportune,Sportune_Habillage_RG_ATF,Haut,1600 x 1000,SmartAdserver
+SAS-123317-31801-46454-320*50,Sportune,Sportune_320x50_RG_ATF-MOB,Haut,320 x 50,SmartAdserver
+SAS-123317-31801-46454-320*100,Sportune,Sportune_320x50_RG_ATF-MOB,Haut,320*100,SmartAdserver
+SAS-123511-38231-45838-300*250,ScoreCast,Scorecast_300x250_RG_ATF,Haut,300 x 250,SmartAdserver
+SAS-123511-38231-45838-300*600,ScoreCast,Scorecast_300x250_RG_ATF,Haut,300 x 600,SmartAdserver
+SAS-123511-38231-45846-728*90,ScoreCast,Scorecast_728x90_RG_ATF,Haut,728 x 90,SmartAdserver
+SAS-123511-38231-45846-970*250,ScoreCast,Scorecast_728x90_RG_ATF,Haut,970 x 250,SmartAdserver
+SAS-123511-38231-45846-1000*90,ScoreCast,Scorecast_728x90_RG_ATF,Haut,1000 x 90,SmartAdserver
+SAS-123991-38231-45838-300*250,Statistiks,Statistiks_300x250_RG_ATF,Haut,300 x 250,SmartAdserver
+SAS-123991-38231-45838-300*600,Statistiks,Statistiks_300x250_RG_ATF,Haut,300 x 600,SmartAdserver
+SAS-123991-38231-45846-728*90,Statistiks,Statistiks_728x90_RG_ATF,Haut,728 x 90,SmartAdserver
+SAS-123991-38231-45846-970*250,Statistiks,Statistiks_728x90_RG_ATF,Haut,970 x 250,SmartAdserver
+SAS-123991-38231-45846-1000*90,Statistiks,Statistiks_728x90_RG_ATF,Haut,1000 x 90,SmartAdserver
+SAS-123991-38231-46455-120*600,Statistiks,Statistiks_160x600_RG_ATF,Haut,120 x 600,SmartAdserver
+SAS-123991-38231-46455-160*600,Statistiks,Statistiks_160x600_RG_ATF,Haut,160 x 600,SmartAdserver
+SAS-132881-38231-45838-300*250,Paris Direct,ParisDirect_300x250_RG_ATF,Haut,300 x 250,SmartAdserver
+SAS-132881-38231-45838-300*600,Paris Direct,ParisDirect_300x250_RG_ATF,Haut,300 x 600,SmartAdserver
+SAS-132881-38231-45838-300*250,Paris Direct,ParisDirect_300x250_RG_ATF,Haut,300 x 250,SmartAdserver
+SAS-132881-31801-46454-320*50,Paris Direct,ParisDirect_320x50_RG_ATF,Haut,320 x 50,SmartAdserver
+SAS-132881-38231-45846-728*90,Paris Direct,ParisDirect_728x90_RG_ATF,Haut,728 x 90,SmartAdserver
+SAS-133011-38231-45846-728*90,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,728 x 90,SmartAdserver
+SAS-133011-38231-45846-970*250,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,970 x 250,SmartAdserver
+SAS-133011-38231-45846-1000*90,Le Rugbynistère,Rugbynistere_728x90_RG_ATF,Haut,1000 x 90,SmartAdserver
+SAS-133011-38231-45838-300*250,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,300 x 250,SmartAdserver
+SAS-133011-71573-45979-320*480,Le Rugbynistère,Rugbynistere_300x250_RG_ATF,Haut,320 x 480,SmartAdserver
+SAS-154352-71573-45979-320*480,DzFoot,DzFoot_320x50_RG_MOB,Haut,320 x 480,SmartAdserver
+SAS-154405-71573-45979-320*480,Rugby Transferts,RugbyTransferts_320x50_ATF_RG-MOB,Haut,320 x 480,SmartAdserver
+AD6-LRN,Le Rugbynistère,Rugbynistere_320x50_MOB_ATF,Bas,Footer,AD6
+AD6-DZ,DzFoot,DzFoot_1x1_RichMedia_RG_ATF,Bas,Footer,AD6
+AD6-RUT,Rugby Transferts,RugbyTransferts_Habillage_RG_ATF,Bas,Footer,AD6
+AD6-SPT,Sportune,Sportune_Habillage_RG_ATF,Bas,Footer,AD6
+AD6-STA,Statistiks,Statistiks_1x1_RG_ATF,Bas,Footer,AD6
+AYL-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-desk-hp-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-desk-article-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-desk-cat-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-hp-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-article-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-cat-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-hp-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-article-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-cat-DZ,DzFoot,DzFoot_1x1_Native_RG_ATF,Article,Native,AdYouLike
+AYL-desk-hp-LRN,Le Rugbynistère,Rugbynistere_native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-hp-LRN,Le Rugbynistère,Rugbynistere_native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-article-LRN,Le Rugbynistère,Rugbynistere_native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-article-LRN,Le Rugbynistère,Rugbynistere_native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-hp-LRN,Le Rugbynistère,Rugbynistere_native_RG_ATF,Article,Native,AdYouLike
+AYL-desk-article-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-desk-cat-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-desk-hp-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-article-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-cat-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-hp-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-article-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-hp-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-cat-SPT,Sportune,Sportune_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-article-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Mob-hp-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-article-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike
+AYL-Tab-hp-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike
+AYL-desk-hp-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike

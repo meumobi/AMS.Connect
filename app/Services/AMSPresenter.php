@@ -154,6 +154,7 @@ class AMSPresenter
     protected function getCpm($impressions, $revenue)
     {
         $row = array('cpm' => 'NA');
+        $revenue = $num = floatval(str_replace(",",".",$revenue));
 
         if ($impressions != 0) {
             $data = ($revenue / $impressions) * 1000;
@@ -178,6 +179,7 @@ class AMSPresenter
     protected function getFillRate($received, $matched)
     {
         $row = array('fillRate' => '0%');
+        $revenue = $num = floatval(str_replace(",",".",$revenue));
 
         if ($received == 'NA' || $received == 0) {
             $row['fillRate'] = 'NA';
@@ -198,11 +200,11 @@ class AMSPresenter
 
     protected function addFields($array)
     {
-        $array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
-        $array += $this->getCpm($array['impressions prises'], $array['revenu']);
+        //$array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
+        //$array += $this->getCpm($array['impressions prises'], $array['revenu']);
         $array += $this->getCorrelatedFields($array['key']);
         $array += $this->getAdServingFields($array['key'], $array['date']);
-        $array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
+        //$array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
         $array += array('impressions facturables' => 'ND');
         $array += array('campagne' => 'ND');
         $array += $this->getUID($array['date'], $array['key']);
