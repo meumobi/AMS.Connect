@@ -81,7 +81,7 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
         // Log::info('Line mapped', $line);
         $array = array(
             "date" => $this->convertDate($line["date"]),
-            "impressions reçues" => $line["impressions reçues"],
+            "impressions reçues" => $line["impressions recues"],
             "key" => $line["key"],
             "inventaire" => $line["inventaire"],
             //"fillRate" => "ND",
@@ -93,11 +93,10 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
             //"annonceur" => $line["annonceur"],
             "impressions envoyees" => $line["impressions envoyees"],
             "impressions prises" => $line["impressions prises"],
-            "revenu" => $line["revenu"],
+            "revenu" => floatval(str_replace(",",".",$line["revenu"])),
             //"discrepencies" => "ND",
             //"impressions facturables" => $this->getImprFacturables($line),     
             //"campagne" => $line["flight description"],
-            "partenaire" => "Unplugged"
         );
         
         return $array;
