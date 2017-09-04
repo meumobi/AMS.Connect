@@ -13,6 +13,7 @@ class AMSPresenter
     const MODE_ATTACH = "attach";
     const MODE_PUBLISH = "publish";
     const MODE_PREVIEW = "preview";
+    const MODE_CONSOLE = "console";
     
     protected $_dateFormat;
     
@@ -126,7 +127,8 @@ class AMSPresenter
         $row = $correlationTable->getRow($key);
         
         if (empty($row)) {
-            $row = ['site' => 'Unknown'];
+            $row['site'] = 'Unknown';
+            $row['partenaire'] = 'Unknown';
             Log::warning('Correlation Key Not Found', ['key' => (string)$key]);
         }
 
@@ -179,7 +181,6 @@ class AMSPresenter
     protected function getFillRate($received, $matched)
     {
         $row = array('fillRate' => '0%');
-        $revenue = $num = floatval(str_replace(",",".",$revenue));
 
         if ($received == 'NA' || $received == 0) {
             $row['fillRate'] = 'NA';
@@ -212,6 +213,12 @@ class AMSPresenter
         return $array;
     }
 
+    protected function consoleLog($records) {
+        foreach ($records as $record) {
+            Log::info('Computed Raw (AMS Format)', [$record]);
+        }
+    }
+
     protected function presentAsMode($strTempFile, $records, $mode)
     {
         switch ($mode) {
@@ -223,6 +230,9 @@ class AMSPresenter
                 break;
             case self::MODE_PREVIEW:
                 $this->previewTreeToPublish($records);
+                break;
+            case self::MODE_CONSOLE:
+                $this->consoleLog($records);
                 break;
             default:
                 $this->echoCsv($strTempFile);
