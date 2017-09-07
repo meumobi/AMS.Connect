@@ -3,15 +3,17 @@
 namespace App\Services;
 
 use Log;
+use Illuminate\Support\Facades\Storage;
 
 class CorrelationTable
 {
 
     private $_tableData;
+    const FILE_PATH = "app/public//ams-correlation-table.csv";
 
     private function __construct()
     {
-        $csv = array_map('str_getcsv', file('ams-correlation-table.csv'));
+        $csv = array_map('str_getcsv', file(storage_path(self::FILE_PATH)));
         $header = array_map('strtolower', array_shift($csv));
         $this->_tableData = array_reduce(
             $csv,

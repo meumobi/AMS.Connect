@@ -8,10 +8,11 @@ class AdServingTable
 {
 
     private $_tableData;
+    const FILE_PATH = "app/public/adserving.csv";  
 
     private function __construct()
     {
-        $csv = array_map('str_getcsv', file('adserving.csv'));
+        $csv = array_map('str_getcsv', file(storage_path(self::FILE_PATH)));
         $header = array_map('strtolower', array_shift($csv));
         $this->_tableData = array_reduce(
             $csv,

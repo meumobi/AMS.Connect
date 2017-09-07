@@ -23,7 +23,12 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
+/*
+    See https://nicksilvestro.net/2016/05/28/adding-laravels-storage-facade-into-lumen/
+*/
+$app->configure('filesystems');
 $app->withFacades();
+class_alias('Illuminate\Support\Facades\Storage', 'Storage');
 
 // $app->withEloquent();
 
@@ -82,6 +87,8 @@ $app->singleton(
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
+$app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -103,8 +110,16 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
 */
 
 $app->configureMonologUsing(function($monolog) {
-    $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr', \Monolog\Logger::WARNING));
+    $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr', \Monolog\Logger::INFO));
     return $monolog;
 });
+
+/*
+    See https://github.com/Niellles/lumen-commands
+*/
+if (env('APP_ENV') === 'local') {
+    $app->bind(Illuminate\Database\ConnectionResolverInterface::class, Illuminate\Database\ConnectionResolver::class);
+    $app->register(Niellles\LumenCommands\LumenCommandsServiceProvider::class);
+}
 
 return $app;

@@ -10,13 +10,15 @@
         "laravel/lumen-framework": "5.4.*",
         "vlucas/phpdotenv": "~2.2",
         "google/apiclient": "^2.1",
-        "kreait/firebase-php": "^3.1"
+        "kreait/firebase-php": "^3.1",
+        "league/flysystem": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~5.0",
         "mockery/mockery": "~0.9",
-        "heroku/heroku-buildpack-php": "^119.0"
+        "heroku/heroku-buildpack-php": "^119.0",
+        "niellles/lumen-commands": "dev-master"
     },
     "autoload": {
         "psr-4": {

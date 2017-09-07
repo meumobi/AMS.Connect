@@ -50,7 +50,7 @@ class AdservingService extends AMSService implements AMSServiceInterface
         }
 
         //Update the Adserving File
-        $adservingFile = fopen($configData['file_path'], 'a+');
+        $adservingFile = fopen(storage_path($configData['file_path']), 'a+');
         fwrite($adservingFile, $formatedContent);
         fclose($adservingFile);
 
