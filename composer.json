@@ -11,7 +11,8 @@
         "vlucas/phpdotenv": "~2.2",
         "google/apiclient": "^2.1",
         "kreait/firebase-php": "^3.1",
-        "league/flysystem": "^1.0"
+        "league/flysystem": "^1.0",
+        "ext-memcached": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
