@@ -13,7 +13,7 @@ class ProvidersPerform extends Command
     *
     * @var string
     */
-  protected $signature = 'providers:perform {provider?}';
+  protected $signature = 'providers:perform {provider?} {--mode=console}';
 
   /**
     * The console command description.
@@ -22,7 +22,7 @@ class ProvidersPerform extends Command
     */
   protected $description = 'Command description';
 
-  private $providers = ["Adserving", "Adsense", "Adtech", "Criteo", "Rubicon", "Unplugged"];
+  private $providers = ["Adserving", "Rubicon", "Adsense", "Adtech", "Criteo", "Unplugged"];
   //private $providers = ["Rubicon"];
 
   /**
@@ -44,14 +44,15 @@ class ProvidersPerform extends Command
   public function handle()
   {
     $providerName = $this->argument('provider');
+    $mode = $this->option('mode');
 
     if ($providerName) {
       $this->info('Commands: Perform ' . $providerName);
-      dispatch(new DailyReportsPublishing($providerName, "console"));
+      dispatch(new DailyReportsPublishing($providerName, $mode));
     } else {
       foreach ($this->providers as $providerName) {
         $this->info('Commands: Perform ' . $providerName);
-        dispatch(new DailyReportsPublishing($providerName, "console"));
+        dispatch(new DailyReportsPublishing($providerName, $mode));
       }
     }
   }

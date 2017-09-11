@@ -5,6 +5,7 @@ namespace App\Services\adserving;
 
 use App\Services\AMSPresenter;
 use App\Services\AMSPresenterInterface;
+use Illuminate\Support\Facades\Storage;
 use Log;
 use DateTime;
 use ErrorException;
@@ -38,8 +39,10 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
         
                 
         $strTempFile = 'csvOutput' . date("U") . ".csv";
-        $tempFile = fopen($strTempFile, "w+");
-        Log::info('Temporary file created', ['file'=>$strTempFile]);
+        $tempFilePath = Storage::disk('public')->url($strTempFile);
+
+        $tempFile = fopen($tempFilePath, "w+");
+        Log::info('Temporary file created', ['file'=>$tempFilePath]);
 
         $firstLineKeys = false;
         try {
@@ -61,7 +64,7 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
             }
         } catch (ErrorException $exception) {
             //Erasing the temp file when a error is catch
-            unlink($strTempFile);
+            unlink($tempFilePath);
             if (strpos($exception->getMessage(), 'Undefined index:') !== false) {
                 Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getMessage()]);
                 echo 'Mapping Error, field does not exists '.$exception->getMessage();                
@@ -72,13 +75,13 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
             fclose($tempFile);
         }
         
-        $fileData = file($strTempFile);
+        $fileData = file($tempFilePath);
         array_shift($fileData);
         $formated = join("", $fileData);
         
         // Delete the temp file
-        unlink($strTempFile);
-        Log::info('Temporary file deleted', ['file'=>$strTempFile]);
+        unlink($tempFilePath);
+        Log::info('Temporary file deleted', ['file'=>$tempFilePath]);
 
         return $formated;
     }

@@ -5,6 +5,7 @@ namespace App\Services\adserving;
 use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
 use App\Lib\EmailReader;
+use Illuminate\Support\Facades\Storage;
 use Log;
 use DateTime;
 
@@ -50,9 +51,13 @@ class AdservingService extends AMSService implements AMSServiceInterface
         }
 
         //Update the Adserving File
-        $adservingFile = fopen(storage_path($configData['file_path']), 'a+');
+        $filePath = Storage::disk('public')->url($configData['file_name']);
+        Log::info('File Path of Adserving file: ' . $filePath);    
+
+        $adservingFile = fopen($filePath, 'a+');
         fwrite($adservingFile, $formatedContent);
         fclose($adservingFile);
+        Log::info('Lines of AdservingTable: ' . count(file($filePath)));
 
         $this->updateLockFile($dataDate);
 
@@ -63,7 +68,7 @@ class AdservingService extends AMSService implements AMSServiceInterface
             ]
         );
 
-        error_log('AdsenseService Performed');
+        error_log('AdservingService Performed');
     }
 
     private function getDateOfData($data)
@@ -77,21 +82,23 @@ class AdservingService extends AMSService implements AMSServiceInterface
 
     private function getDateOfPidLock()
     {
-        $pidFile = config('AMS.provider.pid_lock_file');
-        $pidDate = file_get_contents($pidFile);
-        if ($pidDate) {
-            return (new DateTime)->createFromFormat('d/m/Y', $pidDate)
-                ->setTime(0, 0, 0);
-        }
-        return null;
+      $pidFilePath = Storage::disk('public')->url(config('AMS.provider.pid_lock_file'));
+      Log::info('File Path of pid File: ' . $pidFilePath);
+      $pidDate = file_get_contents($pidFilePath);
+      if ($pidDate) {
+        return (new DateTime)->createFromFormat('d/m/Y', $pidDate)
+          ->setTime(0, 0, 0);
+      }
+      return null;
     }
 
     private function updateLockFile($dataDate)
     {
-        file_put_contents(
-            config('AMS.provider.pid_lock_file'),
-            $dataDate->format('d/m/Y')
-        );
+      $pidFilePath = Storage::disk('public')->url(config('AMS.provider.pid_lock_file'));
+      file_put_contents(
+        $pidFilePath,
+        $dataDate->format('d/m/Y')
+      );
     }
 
     protected function call($date, $email_to)

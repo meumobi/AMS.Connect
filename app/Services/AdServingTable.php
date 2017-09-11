@@ -2,29 +2,33 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Storage;
 use Log;
 
 class AdServingTable
 {
 
     private $_tableData;
-    const FILE_PATH = "app/public/adserving.csv";  
+    const FILE_NAME = "adserving.csv";  
 
     private function __construct()
     {
-        $csv = array_map('str_getcsv', file(storage_path(self::FILE_PATH)));
-        $header = array_map('strtolower', array_shift($csv));
-        $this->_tableData = array_reduce(
-            $csv,
-            function ($data, $row) use ($header) {
-                $row = array_combine($header, $row);
-                $tableKey = $row['key'] . array_shift($row);
-                $data[$tableKey] = $row;
-                return $data;
-            },
-            []
-        );
-        Log::info('AdServingTable initialized');
+      $filePath = Storage::disk('public')->url(self::FILE_NAME);
+      Log::info('Lines of AdservingTable: ' . count(file($filePath)));
+
+      $csv = array_map('str_getcsv', file($filePath));
+      $header = array_map('strtolower', array_shift($csv));
+      $this->_tableData = array_reduce(
+          $csv,
+          function ($data, $row) use ($header) {
+              $row = array_combine($header, $row);
+              $tableKey = $row['key'] . array_shift($row);
+              $data[$tableKey] = $row;
+              return $data;
+          },
+          []
+      );
+      Log::info('AdServingTable initialized');
     }
 
     public function getRow($key)
