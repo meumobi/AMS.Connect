@@ -13,7 +13,10 @@ config(
                     ? 'https://' 
                     : 'http://'
                 )
-                . $_SERVER['HTTP_HOST']
+                . (!empty($_SERVER['HTTP_HOST'])
+                    ? $_SERVER['HTTP_HOST'] 
+                    : 'limitless-sea-32755.herokuapp.com'
+                )
                 .'/oauth/adsense',
             'serviceAccountFile' => realpath(dirname(__FILE__)).'/credentials.json',
             'token'=> [
