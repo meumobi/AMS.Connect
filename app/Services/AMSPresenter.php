@@ -73,7 +73,9 @@ class AMSPresenter
         }
 
         header('Content-Type: text/plain');
+        /*
         echo "Data published successfully! \n";
+        */
     }
 
     protected function previewTreeToPublish($records)

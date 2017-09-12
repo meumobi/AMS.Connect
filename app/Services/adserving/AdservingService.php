@@ -61,12 +61,14 @@ class AdservingService extends AMSService implements AMSServiceInterface
 
         $this->updateLockFile($dataDate);
 
+        /*
         echo json_encode(
             [
                 'success' => true,
                 'date' => $dataDate->format('d/m/Y'),
             ]
         );
+        */
 
         error_log('AdservingService Performed');
     }

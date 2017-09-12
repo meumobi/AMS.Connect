@@ -22,7 +22,7 @@ class ProvidersPerform extends Command
     */
   protected $description = 'Command description';
 
-  private $providers = ["Adserving", "Rubicon", "Adsense", "Adtech", "Criteo", "Unplugged"];
+  private $providers = ["Adserving", "Rubicon", "Sublime", "Adsense", "Adtech", "Criteo", "Unplugged"];
   //private $providers = ["Rubicon"];
 
   /**
