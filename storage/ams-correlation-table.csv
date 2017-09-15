@@ -172,11 +172,11 @@ Key,Site,Emplacement,Position,Format,Partenaire
 390132,Actu Rugby,ActuRugby_300x250_RG_ATF,Haut,300 x 250,Criteo
 390133,Sportune,Sportune_728x90_RG_ATF,Haut,970 x 250,Criteo
 390135,Sportune,Sportune_300x250_RG_ATF,Haut,300 x 600,Criteo
-390182,HandNews,Handnews_728x90_RG_ATF,Haut,728 x 90,Criteo
+390182,Handnews,Handnews_728x90_RG_ATF,Haut,728 x 90,Criteo
 390206,Cahiers du Football,CahierDuFootball_728x90_RG_ATF,Haut,728 x 90,Criteo
 390262,Statistiks,Statistiks_728x90_RG_ATF,Haut,728 x 90,Criteo
 390264,Trimes,Trimes_728x90_RG_ATF,Haut,728 x 90,Criteo
-390412,HandNews,Handnews_300x250_RG_ATF,Haut,300 x 250,Criteo
+390412,Handnews,Handnews_300x250_RG_ATF,Haut,300 x 250,Criteo
 390450,180 Back,180Back_300x250_RG_ATF,Haut,300 x 250,Criteo
 390464,Hockey Hebdo,HockeyHebdo_300x250_RG_ATF,Haut,300 x 250,Criteo
 390994,Scorecast,Scorecast_300x250_RG_ATF,Haut,300 x 250,Criteo
@@ -395,8 +395,8 @@ TF-CA-300-LV-ATF,Les Violets,AllezTFC_300x250_RG_ATF,Haut,300 x 250,Tribal Fusio
 TF-CA-300-CDF-ATF,Cahiers du Football,CahierDuFootball_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
 TF-CA-300-CDF-BTF,Cahiers du Football,CahierDuFootball_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
 TF-CA-300-Foo-ATF,Footito,Footito_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
-TF-CA-300-HN-ATF,HandNews,Handnews_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
-TF-CA-300-HN-BTF,HandNews,Handnews_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-CA-300-HN-ATF,Handnews,Handnews_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-CA-300-HN-BTF,Handnews,Handnews_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
 TF-CA-300-HH-BTF-2,Hockey Hebdo,HockeyHebdo_300x250_RG_2_BTF,Bas,300 x 250,Tribal Fusion
 TF-CA-300-HH-ATF,Hockey Hebdo,HockeyHebdo_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
 TF-CA-300-HH-BTF,Hockey Hebdo,HockeyHebdo_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
@@ -414,8 +414,8 @@ TF-CA-728-LV-BTF,Les Violets,AllezTFC_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
 TF-CA-728-AS-ATF,Allo Surf,AlloSurf_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
 TF-CA-728-CDF-ATF,Cahiers du Football,CahierDuFootball_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
 TF-CA-728-Foo-ATF,Footito,Footito_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
-TF-CA-728-HN-ATF,HandNews,Handnews_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
-TF-CA-728-HN-BTF,HandNews,Handnews_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-CA-728-HN-ATF,Handnews,Handnews_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-CA-728-HN-BTF,Handnews,Handnews_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
 TF-CA-728-HH-ATF,Hockey Hebdo,HockeyHebdo_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
 TF-CA-728-HH-BTF,Hockey Hebdo,HockeyHebdo_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
 TF-CA-728-RXV-ATF,Rencontre a XV,RencontresAXV_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
@@ -433,7 +433,7 @@ TF-300-LRN-ATF,Le Rugbynistère,PB_Rugbynistere_300x250_RG_ATF,Haut,300 x 250,Tr
 TF-300-LRN-BTF,Le Rugbynistère,PB_Rugbynistere_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
 TF-728-LRN-ATF,Le Rugbynistère,PB_Rugbynistere_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
 TF-728-LRN-BTF,Le Rugbynistère,PB_Rugbynistere_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
-TF-300-PQT-ATF,ParcequeToulon,ParceQueToulon_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-PQT-ATF,Parce Que Toulon,ParceQueToulon_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
 TF-300-PLG-BTF,Plongeur,PB-300x250,Bas,300 x 250,Tribal Fusion
 TF-300-AR-ATF,Actu Rugby,PB_ActuRugby_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
 TF-300-AR-BTF,Actu Rugby,PB_ActuRugby_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
@@ -441,8 +441,8 @@ TF-300-LV-ATF,Les Violets,PB_AllezTFC_300x250_RG_ATF,Haut,300 x 250,Tribal Fusio
 TF-300-CDF-ATF,Cahiers du Football,PB_CahierDuFootball_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
 TF-300-CDF-BTF,Cahiers du Football,PB_CahierDuFootball_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
 TF-300-Foo-ATF,Footito,PB_Footito_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
-TF-300-HN-ATF,HandNews,PB_Handnews_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
-TF-300-HN-BTF,HandNews,PB_Handnews_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
+TF-300-HN-ATF,Handnews,PB_Handnews_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+TF-300-HN-BTF,Handnews,PB_Handnews_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
 TF-300-HH-ATF,Hockey Hebdo,PB_HockeyHebdo_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
 TF-300-HH-BTF,Hockey Hebdo,PB_HockeyHebdo_300x250_RG_BTF,Bas,300 x 250,Tribal Fusion
 TF-300-MS-ATF,Mango Surf,PB_MangoSurf_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
@@ -455,8 +455,8 @@ TF-728-LV-ATF,Les Violets,PB_AllezTFC_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
 TF-728-LV-BTF,Les Violets,PB_AllezTFC_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
 TF-728-CDF-ATF,Cahiers du Football,PB_CahierDuFootball_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
 TF-728-Foo-ATF,Footito,PB_Footito_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
-TF-728-HN-ATF,HandNews,PB_Handnews_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
-TF-728-HN-BTF,HandNews,PB_Handnews_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
+TF-728-HN-ATF,Handnews,PB_Handnews_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
+TF-728-HN-BTF,Handnews,PB_Handnews_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
 TF-728-HH-ATF,Hockey Hebdo,PB_HockeyHebdo_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
 TF-728-HH-BTF,Hockey Hebdo,PB_HockeyHebdo_728x90_RG_BTF,Bas,728 x 90,Tribal Fusion
 TF-728-MS-ATF,Mango Surf,PB_MangoSurf_728x90_RG_ATF,Haut,728 x 90,Tribal Fusion
@@ -586,3 +586,120 @@ AYL-Mob-hp-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike
 AYL-Tab-article-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike
 AYL-Tab-hp-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike
 AYL-desk-hp-LV,Les Violets,AllezTFC_Native_RG_ATF,Article,Native,AdYouLike
+392926-15,Les Violets,LesViolets_300x250_BTF_RG,Bas,300 x 250,Rubicon
+395364-15,Mango Surf,MangoSurf_300x250_ATF_RG,Haut,300 x 250,Rubicon
+486650-15,Les Violets,LesViolets_300x250_BTF_RG-MOB,Bas,300 x 250,Rubicon
+703820-2,Mango Surf,MangoSurf_728x90_ATF_RG,Bas,728 x 90,Rubicon
+703820-57,Mango Surf,MangoSurf_728x90_ATF_RG,Bas,970 x 250,Rubicon
+705016-10,Les Violets,LesViolets_300x250_STF_RG,Milieu,300 x 600,Rubicon
+705016-15,Les Violets,LesViolets_300x250_STF_RG,Milieu,300 x 250,Rubicon
+705016-2,Les Violets,LesViolets_728x90_STF_RG,Milieu,728 x 90,Rubicon
+705026-15,Les Violets,LesViolets_300x250_ATF_RG-MOB,Haut,300 x 250,Rubicon
+705026-43,Les Violets,LesViolets_320x50_ATF_RG-MOB,Haut,320 x 100,Rubicon
+705028-117,Les Violets,LesViolets_320x50_STF_RG-MOB,Milieu,320 x 50,Rubicon
+705028-15,Les Violets,LesViolets_300x250_STF_RG-MOB,Milieu,300 x 250,Rubicon
+705028-43,Les Violets,LesViolets_320x50_STF_RG-MOB,Milieu,320 x 100,Rubicon
+705030-15,Les Violets,LesViolets_300x250_BTF_RG-MOB,Bas,300 x 250,Rubicon
+705030-43,Les Violets,LesViolets_320x50_BTF_RG-MOB,Bas,320 x 100,Rubicon
+718284-10,Le Rugbynistère,LeRugbynistere_300x250_ATF_RG,Haut,300 x 600,Rubicon
+718284-15,Le Rugbynistère,LeRugbynistere_300x250_ATF_RG,Haut,300 x 250,Rubicon
+718284-2,Le Rugbynistère,LeRugbynistere_728x90_ATF_RG,Haut,728 x 90,Rubicon
+718284-57,Le Rugbynistère,LeRugbynistere_728x90_ATF_RG,Haut,970 x 250,Rubicon
+718286-10,Le Rugbynistère,LeRugbynistere_300x250_BTF_RG,Bas,300 x 600,Rubicon
+718286-15,Le Rugbynistère,LeRugbynistere_300x250_BTF_RG,Bas,300 x 250,Rubicon
+718286-2,Le Rugbynistère,LeRugbynistere_728x90_BTF_RG,Bas,728 x 90,Rubicon
+718286-57,Le Rugbynistère,LeRugbynistere_728x90_BTF_RG,Bas,970 x 250,Rubicon
+718288-10,Le Rugbynistère,LeRugbynistere_300x250_STF_RG,Milieu,300 x 600,Rubicon
+718288-15,Le Rugbynistère,LeRugbynistere_300x250_STF_RG,Milieu,300 x 250,Rubicon
+718290-15,Le Rugbynistère,LeRugbynistere_300x250_STF_RG,Milieu,300 x 250,Rubicon
+718330-117,Le Rugbynistère,LeRugbynistere_320x50_ATF_RG-MOB,Haut,320 x 50,Rubicon
+718330-15,Le Rugbynistère,LeRugbynistere_300x250_ATF_RG-MOB,Haut,300 x 250,Rubicon
+718330-43,Le Rugbynistère,LeRugbynistere_320x50_ATF_RG-MOB,Haut,320 x 100,Rubicon
+718332-117,Le Rugbynistère,LeRugbynistere_320x50_ATF_RG-MOB,Haut,320 x 50,Rubicon
+718332-15,Le Rugbynistère,LeRugbynistere_300x250_ATF_RG-MOB,Haut,300 x 250,Rubicon
+718332-43,Le Rugbynistère,LeRugbynistere_320x50_ATF_RG-MOB,Haut,320 x 100,Rubicon
+718340-15,Le Rugbynistère,LeRugbynistere_300x250_STF_RG-MOB,Milieu,300 x 250,Rubicon
+718344-15,Le Rugbynistère,LeRugbynistere_300x250_STF_RG-MOB,Milieu,300 x 250,Rubicon
+718352-117,Le Rugbynistère,LeRugbynistere_320x50_BTF_RG-MOB,Bas,320 x 50,Rubicon
+718352-15,Le Rugbynistère,LeRugbynistere_300x250_BTF_RG-MOB,Bas,300 x 250,Rubicon
+718352-43,Le Rugbynistère,LeRugbynistere_320x50_BTF_RG-MOB,Bas,320 x 100,Rubicon
+718356-117,Le Rugbynistère,LeRugbynistere_320x50_BTF_RG-MOB,Bas,320 x 50,Rubicon
+718356-15,Le Rugbynistère,LeRugbynistere_300x250_BTF_RG-MOB,Bas,300 x 250,Rubicon
+718356-43,Le Rugbynistère,LeRugbynistere_320x50_BTF_RG-MOB,Bas,320 x 100,Rubicon
+721194-10,DzFoot,DzFoot_300x250_ATF_RG,Haut,300 x 600,Rubicon
+721194-15,DzFoot,DzFoot_300x250_ATF_RG,Haut,300 x 250,Rubicon
+721194-2,DzFoot,DzFoot_728x90_ATF_RG,Haut,728 x 90,Rubicon
+721194-57,DzFoot,DzFoot_728x90_ATF_RG,Haut,970 x 250,Rubicon
+721196-10,DzFoot,DzFoot_300x250_STF_RG,Milieu,300 x 600,Rubicon
+721196-15,DzFoot,DzFoot_300x250_STF_RG,Milieu,300 x 250,Rubicon
+721198-10,DzFoot,DzFoot_300x250_BTF_RG,Bas,300 x 600,Rubicon
+721198-15,DzFoot,DzFoot_300x250_BTF_RG,Bas,300 x 250,Rubicon
+721198-2,DzFoot,DzFoot_728x90_BTF_RG,Bas,728 x 90,Rubicon
+721198-57,DzFoot,DzFoot_728x90_BTF_RG,Bas,970 x 250,Rubicon
+721214-15,DzFoot,DzFoot_300x250_BTF_RG-MOB,Haut,300 x 250,Rubicon
+721214-43,DzFoot,DzFoot_320x100_BTF_RG-MOB,Haut,320 x 100,Rubicon
+721216-15,DzFoot,DzFoot_300x250_BTF_RG-MOB,Bas,300 x 250,Rubicon
+721216-43,DzFoot,DzFoot_320x50_BTF_RG-MOB,Bas,320 x 100,Rubicon
+721218-15,DzFoot,DzFoot_300x250_STF_RG-MOB,Milieu,300 x 250,Rubicon
+723620-10,Handnews,Handnews_300x250_RG_STF-hp,Haut,300 x 600,Rubicon
+723620-15,Handnews,Handnews_300x250_RG_STF-hp,Haut,300 x 250,Rubicon
+723620-2,Handnews,Handnews_728x90_RG_ATF,Haut,728 x 90,Rubicon
+723620-57,Handnews,Handnews_728x90_RG_ATF,Haut,970 x 250,Rubicon
+723622-10,Handnews,Handnews_300x250_RG_BTF,Bas,300 x 600,Rubicon
+723622-15,Handnews,Handnews_300x250_RG_BTF,Bas,300 x 250,Rubicon
+723622-2,Handnews,Handnews_728x90_RG_BTF,Bas,728 x 90,Rubicon
+723622-57,Handnews,Handnews_728x90_RG_BTF,Bas,970 x 250,Rubicon
+723626-10,Handnews,Handnews_300x250_RG_STF,Milieu,300 x 600,Rubicon
+723626-15,Handnews,Handnews_300x250_RG_STF,Milieu,300 x 250,Rubicon
+723628-10,Handnews,Handnews_300x250_RG_STF-rg,Haut,300 x 600,Rubicon
+723628-15,Handnews,Handnews_300x250_RG_STF-rg,Haut,300 x 250,Rubicon
+723628-2,Handnews,Handnews_728x90_RG_ATF,Haut,728 x 90,Rubicon
+723628-57,Handnews,Handnews_728x90_RG_ATF,Haut,970 x 250,Rubicon
+723630-10,Handnews,Handnews_300x250_RG_BTF,Bas,300 x 600,Rubicon
+723630-15,Handnews,Handnews_300x250_RG_BTF,Bas,300 x 250,Rubicon
+723630-2,Handnews,Handnews_728x90_RG_BTF,Bas,728 x 90,Rubicon
+723630-57,Handnews,Handnews_728x90_RG_BTF,Bas,970 x 250,Rubicon
+1005081560,DzFoot,DzFoot_320x50_BTF_RG-MOB,Bas,320 x 100,Google Adsense
+1661130641,Le Rugbynistère,LeRugbynistere_300x250_ATF_RG,Haut,300 x 600,Google Adsense
+2251525727,Les Violets,LesViolets_728x90_STF_RG,Milieu,728 x 90,Google Adsense
+2295526245,Les Violets,LesViolets_300x250_STF_RG-MOB,Bas,300 x 600,Google Adsense
+2535228611,Le Rugbynistère,LeRugbynistere_728x90_ATF_RG,Haut,728 x 90,Google Adsense
+2919609092,DzFoot,DzFoot_300x250_BTF_RG,Bas,300 x 600,Google Adsense
+2939279646,Le Rugbynistère,LeRugbynistere_300x250_ATF_RG,Haut,300 x 250,Google Adsense
+3010451893,Sportune,Sportune_320x50,Bas,320 x 100,Google Adsense
+3041863211,Les Violets,LesViolets_300x250_STF_RG,Milieu,300 x 600,Google Adsense
+3500011809,French Blues,FrenchBlues_BTF_300x250-RG,Bas,300 x 600,Google Adsense
+3641663821,DzFoot,DzFoot_300x250_ATF_RG,Haut,300 x 600,Google Adsense
+3729617136,Le Rugbynistère,LeRugbynistere_300x250_ATF_RG,Haut,300 x 250,Google Adsense
+4049622273,Le Rugbynistère,LeRugbynistere_300x250_STF_RG,Milieu,300 x 250,Google Adsense
+4389268748,French Blues,FrenchBlues_ATF_300x250-RG,Haut,300 x 600,Google Adsense
+4790059156,Les Violets,LesViolets_728x90_BTF_RG,Bas,728 x 90,Google Adsense
+4801420997,DzFoot,DzFoot_300x250_STF_RG,Milieu,300 x 600,Google Adsense
+4823206951,Le Rugbynistère,LeRugbynistere_300x250_STF_RG,Milieu,300 x 250,Google Adsense
+4873126076,Handnews,Handnews_300x250_RG_BTF,Bas,300 x 600,Google Adsense
+5102395241,French Blues,FrenchBlues_ATF_300x250-RG,Haut,300 x 600,Google Adsense
+5288930212,Les Violets,LesViolets_300x250_BTF_RG,Bas,300 x 600,Google Adsense
+5367353624,DzFoot,DzFoot_728x90_ATF_RG,Haut,728 x 90,Google Adsense
+5371269814,Les Violets,LesViolets_320x50_ATF_RG-MOB,Haut,320 x 100,Google Adsense
+5410018013,Les Violets,LesViolets_728x90_BTF_RG,Bas,728 x 90,Google Adsense
+5424483976,Les Violets,LesViolets_300x250_STF_RG,Milieu,300 x 600,Google Adsense
+5869351857,Le Rugbynistère,LeRugbynistere_300x250_BTF_RG,Bas,300 x 600,Google Adsense
+6326596591,Mango Surf,MangoSurf_300x250_BTF_RG,Haut,300 x 600,Google Adsense
+6466102909,Les Violets,LesViolets_300x250_ATF_RG,Haut,300 x 600,Google Adsense
+6593079002,French Blues,FrenchBlues_ATF_300x250-RG,Haut,300 x 250,Google Adsense
+6652561894,Les Violets,LesViolets_300x250_STF_RG,Milieu,300 x 250,Google Adsense
+6776761924,Sportune,Sportune_320x50_RG_ATF,Haut,320 x 100,Google Adsense
+6927894060,Les Violets,LesViolets_320x50_STF_RG-MOB,Milieu,320 x 100,Google Adsense
+7207372306,Le Rugbynistère,LeRugbynistere_300x250_STF_RG,Milieu,300 x 250,Google Adsense
+7223005551,DzFoot,DzFoot_728x90_BTF_RG,Bas,728 x 90,Google Adsense
+7422994728,Le Rugbynistère,LeRugbynistere_320x50_BTF_RG-MOB,Bas,320 x 100,Google Adsense
+7729228439,Le Rugbynistère,LeRugbynistere_728x90_BTF_RG,Bas,728 x 90,Google Adsense
+7952443925,DzFoot,DzFoot_320x100_BTF_RG-MOB,Haut,320 x 100,Google Adsense
+8260777133,Le Rugbynistère,LeRugbynistere_320x50_ATF_RG-MOB,Haut,320 x 100,Google Adsense
+8345467228,Handnews,HandNews_320x50_RG_BTF,Bas,320 x 100,Google Adsense
+8635958918,Les Violets,LesViolets_300x250_ATF_RG,Haut,300 x 600,Google Adsense
+9185611494,Les Violets,LesViolets_728x90_ATF_RG,Haut,728 x 90,Google Adsense
+9337167030,Le Rugbynistère,LeRugbynistere_300x250_BTF_RG,Bas,300 x 250,Google Adsense
+9672696651,Les Violets,LesViolets_728x90_STF_RG,Milieu,728 x 90,Google Adsense
+9761338328,Les Violets,LesViolets_300x250_BTF_RG,Bas,300 x 600,Google Adsense
+9882603732,Les Violets,LesViolets_728x90_ATF_RG,Haut,728 x 90,Google Adsense
