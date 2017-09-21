@@ -45,7 +45,7 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
         $response = null;
         $error = false;
         
-        $strTempFile = "examples/unplugged.csv";
+        $strTempFile = "public/examples/unplugged.csv";
         $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), ';');
 
         return [$response, $error];
@@ -79,8 +79,6 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
             $response = $this->getArrayFromCsvString($firstAttachment['attachment'], ';');
             
             $emailReader->close();
-
-            Log::info('Request finished', ['response'=>$response]);
 
             if (empty($response)) {
                 $error = 'No Data Found';

@@ -42,7 +42,8 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
-                $array = $this->addFields($array);
+                $array += $this->getCorrelatedFields($array['key']);
+                $array += $this->getUID($array['date'], $array['key']);
                 
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
@@ -95,8 +96,8 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
             "impressions prises" => $line["impressions prises"],
             "revenu" => floatval(str_replace(",",".",$line["revenu"])),
             //"discrepencies" => "ND",
-            //"impressions facturables" => $this->getImprFacturables($line),     
-            //"campagne" => $line["flight description"],
+            "impressions facturables" => "ND",     
+            "campagne" => "ND",
         );
         
         return $array;
