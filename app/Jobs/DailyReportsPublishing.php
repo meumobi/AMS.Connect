@@ -5,24 +5,24 @@ namespace App\Jobs;
 use App\Jobs\Job;
 use App\Services\AMSService;
 use App\Services\sublime\SublimeService;
-use DateTime;
 
 use Log;
 
 class DailyReportsPublishing extends Job
 {
     
-    protected $providerName, $mode;
+    protected $providerName, $mode, $date;
     
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($providerName, $mode)
+    public function __construct($providerName, $mode, $date)
     {
         $this->providerName = $providerName;
         $this->mode = $mode;
+        $this->date = $date;
     }
 
     /**
@@ -34,9 +34,9 @@ class DailyReportsPublishing extends Job
     {
         $serviceHandler = AMSService::loadService($this->providerName);
         
-        $params['start'] = (new DateTime)->modify('-1 day');
+        $params['start'] = $this->date;
         $params['start']->setTime(0, 0, 0);
-        $params['end'] = (new DateTime)->modify('-1 day');
+        $params['end'] = $this->date;
         $params['end']->setTime(23, 59, 59);
         $params['mode'] = $this->mode;
 
@@ -45,6 +45,6 @@ class DailyReportsPublishing extends Job
         
         //$this->provider->perform(["mode" => "preview"]);
         //$this->info('Jobs: handle');
-        Log::info('Job Handle: ' . $this->providerName, []);
+        Log::info('Job Handle: ' . $this->providerName, [$this->mode, $this->date]);
     }
 }

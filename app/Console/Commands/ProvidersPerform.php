@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Jobs\DailyReportsPublishing;
+use DateTime;
+use Illuminate\Console\Command;
 
 class ProvidersPerform extends Command
 {
@@ -13,7 +14,7 @@ class ProvidersPerform extends Command
     *
     * @var string
     */
-  protected $signature = 'providers:perform {provider?} {--mode=console}';
+  protected $signature = 'providers:perform {provider?} {--mode=console} {--date=}';
 
   /**
     * The console command description.
@@ -45,14 +46,17 @@ class ProvidersPerform extends Command
   {
     $providerName = $this->argument('provider');
     $mode = $this->option('mode');
+    $date = $this->option('date')
+    ? (new DateTime)->createFromFormat('Y-m-d', $this->option('date'))
+    : (new DateTime)->modify('-1 day');
 
     if ($providerName) {
       $this->info('Commands: Perform ' . $providerName);
-      dispatch(new DailyReportsPublishing($providerName, $mode));
+      dispatch(new DailyReportsPublishing($providerName, $mode, $date));
     } else {
       foreach ($this->providers as $providerName) {
         $this->info('Commands: Perform ' . $providerName);
-        dispatch(new DailyReportsPublishing($providerName, $mode));
+        dispatch(new DailyReportsPublishing($providerName, $mode, $date));
       }
     }
   }
