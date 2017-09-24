@@ -88,12 +88,21 @@ class AMSPresenter
         $this->printRecords($structuresData);
     }
 
+    /*
+        Remove invalid characters on firebase as child key: ".$#[]"
+    */
+    private function cleanKey($key) {
+        return preg_replace('/[\.$#\[\]]/', '', $key);
+    }
+
     private function structureData($records)
     {
         $result = [];
         
         foreach($records as $raw) {
             $key = $raw["date"] . "_" . $raw["site"] . "_" . $raw["partenaire"];
+
+            $key = $this->cleanKey($key);
 
             if (!array_key_exists($key, $result)) {
                 $result[$key] = array(
@@ -196,7 +205,8 @@ class AMSPresenter
 
     protected function getUID($date, $key)
     {
-        $row = array('uid' => $date . '_' . $key);
+        $uid = $this->cleanKey($date . '_' . $key);
+        $row = array('uid' => $uid);
 
         return $row;
     }
