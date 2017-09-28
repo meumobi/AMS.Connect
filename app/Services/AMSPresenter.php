@@ -54,6 +54,8 @@ class AMSPresenter
     }
 
     protected function pushToFirebase($records){
+        Log::info('Number of Raws: '. sizeof($records));
+
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/ams-report-firebase-adminsdk-5i6gp-1b1735f7ea.json');
 
         $firebase = (new Factory)
