@@ -42,9 +42,13 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
 
     protected function callStub($date, $email_to)
     {
-        $response = null;
+        $response = [];
         $error = false;
         
+        /*
+            From browser path=public/examples/...
+            From cli path=examples/...
+        */
         $strTempFile = "public/examples/unplugged.csv";
         $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), ';');
 
@@ -89,31 +93,5 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
         }
 
         return [$response, $error];
-    }
-
-    private function getArrayFromCsvString($csvString, $delimiter = ',')
-    {
-        $csvString = trim($csvString, "\r\n");
-        $rowsArray = explode("\r\n", $csvString);
-        $data = array_map(
-            function ($row) use ($delimiter) {
-                return str_getcsv($row, $delimiter);
-            },
-            $rowsArray
-        );
-        /*
-         Set internal encoding of mb to utf-8
-         to convert string that contains special characters
-         http://stackoverflow.com/a/2516482
-        */
-        mb_internal_encoding('UTF-8');
-        $header = array_map('mb_strtolower', array_shift($data));
-        $data = array_map(
-            function ($row) use ($header) {
-                return array_combine($header, $row);
-            },
-            $data
-        );
-        return $data;
     }
 }

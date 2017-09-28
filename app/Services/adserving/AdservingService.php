@@ -13,7 +13,6 @@ require('config.php');
 
 class AdservingService extends AMSService implements AMSServiceInterface
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -26,9 +25,14 @@ class AdservingService extends AMSService implements AMSServiceInterface
 
         $email = $this->getParameter($params, 'email');
 
-        $date = $this->getParameter($params, 'start')->modify('+ 1 day')->format('d-M-Y');
+        $date = clone $this->getParameter($params, 'start');
+        $date = $date->modify('+ 1 day')->format('d-M-Y');
 
-        list($response, $error) = $this->call($date, $email);
+        Log::info('Looking for email on date: ' . $date);
+
+        $delimiter = ";";
+
+        list($response, $error) = $this->call($date, $email, $delimiter);
         if ($error) {
             echo 'Request Error :' . $error;
             return;
@@ -103,6 +107,23 @@ class AdservingService extends AMSService implements AMSServiceInterface
       );
     }
 
+    protected function callStub($date, $email_to, $delimiter)
+    {
+        $response = [];
+        $error = false;
+        
+        /*
+            From browser path=public/examples/...
+            From cli path=examples/...
+        */
+        $strTempFile = "public/examples/adserving.csv";
+        $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), $delimiter);
+
+        Log::info('Request finished', ['response'=>$response]);
+
+        return [$response, $error];
+    }
+
     protected function call($date, $email_to)
     {
         $configData = config('AMS.provider');
@@ -142,27 +163,5 @@ class AdservingService extends AMSService implements AMSServiceInterface
         }
 
         return [$response, $error];
-    }
-
-    private function getArrayFromCsvString($csvString, $delimiter = ',')
-    {
-        $csvString = str_replace("\r\n", "\n", $csvString);
-        $csvString = trim($csvString, "\n");
-        $rowsArray = explode("\n", $csvString);
-        $data = array_map(
-            function ($row) use ($delimiter) {
-                return str_getcsv($row, $delimiter);
-            },
-            $rowsArray
-        );
-        $header = array_map('strtolower', array_shift($data));
-        $data = array_map(
-            function ($row) use ($header) {
-                return array_combine($header, $row);
-            },
-            $data
-        );
-
-        return $data;
     }
 }
