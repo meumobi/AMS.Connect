@@ -14,7 +14,7 @@ class ProvidersPerform extends Command
     *
     * @var string
     */
-  protected $signature = 'providers:perform {provider?} {--mode=console} {--date=}';
+  protected $signature = 'providers:perform {provider?} {--update-adserving} {--mode=console} {--date=}';
 
   /**
     * The console command description.
@@ -23,7 +23,7 @@ class ProvidersPerform extends Command
     */
   protected $description = 'Command description';
 
-  private $providers = ["Adserving", "Rubicon", "Sublime", "Adsense", "Adtech", "Criteo", "Unplugged"];
+  private $providers = ["Rubicon", "Sublime", "Adsense", "Adtech", "Criteo", "Unplugged"];
   //private $providers = ["Rubicon"];
 
   /**
@@ -45,10 +45,15 @@ class ProvidersPerform extends Command
   public function handle()
   {
     $providerName = $this->argument('provider');
+    $updateAdserving = $this->option('update-adserving');
     $mode = $this->option('mode');
     $date = $this->option('date')
     ? (new DateTime)->createFromFormat('Y-m-d', $this->option('date'))
     : (new DateTime)->modify('-1 day');
+
+    if ($updateAdserving) {
+      dispatch(new DailyReportsPublishing('Adserving', $mode, $date));
+    }
 
     if ($providerName) {
       $this->info('Commands: Perform ' . $providerName);

@@ -33,18 +33,16 @@ class DailyReportsPublishing extends Job
     public function handle()
     {
         $serviceHandler = AMSService::loadService($this->providerName);
-        
+
         $params['start'] = clone $this->date;
-        $params['start']->setTime(0, 0, 0);
+        $params['start'] = $params['start']->setTime(0, 0, 0);
         $params['end'] = clone $this->date;
-        $params['end']->setTime(23, 59, 59);
+        $params['end'] = $params['end']->setTime(23, 59, 59);
+        
         $params['mode'] = $this->mode;
+        Log::info('Job Handle: ' . $this->providerName, [$this->mode, $this->date, $params]);
 
         $serviceHandler->perform($params);
         sleep(5);
-        
-        //$this->provider->perform(["mode" => "preview"]);
-        //$this->info('Jobs: handle');
-        Log::info('Job Handle: ' . $this->providerName, [$this->mode, $params]);
     }
 }
