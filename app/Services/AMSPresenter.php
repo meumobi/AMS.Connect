@@ -226,6 +226,8 @@ class AMSPresenter
     }
 
     protected function consoleLog($records) {
+        Log::info('Number of Raws: '. sizeof($records));
+
         foreach ($records as $record) {
             Log::info('Computed Raw (AMS Format)', [$record]);
         }
