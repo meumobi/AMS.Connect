@@ -29,7 +29,6 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
 
     public function format($data, $format, $toString = true)
     {
-
         $this->_dateFormat = $format;
 
         // Passed a string, turn it into an array
@@ -37,14 +36,13 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
             $data = json_decode($data, true);
         }
         
-                
         $strTempFile = 'csvOutput' . date("U") . ".csv";
-        $tempFilePath = Storage::disk('public')->url($strTempFile);
-
-        $tempFile = fopen($tempFilePath, "w+");
-        Log::info('Temporary file created', ['file'=>$tempFilePath]);
+        $tempFile = fopen($strTempFile, "w+");
+        Log::info('Temporary file created', ['file'=>$strTempFile]);
 
         $firstLineKeys = false;
+        $records = [];
+        
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
@@ -75,13 +73,13 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
             fclose($tempFile);
         }
         
-        $fileData = file($tempFilePath);
+        $fileData = file($strTempFile);
         array_shift($fileData);
         $formated = join("", $fileData);
         
         // Delete the temp file
-        unlink($tempFilePath);
-        Log::info('Temporary file deleted', ['file'=>$tempFilePath]);
+        unlink($strTempFile);
+        Log::info('Temporary file deleted', ['file'=>$strTempFile]);
 
         return $formated;
     }

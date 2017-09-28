@@ -189,7 +189,6 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
             $data = intval($line["campaign billable imps."] / $days);
         }
 
-        Log::info('Line mapped', [$line["campaign billable imps."], $days, $data]);
         return $data;
     }
 
