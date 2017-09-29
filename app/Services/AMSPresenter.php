@@ -80,10 +80,31 @@ class AMSPresenter
         */
     }
 
+
     protected function previewTreeToPublish($records)
     {
         header('Content-Type: text/plain');
         echo "Preview data ready to publish: \n";
+        echo "Total 'impressions prise': "; 
+        
+        var_dump(array_reduce($records, 
+          function ($sum, $record) {
+            $sum += $record["impressions prises"];
+
+            return $sum;
+          })
+        );
+
+        echo "Total 'revenue': "; 
+        
+        var_dump(array_reduce($records, 
+          function ($sum, $record) {
+            $sum += $record["revenu"];
+
+            return $sum;
+          })
+        );
+
         $structuresData = $this->structureData($records);
         print_r($this->countLines($structuresData));
 
