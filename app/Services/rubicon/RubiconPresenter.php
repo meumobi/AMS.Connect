@@ -52,7 +52,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
             );
             
             foreach ($this->_data as $line) {
-                $array = $this->adjustFields($line);
+                //$array = $this->adjustFields($line);
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);

@@ -50,7 +50,7 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
             From cli path=examples/...
         */
         $strTempFile = "public/examples/unplugged.csv";
-        $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), ';');
+        $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), ',');
 
         return [$response, $error];
     }
