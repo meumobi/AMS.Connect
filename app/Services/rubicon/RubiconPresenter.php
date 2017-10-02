@@ -52,7 +52,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
             );
             
             foreach ($this->_data as $line) {
-                //$array = $this->adjustFields($line);
+                $array = $this->adjustFields($line);
                 if (empty($firstLineKeys)) {
                     $firstLineKeys = array_keys($array);
                     fputcsv($tempFile, $firstLineKeys);
@@ -124,11 +124,13 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
 
     private function hasToCheckAlternativeKey($array)
     {
+        /*
         $regexEndKeys = '/\-(2|15)$/';
         if ((!$array['impressions envoyees'] || $array['impressions envoyees'] == 'NA')
             && preg_match($regexEndKeys, $array['key'])) {
             return true;
         }
+        */
 
         return false;
     }
