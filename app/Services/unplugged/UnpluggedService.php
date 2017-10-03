@@ -27,7 +27,9 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
         $date = $this->getParameter($params, 'start')->modify('+ 1 day')->format('d-M-Y');
         $mode = $this->getParameter($params, 'mode');
 
-        list($response, $error) = $this->call($date, $email);
+        $delimiter = ",";
+
+        list($response, $error) = $this->call($date, $email, $delimiter);
 
 
         if ($error) {
@@ -40,7 +42,7 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
         error_log('UnpluggedService Performed');
     }
 
-    protected function callStub($date, $email_to)
+    protected function callStub($date, $email_to, $delimiter)
     {
         $response = [];
         $error = false;
@@ -50,12 +52,12 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
             From cli path=examples/...
         */
         $strTempFile = "public/examples/unplugged.csv";
-        $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), ',');
+        $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), $delimiter);
 
         return [$response, $error];
     }
 
-    protected function call($date, $email_to)
+    protected function call($date, $email_to, $delimiter)
     {
         $configData = config('AMS.provider');
 
@@ -80,7 +82,7 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
             $index = array_shift($emails);
             $attachments = $emailReader->getEmailAttachments($index);
             $firstAttachment = array_shift($attachments);
-            $response = $this->getArrayFromCsvString($firstAttachment['attachment'], ';');
+            $response = $this->getArrayFromCsvString($firstAttachment['attachment'], $delimiter);
             
             $emailReader->close();
 
