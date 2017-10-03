@@ -91,7 +91,7 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
             //"emplacement" => $line["emplacement"],
             //"position" => $line["position de l'emplacement"],
             //"format" => $line["banner size to report"],
-            //"annonceur" => $line["annonceur"],
+            "annonceur" => $line["annonceur"],
             "impressions envoyees" => $line["impressions envoyees"],
             "impressions prises" => $line["impressions prises"],
             "revenu" => floatval(str_replace(",",".",$line["revenu"])),
