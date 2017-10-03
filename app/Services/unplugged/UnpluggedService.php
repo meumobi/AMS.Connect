@@ -72,6 +72,12 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
         $emailReader->connect($configData['email_server'], $configData['email_username'], $configData['email_password']);
         //Change to filter by recipient
         $emails = $emailReader->searchEmails($email_to, $date);
+
+        /*
+        put the newest emails on top
+        */
+        rsort($emails);
+
         if (empty($emails)) {
             $error = 'No Emails Found';
             $emails = [];
