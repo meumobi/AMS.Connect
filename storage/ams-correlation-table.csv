@@ -45,7 +45,7 @@ Key,Site,Emplacement,Position,Format,Partenaire
 471998-10,DzFoot,DzFoot_300x250_RG_BTF,Bas,300 x 600,Rubicon
 471996-2,DzFoot,DzFoot_728x90_RG_ATF,Haut,728 x 90,Rubicon
 471998-2,DzFoot,DzFoot_728x90_RG_BTF,Bas,728 x 90,Rubicon
-471996-58,DzFoot,DzFoot_728x90_RG_ATF,Haut,1000 x 90 ,Rubicon
+471996-58,DzFoot,DzFoot_728x90_RG_ATF,Haut,1000 x 90,Rubicon
 471996-15,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
 471998-15,DzFoot,DzFoot_300x250_RG_BTF,Bas,300 x 250,Rubicon
 472004-15,DzFoot,DzFoot_300x250_RG_ATF,Haut,300 x 250,Rubicon
@@ -64,7 +64,7 @@ Key,Site,Emplacement,Position,Format,Partenaire
 393782-57,Footito,Footito_728x90_RG_ATF,Haut,970 x 250,Rubicon
 393782-2,Footito,Footito_728x90_RG_ATF,Haut,728 x 90,Rubicon
 393782-15,Footito,Footito_300x250_RG_ATF,Haut,300 x 250,Rubicon
-393782-9,Footito,Footito_160x600_RG_ATF,Haut,160x600 ,Rubicon
+393782-9,Footito,Footito_160x600_RG_ATF,Haut,160x600,Rubicon
 452900-10,Footpack,Footpack_300x250_ATF_RG,Haut,300 x 600,Rubicon
 452900-57,Footpack,Footpack_728x90_ATF_RG,Haut,970 x 250,Rubicon
 452900-2,Footpack,Footpack_728x90_ATF_RG,Haut,728 x 90,Rubicon
@@ -709,7 +709,7 @@ WS-320x50_HN,HandNews,HandNews_320x50_ATF-MOB,Haut,320 x 50,WideSpace
 WS-320x50_SPT,Sportune,Sportune_320x50_ATF-MOB,Haut,320 x 50,WideSpace
 Mo-300x250_SPT,Sportune,Sportune_300x250_ATF-MOB,Bas,300 x 250,Mozoo
 Mo-300x250_FR,FrenchBlues,FrenchBlues_300x250_ATF-MOB,Bas,300 x 250,Mozoo
-Mo-300x250_LRN,Le Rugbynistère,LeRugbynistere_300x250_ATF-MOB,Bas,300 x 250,Mozoo
+Mo-300x250_LRN,Le Rugbynistere,LeRugbynistere_300x250_ATF-MOB,Bas,300 x 250,Mozoo
 Mo-300x250_DZ,DzFoot,DzFoot_300x250_ATF-MOB,Bas,300 x 250,Mozoo
 Mo-300x250_LV,Les Violets,LV_300x250_ATF-MOB,Bas,300 x 250,Mozoo
 Mo-300x250_HN,HandNews,HN_300x250_ATF-MOB,Bas,300 x 250,Mozoo
@@ -718,3 +718,14 @@ TF-300-FR-ATF,FrenchBlues,FrenchBlues_300x250_ATF,Haut,300 x 250,Tribal Fusion
 TF-CA-300-AS-ATF,Allo Surf,AlloSurf_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
 TF-300-TAL-ATF,Track And Life,TrackandLife_300x250_ATF,Haut,300 x 250,Tribal Fusion
 TF-300-TRI-ATF,Trimes,Trimes_300x250_RG_ATF,Haut,300 x 250,Tribal Fusion
+Preroll_Adidas_desktopDZFoot,DzFoot,DzFoot_preroll_ATF,Haut,Preroll Video,Adtech
+Preroll_Adidas_desktopFootball.fr,Football.fr,Football_preroll_ATF,Haut,Preroll Video,Adtech
+Preroll_Adidas_desktopSportune,Sportune,Sportune_preroll_ATF,Haut,Preroll Video,Adtech
+Preroll_Adidas_mobileDZFoot,DzFoot,DzFoot_preroll_ATF,Haut,Preroll Video,Adtech
+Preroll_Adidas_mobileFootball.fr,Football.fr,Football_preroll_ATF,Haut,Preroll Video,Adtech
+Preroll_Adidas_mobileSportune,Sportune,Sportune_preroll_ATF,Haut,Preroll Video,Adtech
+preroll-fifaDZFoot,DzFoot,DzFoot_preroll_ATF,Haut,Preroll Video,Adtech
+preroll-fifaFootball.fr,Football.fr,Football_preroll_ATF,Haut,Preroll Video,Adtech
+preroll-fifaHandNews,Handnews,HandNews_preroll_ATF,Haut,Preroll Video,Adtech
+preroll-fifaLe Rugbynistère,Le Rugbynistere,LeRugbynistere_preroll_ATF,Haut,Preroll Video,Adtech
+preroll-fifaSportune,Sportune,Sportune_preroll_ATF,Haut,Preroll Video,Adtech
