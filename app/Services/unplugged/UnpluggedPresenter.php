@@ -43,6 +43,7 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
             foreach ($data as $line) {
                 $array = $this->mapping($line);
                 $array += $this->getCorrelatedFields($array['key']);
+                $array += $this->getAdMarginFields($array);
                 $array += $this->getUID($array['date'], $array['key']);
                 
                 if (empty($firstLineKeys)) {

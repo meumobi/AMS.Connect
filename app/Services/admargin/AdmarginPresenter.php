@@ -1,10 +1,10 @@
 <?php
 
-
-namespace App\Services\sublime;
+namespace App\Services\admargin;
 
 use App\Services\AMSPresenter;
 use App\Services\AMSPresenterInterface;
+use Illuminate\Support\Facades\Storage;
 use Log;
 use DateTime;
 use ErrorException;
@@ -12,17 +12,21 @@ use ErrorException;
 /*
 Inspired by https://gist.github.com/jakebathman/4fb8c55b13272eee9c88
 */
-
-class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
+//TODO: Refactor
+class AdmarginPresenter extends AMSPresenter implements AMSPresenterInterface
 {
   
   public function __construct()
   {
-    $this->_dateFormat = 'Y-m-d';
     parent::__construct();
+    $this->_dateFormat = 'Y-m-d';
   }
   
-  public function present($data, $format, $mode = self::MODE_ECHO)
+  public function present($data, $format, $echo = true){
+    
+  }
+  
+  public function format($data, $format, $toString = true)
   {
     $this->_dateFormat = $format;
     
@@ -39,29 +43,15 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
     $records = [];
     
     try {
-      foreach ($data as $line) {
-        $array = $this->mapping($line);
-        $array = $this->addFields($array);
-        
-        /*
-        overwrite fillRate for sublime, impressions reçues = impressions envoyées
-        */
-        
-        if (!array_key_exists('impressions envoyees', $array)) {
-          $array['impressions envoyees'] = 'NA';
-        }
-        $array['impressions reçues'] = $array['impressions envoyees'];
-        //$extraRow = $this->getFillRate($array['impressions envoyees'], $array['impressions prises']);
-        //$array['fillRate'] = $extraRow['fillRate'];
-        
+      foreach ($data as $array) {
+        //$array = $this->mapping($line);
+        // $array = $this->addFields($array);
         
         if (empty($firstLineKeys)) {
           $firstLineKeys = array_keys($array);
           fputcsv($tempFile, $firstLineKeys);
           $firstLineKeys = array_flip($firstLineKeys);
         }
-        
-        array_push($records, $array);
         
         /*
         Using array_merge is important to maintain the 
@@ -70,35 +60,36 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
         fputcsv($tempFile, array_merge($firstLineKeys, $array));
       }
     } catch (ErrorException $exception) {
+      //Erasing the temp file when a error is catch
+      unlink($strTempFile);
       if (strpos($exception->getMessage(), 'Undefined index:') !== false) {
-        Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getTraceAsString()]);
-        echo 'Mapping Error, field does not exists '.$exception->getMessage();
+        Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getMessage()]);
+        echo 'Mapping Error, field does not exists '.$exception->getMessage();                
         return false;
       }
-      unlink($strTempFile);
       throw $exception;
     } finally {
       fclose($tempFile);
     }
     
-    $this->presentAsMode($strTempFile, $records, $mode);
+    $fileData = file($strTempFile);
+    array_shift($fileData);
+    $formated = join("", $fileData);
     
     // Delete the temp file
     unlink($strTempFile);
     Log::info('Temporary file deleted', ['file'=>$strTempFile]);
+    
+    return $formated;
   }
   
   private function mapping($line)
   {
     $array = array(
-      "date" => $this->convertDate($line["date"]),
-      "impressions reçues" => "NA",
-      "impressions prises" => $line["impr"],
-      "revenu" => $line["rev"],
-      //"revenu" => 0.85 * (float)$line["revenue"],
-      "key" => $line["zone"],
-      "inventaire" => "AMS Market Place",
-      "partenaire" => "Sublime"
+      "date" => $line['date'],
+      "site" => $line['site'],
+      "inventaire" => $line['inventaire'],
+      "marge" => $line['taux de marge editeur'],
     );
     
     return $array;

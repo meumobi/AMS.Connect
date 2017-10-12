@@ -14,17 +14,16 @@ class ProvidersPerform extends Command
     *
     * @var string
     */
-  protected $signature = 'providers:perform {provider?} {--update-adserving} {--mode=console} {--date=}';
+  protected $signature = 'providers:perform {provider?} {--update-adserving} {--update-admargin} {--mode=console} {--date=}';
 
   /**
     * The console command description.
     *
     * @var string
     */
-  protected $description = 'Command description';
+  protected $description = 'Connect to providers to fetch reports and save them on AMS db';
 
   private $providers = ["Rubicon", "Sublime", "Adsense", "Adtech", "Criteo", "Unplugged"];
-  //private $providers = ["Rubicon"];
 
   /**
     * Create a new command instance.
@@ -46,6 +45,7 @@ class ProvidersPerform extends Command
   {
     $providerName = $this->argument('provider');
     $updateAdserving = $this->option('update-adserving');
+    $updateAdmargin = $this->option('update-admargin');
     $mode = $this->option('mode');
     $date = $this->option('date')
     ? (new DateTime)->createFromFormat('Y-m-d', $this->option('date'))
@@ -53,6 +53,10 @@ class ProvidersPerform extends Command
 
     if ($updateAdserving) {
       dispatch(new DailyReportsPublishing('Adserving', $mode, $date));
+    }
+
+    if ($updateAdmargin) {
+      dispatch(new DailyReportsPublishing('Admargin', $mode, $date));
     }
 
     if ($providerName) {
