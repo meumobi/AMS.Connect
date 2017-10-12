@@ -178,49 +178,32 @@ class AMSPresenter
         if (empty($row)) {
             Log::warning('AdServing Key Not Found', ['key' => (string)$key, 'date' => $date]);
         }
-        if (isset($row['impressions envoyees'])) {
-            $row['impressions envoyees'] = preg_replace("/[^0-9]/", "", $row['impressions envoyees']);
+        
+        if (empty($row)) {
+            $row['site'] = 'Unknown';
+            $row['partenaire'] = 'Unknown';
+            Log::warning('Correlation Key Not Found', ['key' => (string)$key]);
+        }
+
+        return $row;
+    }
+
+    protected function getAdMarginFields($array)
+    {
+        $date = $array['date'];
+        $key = $array['site'] . $array['inventaire'];
+        
+        $adMarginTable = AdMarginTable::getInstance();
+        $dateTime = (new DateTime)->createFromFormat('Y-m-d', $date);
+
+        $row = $adMarginTable->getRow($key . $dateTime->format('d/m/Y'));
+        if (empty($row)) {
+            Log::warning('AdMargin Key Not Found', ['site' => $array['site'], 'inventaire' => $array['inventaire'], 'date' => $date]);
+
+            $row['marge'] = 'NA';
+            $row['revenu net'] = 'NA';
         } else {
-            $row['impressions envoyees'] = 'NA';
-        }
-
-        return $row;
-    }
-
-    protected function getCpm($impressions, $revenue)
-    {
-        $row = array('cpm' => 'NA');
-        $revenue = $num = floatval(str_replace(",",".",$revenue));
-
-        if ($impressions != 0) {
-            $data = ($revenue / $impressions) * 1000;
-            $row['cpm'] = number_format($data, 2, '.', '');
-        }
-
-        return $row;
-    }
-
-    protected function getDiscrepencies($sent, $received)
-    {
-        $row = array('discrepencies' => 'NA');
-
-        if ($received != 0 && $received != 'NA' && $sent != 0 && $sent != 'NA') {
-            $data = (1 - ((int)$received / (int)$sent)) * 100;
-            $row['discrepencies'] = number_format($data, 2, '.', '') . '%';
-        }
-
-        return $row;
-    }
-    
-    protected function getFillRate($received, $matched)
-    {
-        $row = array('fillRate' => '0%');
-
-        if ($received == 'NA' || $received == 0) {
-            $row['fillRate'] = 'NA';
-        } elseif ($matched != 0) {
-            $data = (($matched / $received) * 100);
-            $row['fillRate'] = number_format($data, 2, '.', '') . '%';
+            $row['revenu net'] = (float)$row['marge'] / 100 * $array['revenu'];
         }
 
         return $row;
@@ -236,11 +219,9 @@ class AMSPresenter
 
     protected function addFields($array)
     {
-        //$array += $this->getFillRate($array['impressions reçues'], $array['impressions prises']);
-        //$array += $this->getCpm($array['impressions prises'], $array['revenu']);
         $array += $this->getCorrelatedFields($array['key']);
         $array += $this->getAdServingFields($array['key'], $array['date']);
-        //$array += $this->getDiscrepencies($array['impressions envoyees'], $array['impressions reçues']);
+        $array += $this->getAdMarginFields($array);
         $array += array('impressions facturables' => 'ND');
         $array += array('campagne' => 'ND');
         $array += $this->getUID($array['date'], $array['key']);

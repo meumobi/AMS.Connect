@@ -6,7 +6,7 @@ use App\Jobs\DailyReportsPublishing;
 use DateTime;
 use Illuminate\Console\Command;
 
-class AdservingPerform extends Command
+class AdmarginPerform extends Command
 {
     
   /**
@@ -14,16 +14,16 @@ class AdservingPerform extends Command
     *
     * @var string
     */
-  protected $signature = 'adserving:perform {--date=}';
+  protected $signature = 'admargin:perform {--date=}';
 
   /**
     * The console command description.
     *
     * @var string
     */
-  protected $description = 'Update AdServing repository from daily email inputs';
+  protected $description = 'Update AdMargin repository from daily email inputs';
 
-  private $providerName = "Adserving";
+  private $providerName = "Admargin";
 
   /**
     * Create a new command instance.

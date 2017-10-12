@@ -42,6 +42,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         try {
             foreach ($data as $line) {
                 $array = $this->mapping($line);
+                $array += $this->getAdMarginFields($array);
                 $array += $this->getUID($array['date'], $array['key']);
                 
                 if (empty($firstLineKeys)) {
@@ -93,7 +94,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
             "annonceur" => $line["annonceur"],
             "impressions envoyees" => $this->getImprEnvoyees($line),
             "discrepencies" => "ND",
-            "impressions facturables" => $this->getImprFacturables($line),     
+            "impressions facturables" => $this->getImprFacturables($line), 
             "campagne" => $line["flight description"],
             "partenaire" => "Adtech"
         );

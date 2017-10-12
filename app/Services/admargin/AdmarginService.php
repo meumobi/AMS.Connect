@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\adserving;
+namespace App\Services\admargin;
 
 use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
@@ -11,12 +11,12 @@ use DateTime;
 
 require('config.php');
 
-class AdservingService extends AMSService implements AMSServiceInterface
+class AdmarginService extends AMSService implements AMSServiceInterface
 {
     public function __construct()
     {
         parent::__construct();
-        $this->presenter = new AdservingPresenter;
+        $this->presenter = new AdmarginPresenter;
     }
 
     public function perform(array $params)
@@ -30,20 +30,11 @@ class AdservingService extends AMSService implements AMSServiceInterface
 
         Log::info('Looking for email on date: ' . $date);
 
-        $delimiter = ";";
+        $delimiter = ",";
 
         list($response, $error) = $this->call($date, $email, $delimiter);
         if ($error) {
             echo 'Request Error :' . $error;
-            return;
-        }
-
-        //Checking the PID Lock and Data Date
-        $dataDate = $this->getDateOfData($response);
-        $pidDate = $this->getDateOfPidLock();
-
-        if ($pidDate >= $dataDate) {
-            echo 'Request Error: This date was already imported';
             return;
         }
 
@@ -54,16 +45,14 @@ class AdservingService extends AMSService implements AMSServiceInterface
             return;
         }
 
-        //Update the Adserving File
+        //Update the Admargin File
         $filePath = Storage::disk('public')->url($configData['file_name']);
-        Log::info('File Path of Adserving file: ' . $filePath);    
+        Log::info('File Path of Admargin file: ' . $filePath);    
 
-        $adservingFile = fopen($filePath, 'a+');
-        fwrite($adservingFile, $formatedContent);
-        fclose($adservingFile);
-        Log::info('Lines of AdservingTable: ' . count(file($filePath)));
-
-        $this->updateLockFile($dataDate);
+        $admarginFile = fopen($filePath, 'a+');
+        fwrite($admarginFile, $formatedContent);
+        fclose($admarginFile);
+        Log::info('Lines of AdmarginTable: ' . count(file($filePath)));
 
         /*
         echo json_encode(
@@ -74,37 +63,7 @@ class AdservingService extends AMSService implements AMSServiceInterface
         );
         */
 
-        error_log('AdservingService Performed');
-    }
-
-    private function getDateOfData($data)
-    {
-        if (!empty($data)) {
-            return (new DateTime)->createFromFormat('d/m/Y', $data[0]['par jour'])
-                ->setTime(0, 0, 0);
-        }
-        return null;
-    }
-
-    private function getDateOfPidLock()
-    {
-      $pidFilePath = Storage::disk('public')->url(config('AMS.provider.pid_lock_file'));
-      Log::info('File Path of pid File: ' . $pidFilePath);
-      $pidDate = file_get_contents($pidFilePath);
-      if ($pidDate) {
-        return (new DateTime)->createFromFormat('d/m/Y', $pidDate)
-          ->setTime(0, 0, 0);
-      }
-      return null;
-    }
-
-    private function updateLockFile($dataDate)
-    {
-      $pidFilePath = Storage::disk('public')->url(config('AMS.provider.pid_lock_file'));
-      file_put_contents(
-        $pidFilePath,
-        $dataDate->format('d/m/Y')
-      );
+        error_log('AdmarginService Performed');
     }
 
     protected function callStub($date, $email_to, $delimiter)
@@ -116,7 +75,7 @@ class AdservingService extends AMSService implements AMSServiceInterface
             From browser path=examples/...
             From cli path=public/examples/...
         */
-        $strTempFile = "public/examples/adserving.csv";
+        $strTempFile = "public/examples/admargin.csv";
         $response = $this->getArrayFromCsvString(file_get_contents($strTempFile), $delimiter);
 
         Log::info('Request finished', ['response'=>$response]);
