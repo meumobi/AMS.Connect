@@ -13,9 +13,8 @@ class CorrelationTable
 
     private function __construct()
     {
-      $filePath = Storage::disk('public')->url(self::FILE_NAME);
+      $filePath = Storage::disk('s3')->url(self::FILE_NAME);
       Log::info('File Path of CorrelationTable: ' . $filePath);
-      
       $csv = array_map('str_getcsv', file($filePath));
       $header = array_map('strtolower', array_shift($csv));
       $this->_tableData = array_reduce(
@@ -27,6 +26,7 @@ class CorrelationTable
           },
           []
       );
+
       Log::info('CorrelationTable initialized');
     }
 
