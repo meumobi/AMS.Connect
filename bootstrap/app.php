@@ -110,9 +110,29 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
 */
 
 $app->configureMonologUsing(function($monolog) {
-    $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr', \Monolog\Logger::INFO));
+    switch (env('LOG_CHANNEL')) {
+        case 'local':
+            $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr', \Monolog\Logger::INFO));
+            break;  
+        case 'slack':      
+            $url = env('SLACK_URL');
+            $channel = env('SLACK_CHANNEL');
+            $username = env('SLACK_USERNAME');
+            $monolog->pushHandler(new \Monolog\Handler\SlackWebhookHandler(
+                $url,
+                $channel,
+                $username,
+                false,
+                null,
+                false,
+                false,
+                \Monolog\Logger::WARNING
+            ));
+            break;
+    }
     return $monolog;
 });
+
 
 /*
     See https://github.com/Niellles/lumen-commands
