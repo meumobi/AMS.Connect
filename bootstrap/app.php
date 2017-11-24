@@ -110,9 +110,35 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
 */
 
 $app->configureMonologUsing(function($monolog) {
+    switch (env('LOG_LEVEL')) {
+        case 'DEBUG':
+           $logLevel = \Monolog\Logger::DEBUG;    
+           break;
+        case 'INFO':
+           $logLevel = \Monolog\Logger::INFO;    
+           break;
+        case 'NOTICE':
+           $logLevel = \Monolog\Logger::NOTICE;    
+           break;
+        case 'WARNING':
+           $logLevel = \Monolog\Logger::WARNING;    
+           break;
+        case 'ERROR':
+           $logLevel = \Monolog\Logger::ERROR;    
+           break;
+        case 'CRITICAL':
+           $logLevel = \Monolog\Logger::CRITICAL;    
+           break;
+        case 'ALERT':
+           $logLevel = \Monolog\Logger::ALERT;    
+           break;
+        case 'EMERGENCY':
+           $logLevel = \Monolog\Logger::EMERGENCY;    
+           break;
+    }
     switch (env('LOG_CHANNEL')) {
         case 'local':
-            $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr', \Monolog\Logger::INFO));
+            $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr', \Monolog\Logger::env('LOG_LEVEL')));
             break;  
         case 'slack':      
             $url = env('SLACK_URL');
@@ -126,7 +152,7 @@ $app->configureMonologUsing(function($monolog) {
                 null,
                 false,
                 false,
-                \Monolog\Logger::WARNING
+                $logLevel
             ));
             break;
     }
