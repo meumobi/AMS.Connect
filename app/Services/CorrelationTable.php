@@ -2,18 +2,16 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Storage;
 use Log;
 
 class CorrelationTable
 {
 
     private $_tableData;
-    const FILE_NAME = "ams-correlation-table.csv";
 
     private function __construct()
     {
-      $filePath = Storage::disk('s3')->url(self::FILE_NAME);
+      $filePath = env("TDC_URL");
       Log::info('File Path of CorrelationTable: ' . $filePath);
       $csv = array_map('str_getcsv', file($filePath));
       $header = array_map('strtolower', array_shift($csv));
