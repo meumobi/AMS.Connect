@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         'App\Console\Commands\ProvidersPerform',
         'App\Console\Commands\AdservingPerform',
-        'App\Console\Commands\AdmarginPerform'
+        'App\Console\Commands\AdmarginPerform',
+        'App\Console\Commands\CorrelationtablePerform'
     ];
 
     /**
