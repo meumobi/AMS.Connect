@@ -176,13 +176,8 @@ class AMSPresenter
 
         $row = $adServingTable->getRow($key . $dateTime->format('d/m/Y'));
         if (empty($row)) {
+            $row['Impressions Envoyees'] = 'NA';
             Log::warning('AdServing Key Not Found', ['key' => (string)$key, 'date' => $date]);
-        }
-        
-        if (empty($row)) {
-            $row['site'] = 'Unknown';
-            $row['partenaire'] = 'Unknown';
-            Log::warning('Correlation Key Not Found', ['key' => (string)$key]);
         }
 
         return $row;
