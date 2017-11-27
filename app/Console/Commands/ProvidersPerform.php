@@ -14,7 +14,7 @@ class ProvidersPerform extends Command
     *
     * @var string
     */
-  protected $signature = 'providers:perform {provider?} {--update-adserving} {--update-admargin} {--mode=console} {--date=}';
+  protected $signature = 'providers:perform {provider?} {--update-correlationtable} {--update-adserving} {--update-admargin} {--mode=console} {--date=}';
 
   /**
     * The console command description.
@@ -46,6 +46,7 @@ class ProvidersPerform extends Command
     $providerName = $this->argument('provider');
     $updateAdserving = $this->option('update-adserving');
     $updateAdmargin = $this->option('update-admargin');
+    $updateCorrelationtable = $this->option('update-correlationtable');
     $mode = $this->option('mode');
     $date = $this->option('date')
     ? (new DateTime)->createFromFormat('Y-m-d', $this->option('date'))
@@ -57,6 +58,10 @@ class ProvidersPerform extends Command
 
     if ($updateAdmargin) {
       dispatch(new DailyReportsPublishing('Admargin', $mode, $date));
+    }
+
+    if ($updateCorrelationtable) {
+      dispatch(new DailyReportsPublishing('Correlationtable', $mode, $date));
     }
 
     if ($providerName) {
