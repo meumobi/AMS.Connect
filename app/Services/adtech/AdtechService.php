@@ -86,7 +86,7 @@ class AdtechService extends AMSService implements AMSServiceInterface
             
             $emailReader->close();
 
-            Log::info('Request finished', ['response'=>$response]);
+            Log::debug('Request finished', ['response'=>$response]);
 
             if (empty($response)) {
                 $error = 'No Data Found';

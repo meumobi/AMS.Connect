@@ -115,7 +115,7 @@ class AdmarginService extends AMSService implements AMSServiceInterface
             $error = 'No Data Found';
         }
 
-        Log::info('Request finished', ['response'=>$response]);
+        Log::debug('Request finished', ['response'=>$response]);
 
         if ($error) {
             Log::warning('Request Error', ['error' => $error]);

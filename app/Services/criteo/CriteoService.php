@@ -78,7 +78,7 @@ class CriteoService extends AMSService implements AMSServiceInterface
             'requestSize' => $curlInfo['request_size'],
             'httpCode' => $curlInfo['http_code'],
         ];
-        Log::info('Request finished', $requestData);
+        Log::debug('Request finished', $requestData);
 
         if ($err) {
             Log::warning('Request Error', ['error' => $err]);
