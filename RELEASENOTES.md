@@ -19,6 +19,6 @@ Use Resume of Changes from previous command on commit message
 # v1.0.0
 ENHANCEMENT: add option --update-correlationtable to providers:perform
 FEATURE: Closes #83, Migrate Correlation Table to Googlesheet
-FEAT: Closes #81, Publish log on Slack
-FEAT: Allow Logs in a Slack Channel
+FEATURE: Closes #81, Publish log on Slack
+FEATURE: Allow Logs in a Slack Channel
 FEATURE: Closes #71, add fields 'net revenu' and 'marge' on AMS.Format filled by csv from mailbox
