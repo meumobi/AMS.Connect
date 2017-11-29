@@ -112,7 +112,7 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
 $app->configureMonologUsing(function($monolog) {
     switch (env('LOG_CHANNEL')) {
         case 'local':
-            $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr',\Monolog\Logger::INFO));
+            $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr',env("LOG_LEVEL")));
             break;  
         case 'slack':      
             $url = env('SLACK_URL');
@@ -126,7 +126,7 @@ $app->configureMonologUsing(function($monolog) {
                 null,
                 false,
                 false,
-                \Monolog\Logger::INFO
+                env("LOG_LEVEL")
             ));
             break;
     }
