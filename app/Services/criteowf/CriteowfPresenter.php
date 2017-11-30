@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\criteo;
+namespace App\Services\criteowf;
 
 use App\Services\AMSPresenter;
 use App\Services\AMSPresenterInterface;
@@ -13,7 +13,7 @@ use ErrorException;
     Inspired by https://gist.github.com/jakebathman/4fb8c55b13272eee9c88
 */
 
-class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
+class CriteowfPresenter extends AMSPresenter implements AMSPresenterInterface
 {
 
     public function __construct()
@@ -85,7 +85,7 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
             "revenu" => number_format((float)$line["revenue"]["value"], 2, '.', ''),
             "key" => $line["placementId"],
             "inventaire" => "AdNetwork Fill",
-            "partenaire" => "Criteo"
+            "partenaire" => "Criteowf"
         );
         
         return $array;

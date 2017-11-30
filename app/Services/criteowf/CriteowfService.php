@@ -1,27 +1,25 @@
 <?php
 
-namespace App\Services\criteo;
+namespace App\Services\criteowf;
 
 use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
 use Log;
 use DateTime;
-
 require('config.php');
 
-class CriteoService extends AMSService implements AMSServiceInterface
+class CriteowfService extends AMSService implements AMSServiceInterface
 {
 
     public function __construct()
-    {
+    {     
         parent::__construct();
-        $this->presenter = new CriteoPresenter;
+        $this->presenter = new CriteowfPresenter;
     }
 
     public function perform(array $params)
     {
         $configData = config('AMS.provider');
-
         $startDate = $this->getParameter($params, 'start')->format('Y-m-d');
         $endDate = $this->getParameter($params, 'end')->format('Y-m-d');
         $mode = $this->getParameter($params, 'mode');
@@ -43,7 +41,7 @@ class CriteoService extends AMSService implements AMSServiceInterface
 
         $this->presenter->present($response, $configData['date_format'], $mode);
 
-        error_log('CriteoService Performed');
+        error_log('Criteo Service Performed');
     }
 
     protected function call($url)
