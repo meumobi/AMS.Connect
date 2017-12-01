@@ -6,6 +6,7 @@ use App\Services\AMSService;
 use App\Services\AMSServiceInterface;
 use Log;
 use DateTime;
+use ErrorException;
 
 require('config.php');
 
@@ -63,7 +64,7 @@ class SublimeService extends AMSService implements AMSServiceInterface
         $running = null;
         $multiCurl = curl_multi_init();
         while ($endDate > $startDate) {
-            $requestUrl = $url.$startDate->format('Y-m-d').'?'.$queryString;
+            $requestUrl = $url.$startDate->format('Y-m-d').'?'.$queryString;            
             $curl = curl_init($requestUrl);
             curl_setopt_array($curl, $basicCurlOptions);
             $arrCurl[$startDate->format('Y-m-d')] = $curl;
@@ -113,13 +114,21 @@ class SublimeService extends AMSService implements AMSServiceInterface
     }
 
     private function addDateField($items, $date)
-    {
-        return array_map(
-            function ($item) use ($date) {
-                $item['date'] = $date;
-                return $item;
-            },
-            $items
-        );
+    {    
+        $result = [];   
+        try {
+            $result = array_map(
+                function ($item) use ($date) {
+                    $item['date'] = $date;
+                    return $item;
+                },
+                $items
+            );
+        } catch (ErrorException $exception) {
+            Log::error('File Error', ['exception'=>$exception->getMessage()]);             
+        } finally {
+            return $result;
+        }
+
     }
 }
