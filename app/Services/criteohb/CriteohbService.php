@@ -2,9 +2,9 @@
 
 namespace App\Services\criteohb;
 
-use App\Services\criteowf\CriteowfService;
+use App\Services\criteo\CriteoService;
 
-class CriteohbService extends CriteowfService 
+class CriteohbService extends CriteoService 
 {
     public function __construct()
     {     

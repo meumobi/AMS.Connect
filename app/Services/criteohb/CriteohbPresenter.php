@@ -3,8 +3,8 @@
 
 namespace App\Services\criteohb;
 
-use App\Services\criteowf\CriteowfPresenter;
+use App\Services\criteo\CriteoPresenter;
 
-class CriteohbPresenter extends CriteowfPresenter 
+class CriteohbPresenter extends CriteoPresenter 
 {
 }

@@ -3,10 +3,10 @@
 config(
     ['AMS.provider'=> 
         [
-            'name' => 'criteohb',
+            'name' => 'criteo',
             'url' => 'https://publishers.criteo.com/api/2.0/stats.json',
             'auth' => 'token', //token, http basic, oauth, etc
-            'token'=>'871f2f69-3d7a-4961-94f0-4cca68ebed10',
+            'token'=>'',
             'date_format' => 'Y-m-d\TH:i:s',
             'inventaire' => 'AMS Market Place'
             //Any other config option must be setted here
