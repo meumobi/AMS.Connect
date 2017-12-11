@@ -41,7 +41,7 @@ class ProvidersPerform extends Command
     *
     * @return mixed
     */
-  public function handle()dsds
+  public function handle()
   {
     $providerName = $this->argument('provider');
     $updateAdserving = $this->option('update-adserving');
