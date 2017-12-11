@@ -3,9 +3,9 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 try {
-    (new Dotenv\Dotenv(__DIR__.'/../'))->load();
+  (new Dotenv\Dotenv(__DIR__.'/../'))->load();
 } catch (Dotenv\Exception\InvalidPathException $e) {
-    //
+  //
 }
 
 /*
@@ -20,11 +20,11 @@ try {
 */
 
 $app = new Laravel\Lumen\Application(
-    realpath(__DIR__.'/../')
+  realpath(__DIR__.'/../')
 );
 
 /*
-    See https://nicksilvestro.net/2016/05/28/adding-laravels-storage-facade-into-lumen/
+See https://nicksilvestro.net/2016/05/28/adding-laravels-storage-facade-into-lumen/
 */
 $app->configure('filesystems');
 $app->withFacades();
@@ -44,13 +44,13 @@ class_alias('Illuminate\Support\Facades\Storage', 'Storage');
 */
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+  Illuminate\Contracts\Debug\ExceptionHandler::class,
+  App\Exceptions\Handler::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+  Illuminate\Contracts\Console\Kernel::class,
+  App\Console\Kernel::class
 );
 
 /*
@@ -67,7 +67,7 @@ $app->singleton(
 // $app->middleware([
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
-
+  
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
@@ -101,45 +101,45 @@ $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 */
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
-    require __DIR__.'/../routes/web.php';
+  require __DIR__.'/../routes/web.php';
 });
 
 /*
-    Logging on stderr to aggregate logs on heroku
-    https://devcenter.heroku.com/articles/php-logging
+Logging on stderr to aggregate logs on heroku
+https://devcenter.heroku.com/articles/php-logging
 */
 
 $app->configureMonologUsing(function($monolog) {
-    switch (env('LOG_CHANNEL')) {
-        case 'local':
-            $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr',env("LOG_LEVEL")));
-            break;  
-        case 'slack':      
-            $url = env('SLACK_URL');
-            $channel = env('SLACK_CHANNEL');
-            $username = env('SLACK_USERNAME');
-            $monolog->pushHandler(new \Monolog\Handler\SlackWebhookHandler(
-                $url,
-                $channel,
-                $username,
-                false,
-                null,
-                false,
-                false,
-                env("LOG_LEVEL")
-            ));
-            break;
-    }
-    return $monolog;
+  switch (env('LOG_CHANNEL')) {
+    case 'console':
+      $monolog->pushHandler(new \Monolog\Handler\StreamHandler('php://stderr',env("LOG_LEVEL")));
+    break;  
+    case 'slack':      
+      $url = env('SLACK_URL');
+      $channel = env('SLACK_CHANNEL');
+      $username = env('SLACK_USERNAME');
+      $monolog->pushHandler(new \Monolog\Handler\SlackWebhookHandler(
+        $url,
+        $channel,
+        $username,
+        false,
+        null,
+        false,
+        false,
+        env("LOG_LEVEL")
+      ));
+    break;
+  }
+  return $monolog;
 });
 
 
 /*
-    See https://github.com/Niellles/lumen-commands
+See https://github.com/Niellles/lumen-commands
 */
 if (env('APP_ENV') === 'local') {
-    $app->bind(Illuminate\Database\ConnectionResolverInterface::class, Illuminate\Database\ConnectionResolver::class);
-    $app->register(Niellles\LumenCommands\LumenCommandsServiceProvider::class);
+  $app->bind(Illuminate\Database\ConnectionResolverInterface::class, Illuminate\Database\ConnectionResolver::class);
+  $app->register(Niellles\LumenCommands\LumenCommandsServiceProvider::class);
 }
 
 return $app;
