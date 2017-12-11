@@ -5,9 +5,9 @@ namespace App\Services\sublime;
 
 use App\Services\AMSPresenter;
 use App\Services\AMSPresenterInterface;
-use Log;
 use DateTime;
 use ErrorException;
+use Log;
 
 /*
 Inspired by https://gist.github.com/jakebathman/4fb8c55b13272eee9c88
@@ -33,7 +33,7 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
     
     $strTempFile = 'csvOutput' . date("U") . ".csv";
     $tempFile = fopen($strTempFile, "w+");
-    Log::info('Temporary file created', ['file'=>$strTempFile]);
+    Log::debug('Temporary file created', ['file'=>$strTempFile]);
     
     $firstLineKeys = false;
     $records = [];
@@ -85,11 +85,13 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
     
     // Delete the temp file
     unlink($strTempFile);
-    Log::info('Temporary file deleted', ['file'=>$strTempFile]);
+    Log::debug('Temporary file deleted', ['file'=>$strTempFile]);
   }
   
   private function mapping($line)
   {
+    $configData = config('AMS.provider');
+
     $array = array(
       "date" => $this->convertDate($line["date"]),
       "impressions reçues" => "NA",
@@ -97,8 +99,8 @@ class SublimePresenter extends AMSPresenter implements AMSPresenterInterface
       "revenu" => $line["rev"],
       //"revenu" => 0.85 * (float)$line["revenue"],
       "key" => $line["zone"],
-      "inventaire" => "AMS Market Place",
-      "partenaire" => "Sublime"
+      'inventaire' => $configData['inventaire'],
+      "partenaire" => ucfirst($configData['name'])
     );
     
     return $array;

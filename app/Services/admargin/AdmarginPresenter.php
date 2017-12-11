@@ -37,7 +37,7 @@ class AdmarginPresenter extends AMSPresenter implements AMSPresenterInterface
     
     $strTempFile = 'csvOutput' . date("U") . ".csv";
     $tempFile = fopen($strTempFile, "w+");
-    Log::info('Temporary file created', ['file'=>$strTempFile]);
+    Log::debug('Temporary file created', ['file'=>$strTempFile]);
     
     $firstLineKeys = false;
     $records = [];
@@ -78,7 +78,7 @@ class AdmarginPresenter extends AMSPresenter implements AMSPresenterInterface
     
     // Delete the temp file
     unlink($strTempFile);
-    Log::info('Temporary file deleted', ['file'=>$strTempFile]);
+    Log::debug('Temporary file deleted', ['file'=>$strTempFile]);
     
     return $formated;
   }

@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Jobs\Job;
 use App\Services\AMSService;
 use App\Services\sublime\SublimeService;
-
 use Log;
 
 class DailyReportsPublishing extends Job
@@ -42,9 +41,11 @@ class DailyReportsPublishing extends Job
     }
     
     $params['mode'] = $this->mode;
-    Log::info('Job Handle: ' . $this->providerName, [$this->mode, $this->date, $params]);
+    Log::info('Job Handle: ' . $this->providerName, [$params]);
     
     $serviceHandler->perform($params);
+
+    Log::info('Job Performed: ' . $this->providerName);
     sleep(5);
   }
 }

@@ -3,6 +3,7 @@
 config(
     ['AMS.provider'=> 
         [
+            'name' => 'unplugged',
             'email_server' => '{imap.gmail.com:993/imap/ssl}INBOX',
             'email_username' => 'amsconnect@dailyfresh-media.com',
             'email_password' => 'Reports@AMS0',

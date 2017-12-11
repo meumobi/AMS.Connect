@@ -28,7 +28,7 @@ class AdMarginTable
       },
       []
     );
-    Log::info('AdMarginTable initialized');
+    Log::debug('AdMarginTable initialized');
   }
   
   public function getRow($key)

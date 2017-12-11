@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Jobs\DailyReportsPublishing;
 use DateTime;
 use Illuminate\Console\Command;
+use Log;
 
 class ProvidersPerform extends Command
 {
@@ -65,11 +66,9 @@ class ProvidersPerform extends Command
     }
 
     if ($providerName) {
-      $this->info('Commands: Perform ' . $providerName);
       dispatch(new DailyReportsPublishing($providerName, $mode, $date));
     } else {
       foreach ($this->providers as $providerName) {
-        $this->info('Commands: Perform ' . $providerName);
         dispatch(new DailyReportsPublishing($providerName, $mode, $date));
       }
     }

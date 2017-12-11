@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use Log;
 use Illuminate\Support\Facades\Storage;
+use Log;
 
 class CorrelationTable
 {
@@ -15,7 +15,8 @@ class CorrelationTable
   {
     
     $filePath = Storage::disk('public')->url(self::FILE_NAME);
-    Log::info('File Path of CorrelationTable: ' . $filePath);
+    Log::info('Lines of CorrelationTable: ' . count(file($filePath)));
+    
     $csv = array_map('str_getcsv', file($filePath));
     $header = array_map('strtolower', array_shift($csv));
     $this->_tableData = array_reduce(
@@ -28,7 +29,7 @@ class CorrelationTable
       []
     );
     
-    Log::info('CorrelationTable initialized');
+    Log::debug('CorrelationTable initialized');
   }
   
   public function getRow($key)
