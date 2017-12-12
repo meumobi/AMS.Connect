@@ -223,9 +223,9 @@ protected function addFields($array)
   $array += $this->getCorrelatedFields($array['key']);
   $array += $this->getAdServingFields($array['key'], $array['date']);
   $array += $this->getAdMarginFields($array);
-  $array += array('impressions facturables' => 'Unknown');
-  $array += array('campagne' => 'Unknown');
-  $array += array('annonceur' => 'Unknown');
+  $array += array('impressions facturables' => 'NA');
+  $array += array('campagne' => 'NA');
+  $array += array('annonceur' => 'NA');
   $array += $this->getUID($array['date'], $array['key']);
   
   return $array;
