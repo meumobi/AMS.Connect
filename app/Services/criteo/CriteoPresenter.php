@@ -78,14 +78,16 @@ class CriteoPresenter extends AMSPresenter implements AMSPresenterInterface
     
     private function mapping($line)
     {
+        $configData = config('AMS.provider');
+
         $array = array(
             "date" => $this->convertDate($line["date"]),
             "impressions reçues" => $line["totalImpression"],
             "impressions prises" => $line["impression"],
             "revenu" => number_format((float)$line["revenue"]["value"], 2, '.', ''),
             "key" => $line["placementId"],
-            "inventaire" => "AdNetwork Fill",
-            "partenaire" => "Criteowf"
+            "inventaire" => $configData['inventaire'],
+            "partenaire" => ucfirst($configData['name'])
         );
         
         return $array;
