@@ -92,25 +92,28 @@ class AdmarginService extends AMSService implements AMSServiceInterface
     $emails = $emailReader->searchEmails($email_to, $date);
     
     if (empty($emails)) {
-      $error = 'No Emails Found';
-      $emails = [];
+        $error = 'No Emails Found';
+    } else {
+        /*
+        put the newest emails on top
+        */
+        rsort($emails);
     }
     //TODO: Ensure this heuristic to work, check if will be always the first email and first attachment
-    //Get the first attachment for the first email
-    $index = array_shift($emails);
-    $attachments = $emailReader->getEmailAttachments($index);
-    $firstAttachment = array_shift($attachments);
-    $response = $this->getArrayFromCsvString($firstAttachment['attachment'], $delimiter);
-    
-    $emailReader->close();
-    if (empty($response)) {
-      $error = 'No Data Found';
-    }
-    
-    Log::debug('Request finished', ['response'=>$response]);
-    
-    if ($error) {
-      Log::warning('Request Error', ['error' => $error]);
+    if (!$error) {
+        //Get the first attachment for the first email
+        $index = array_shift($emails);
+        $attachments = $emailReader->getEmailAttachments($index);
+        $firstAttachment = array_shift($attachments);
+        $response = $this->getArrayFromCsvString($firstAttachment['attachment'], $delimiter);
+        
+        $emailReader->close();
+        
+        if (empty($response)) {
+            $error = 'No Data Found';
+        }
+        
+        Log::debug('Request finished', ['response'=>$response]);
     }
     
     return [$response, $error];
