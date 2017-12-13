@@ -166,6 +166,7 @@ protected function getCorrelatedFields($key)
     $row['partenaire'] = 'Unknown';
     $row['emplacement'] = 'Unknown';
     $row['format'] = 'Unknown';
+    $row['position'] = 'Unknown';
     Log::warning('Correlation Key Not Found', ['key' => (string)$key]);
   }
   
