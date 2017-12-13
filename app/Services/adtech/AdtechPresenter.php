@@ -83,7 +83,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
 
     $array = array(
       "date" => $this->convertDate($line["par jour"]),
-      "impressions reçues" => "ND",
+      "impressions reçues" => "NA",
       "key" => $line["emplacement"],
       "site" => $line["site web"],
       "emplacement" => $line["emplacement"],
