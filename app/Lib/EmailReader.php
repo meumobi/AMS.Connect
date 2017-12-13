@@ -46,10 +46,8 @@ class EmailReader
         }
 
         $emails = imap_search($this->_inbox, $searchString);
-        $total = count($emails);
-        Log::debug('Number of emails found with the searchString', compact('searchString', 'total'));
         
-        return $emails;
+        return $emails ? $emails : [] ;
     }
 
     public function getEmailAttachments($index)
