@@ -36,9 +36,7 @@ class CorrelationtableService extends AMSService implements AMSServiceInterface
     fwrite($tdcFile, $response);
     fclose($tdcFile);
     
-    Log::info('Lines of Correlation Table: ' . count(file($filePath)));
-    
-    Log::debug(ucfirst($configData['name']) . ' Service Performed');
+    Log::info(ucfirst($configData['name']) . ' Service Performed', ['Number of lines' => count(file($filePath))]);
   }
   
   protected function callStub($url)

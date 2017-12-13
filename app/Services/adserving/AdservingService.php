@@ -62,11 +62,10 @@ class AdservingService extends AMSService implements AMSServiceInterface
         $adservingFile = fopen($filePath, 'a+');
         fwrite($adservingFile, $formatedContent);
         fclose($adservingFile);
-        Log::info('Lines of AdservingTable: ' . count(file($filePath)));
         
         $this->updateLockFile($dataDate);
-        
-        Log::debug(ucfirst($configData['name']) . ' Service Performed');
+
+        Log::info(ucfirst($configData['name']) . ' Service Performed', ['Number of lines' => count(file($filePath))]);
     }
     
     private function getDateOfData($data)
