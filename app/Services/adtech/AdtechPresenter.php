@@ -83,7 +83,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
 
     $array = array(
       "date" => $this->convertDate($line["par jour"]),
-      "impressions reçues" => "NA",
+      "impressions reçues" => "ND",
       "key" => $line["emplacement"],
       "site" => $line["site web"],
       "emplacement" => $line["emplacement"],
@@ -105,9 +105,8 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     
     $array += $this->getRevenu(
       $line["campaign flat fee"],
-      $array["impressions prises"]
-      //$array["cpm"]);
-    );
+      $array["impressions prises"],
+      $this->getCustomCpm($line));
       
       return $array;
     }
@@ -183,7 +182,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         } else {
           $date = $line["par jour"];
           $key = $line["emplacement"];
-          Log::info('Flight dates unknown', [$date, $key]);
+          Log::debug('Flight dates unknown', [$date, $key]);
         }     
         
         $data = intval($line["campaign billable imps."] / $days);
