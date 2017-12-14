@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
-use Log;
 use DateTime;
+use ErrorException;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
+use Log;
 
 class AMSPresenter
 {
@@ -55,7 +56,8 @@ class AMSPresenter
     Log::debug('CSV attached successfully', ['file'=>$file]);
   }
   
-  protected function pushToFirebase($records){
+  protected function pushToFirebase($records)
+  {
     Log::info('Number of Raws: '. sizeof($records));
     
     $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/'.env("FIREBASE_CONFIG_PATH"));
@@ -89,33 +91,34 @@ class AMSPresenter
     echo "Total 'impressions prise': "; 
     
     var_dump(array_reduce($records, 
-    function ($sum, $record) {
-      $sum += $record["impressions prises"];
-      
-      return $sum;
-    })
-  );
+      function ($sum, $record) {
+        $sum += $record["impressions prises"];
+        
+        return $sum;
+      })
+    );
   
-  echo "Total 'revenue': "; 
+    echo "Total 'revenue': "; 
   
-  var_dump(array_reduce($records, 
-  function ($sum, $record) {
-    $sum += $record["revenu"];
-    
-    return $sum;
-  })
-);
+    var_dump(array_reduce($records, 
+      function ($sum, $record) {
+        $sum += $record["revenu"];
+        
+        return $sum;
+      })
+    );
 
-$structuresData = $this->structureData($records);
-print_r($this->countLines($structuresData));
+    $structuresData = $this->structureData($records);
+    print_r($this->countLines($structuresData));
 
-$this->printRecords($structuresData);
-}
+    $this->printRecords($structuresData);
+  }
 
 /*
 Remove invalid characters on firebase as child key: ".$#[]"
 */
-private function cleanKey($key) {
+private function cleanKey($key) 
+{
   return preg_replace('/[\.$#\[\]]/', '', $key);
 }
 
@@ -146,7 +149,8 @@ private function printRecords($records)
   var_dump($records);
 }
 
-private function countLines($records) {
+private function countLines($records) 
+{
   $lineCounts = array();
   
   foreach($records as $key => $group) {
@@ -182,13 +186,15 @@ protected function getAdServingFields($key, $date)
   if (empty($row)) {
     $row['impressions envoyees'] = 'Unknown';
     /*
-      Obsolet since header bidding migration
+    Obsolet since header bidding migration
     */
     //Log::warning('AdServing Key Not Found', ['key' => (string)$key, 'date' => $date]);
   }
   
   return $row;
 }
+
+
 
 protected function getAdMarginFields($array)
 {
@@ -199,13 +205,12 @@ protected function getAdMarginFields($array)
   $dateTime = (new DateTime)->createFromFormat('Y-m-d', $date);
   
   $row = $adMarginTable->getRow($key . $dateTime->format('d/m/Y'));
+  
   if (empty($row)) {
     Log::warning('AdMargin Key Not Found', ['site' => $array['site'], 'inventaire' => $array['inventaire'], 'date' => $date]);
     
     $row['marge'] = 'Unknown';
     $row['revenu net'] = 'Unknown';
-  } else {
-    $row['revenu net'] = (float)$row['marge'] / 100 * $array['revenu'];
   }
   
   return $row;
@@ -219,11 +224,27 @@ protected function getUID($date, $key)
   return $row;
 }
 
+protected function getRevenuNet($margin, $revenue) {
+  $adMarginTable = AdMarginTable::getInstance();
+  $row = $adMarginTable->getRevenuNetRow($margin, $revenue);
+
+  return $row;
+}
+
 protected function addFields($array)
 {
   $array += $this->getCorrelatedFields($array['key']);
   $array += $this->getAdServingFields($array['key'], $array['date']);
-  $array += $this->getAdMarginFields($array);
+
+  /*
+    Check if marge OR revenu are not already provided on array (handle unplugged case)
+  */
+  if (!array_key_exists('marge', $array) || !array_key_exists('revenu', $array)) {
+    $array += $this->getAdMarginFields($array);
+  }
+
+  $array += $this->getRevenuNet($array['marge'], $array['revenu']);
+  Log::debug('Row after getRevenuNetRow ', $array);
   $array += array('impressions facturables' => 'NA');
   $array += array('campagne' => 'NA');
   $array += array('annonceur' => 'NA');

@@ -90,7 +90,7 @@ class UnpluggedService extends AMSService implements AMSServiceInterface
             $attachments = $emailReader->getEmailAttachments($index);
             $firstAttachment = array_shift($attachments);
             $response = $this->getArrayFromCsvString($firstAttachment['attachment'], $delimiter);
-            
+            Log::debug('Email 1st attachment file: ', ['filename' => $firstAttachment['filename'], 'name' => $firstAttachment['name']]);
             $emailReader->close();
             
             if (empty($response)) {

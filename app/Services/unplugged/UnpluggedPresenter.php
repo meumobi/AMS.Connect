@@ -43,8 +43,16 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
       foreach ($data as $line) {
         $array = $this->mapping($line);
         $array += $this->getCorrelatedFields($array['key']);
-        $array += $this->getAdMarginFields($array);
+
+        /*
+          Check if marge OR revenu are not already provided on array (handle unplugged case)
+        */
+        if (!array_key_exists('marge', $array) || !array_key_exists('revenu', $array)) {
+          $array = array_merge($array, $this->getAdMarginFields($array));
+        }
+        
         $array += $this->getUID($array['date'], $array['key']);
+        $array += $this->getRevenuNet($array['marge'], $array['revenu']);
         
         if (empty($firstLineKeys)) {
           $firstLineKeys = array_keys($array);
@@ -80,18 +88,18 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
   
   private function mapping($line)
   {
-    // Log::info('Line mapped', $line);
     $array = array(
       "date" => $this->convertDate($line["date"]),
       "impressions reçues" => $line["impressions recues"],
       "key" => $line["key"],
       "inventaire" => $line["inventaire"],
-      "annonceur" => $line["annonceur"],
+      "annonceur" => empty($line["annonceur"]) ? "NA" : $line["annonceur"],
       "impressions envoyees" => $line["impressions envoyees"],
       "impressions prises" => $line["impressions prises"],
       "revenu" => floatval(str_replace(",",".",$line["revenu"])),
-      "impressions facturables" => "ND",     
-      "campagne" => "ND",
+      "impressions facturables" => empty($line["impressions facturables"]) ? "NA" : $line["impressions facturables"],
+      "campagne" => empty($line["campagne"]) ? "NA" : $line["campagne"],
+      "marge" => $line["marge"]
     );
     
     return $array;
