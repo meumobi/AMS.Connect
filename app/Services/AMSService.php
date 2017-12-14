@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use ErrorException;
 use Log;
 
 class AMSService
@@ -32,31 +33,41 @@ class AMSService
   
   protected function getArrayFromCsvString($csvString, $delimiter = ',')
   {
-    $csvString = trim($csvString, "\r\n");
-    $rowsArray = explode("\n", $csvString);
+    $data = [];
     
-    $data = array_map(
-      function ($row) use ($delimiter) {
-        return str_getcsv($row, $delimiter);
-      },
-      $rowsArray
-    );
-    
-    /*
-    Set internal encoding of mb to utf-8
-    to convert string that contains special characters
-    http://stackoverflow.com/a/2516482
-    */
-    mb_internal_encoding('UTF-8');
-    $header = array_map('mb_strtolower', array_shift($data));
-    
-    $data = array_map(
-      function ($row) use ($header) {
-        return array_combine($header, $row);
-      },
-      $data
-    );
-    
-    return $data;
+    try {
+      $csvString = trim($csvString, "\r\n");
+      $rowsArray = explode("\n", $csvString);
+      
+      $data = array_map(
+        function ($row) use ($delimiter) {
+          return str_getcsv($row, $delimiter);
+        },
+        $rowsArray
+      );
+      
+      /*
+      Set internal encoding of mb to utf-8
+      to convert string that contains special characters
+      http://stackoverflow.com/a/2516482
+      */
+      mb_internal_encoding('UTF-8');
+      $header = array_map('mb_strtolower', array_shift($data));
+      
+      $data = array_map(
+        function ($row) use ($header) {
+          return array_combine($header, $row);
+        },
+        $data
+      );
+    } catch (ErrorException $exception) {
+      Log::error('File Error', ['exception'=>$exception->getMessage()]);
+      /*
+        Return empty array if an error occurred
+      */
+      $data = [];
+    } finally {
+      return $data;
+    }    
   }
 }
