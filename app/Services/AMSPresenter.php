@@ -180,7 +180,7 @@ protected function getAdServingFields($key, $date)
   
   $row = $adServingTable->getRow($key . $dateTime->format('d/m/Y'));
   if (empty($row)) {
-    $row['Impressions Envoyees'] = 'Unknown';
+    $row['impressions envoyees'] = 'Unknown';
     /*
       Obsolet since header bidding migration
     */
