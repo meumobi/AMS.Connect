@@ -44,6 +44,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         $array = $this->mapping($line);
         $array += $this->getAdMarginFields($array);
         $array += $this->getUID($array['date'], $array['key']);
+        $array += $this->getRevenuNet($array['marge'], $array['revenu']);
         
         if (empty($firstLineKeys)) {
           $firstLineKeys = array_keys($array);
