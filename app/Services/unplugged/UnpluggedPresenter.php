@@ -47,8 +47,12 @@ class UnpluggedPresenter extends AMSPresenter implements AMSPresenterInterface
         /*
           Check if marge OR revenu are not already provided on array (handle unplugged case)
         */
-        if (!array_key_exists('marge', $array) || !array_key_exists('revenu', $array)) {
+        if (!array_key_exists('marge', $array) || empty($array['marge'])) {
+          //$array = array_merge($array, $this->getAdMarginFields($array));
+          Log::debug('marge fields missing or empty, get value from AdMargin Table (AdMT)', ['key' => $array['key']]);
           $array = array_merge($array, $this->getAdMarginFields($array));
+        } else {
+          Log::debug('marge value provided on unplugged raw', ['key' => $array['key'] ,'marge' => $array['marge']]);
         }
         
         $array += $this->getUID($array['date'], $array['key']);

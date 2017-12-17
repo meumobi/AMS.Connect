@@ -39,8 +39,6 @@ class AdMarginTable
     if (isset($this->_tableData[$key])) {
       $row = $this->_tableData[$key];
     }
-    
-    Log::debug('AdMarginTable, getRow: ', $row);
 
     return $row;
   }
@@ -48,13 +46,7 @@ class AdMarginTable
   public function getRevenuNetRow($margin, $revenue)
   {
     $row = array();
-    Log::debug('Get \'revenu net\' row ', [
-      'margin' => $margin, 
-      'revenu' => $revenue,
-      'Margin is numeric: ' => is_numeric(substr($margin, 0, -1)),
-      'Revenue is numeric: ' => is_numeric($revenue)
-      ]
-    );
+
     try {
       if (is_numeric($revenue) && is_numeric(substr($margin, 0, -1))) {
         $row['revenu net'] = (float)$margin / 100 * $revenue;
@@ -66,7 +58,6 @@ class AdMarginTable
       $row['revenu net'] = 'Unknown';
     } finally {
 
-      Log::debug('Get \'revenu net\' row ', $row);
       return $row;
     }
   }

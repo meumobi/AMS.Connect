@@ -194,14 +194,14 @@ protected function getAdServingFields($key, $date)
   return $row;
 }
 
-
-
 protected function getAdMarginFields($array)
 {
   $date = $array['date'];
   $key = $array['site'] . $array['inventaire'];
-  
   $adMarginTable = AdMarginTable::getInstance();
+  
+  Log::debug( __CLASS__ . ', getAdMarginFields input', $array);
+  
   $dateTime = (new DateTime)->createFromFormat('Y-m-d', $date);
   
   $row = $adMarginTable->getRow($key . $dateTime->format('d/m/Y'));
@@ -212,6 +212,8 @@ protected function getAdMarginFields($array)
     $row['marge'] = 'Unknown';
     $row['revenu net'] = 'Unknown';
   }
+
+  Log::debug( __CLASS__ . ', return row: ', $row);
   
   return $row;
 }
@@ -226,7 +228,11 @@ protected function getUID($date, $key)
 
 protected function getRevenuNet($margin, $revenue) {
   $adMarginTable = AdMarginTable::getInstance();
+  Log::debug( __CLASS__ . ', getRevenuNet input', [$margin, $revenue]);
+
   $row = $adMarginTable->getRevenuNetRow($margin, $revenue);
+
+  Log::debug( __CLASS__ . ', return row: ', $row);
 
   return $row;
 }
