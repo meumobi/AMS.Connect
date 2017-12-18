@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Services\AMSService;
-use Log;
 use DateTime;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Google_Client;
+use Illuminate\Console\Command;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Validation\ValidationException;
+use Log;
 
 class DispatcherController extends Controller
 {
@@ -25,7 +27,46 @@ class DispatcherController extends Controller
     {
         echo 'AMS.Connect Services';
     }
+      
+    public function perform(Request $request, $providerName = null)
+    {
+        try {
+            $this->validate(
+                $request,
+                [
+                    'date' => 'date_format:Y-m-d|before:today'
+                ]
+            );
+        } catch (ValidationException $exception) {
+            //TODO: Handle the exception if needed
+            Log::notice('Invalid Parameters', ['url'=>$request->fullUrl(), 'params'=>$request->all()]);
+            throw $exception;
+        }
+
+        if (!isset($providerName)) {
+            $providerName = null;
+        }
+        //TODO: Filter the request->all using request->only or request->except if needed
+        $params = $request->all();
+        //Converting the start and end parameters into DateTime objects
+        $params['date'] = $request->has('date')
+            ? $request->input('date')
+            : (new DateTime)->modify('-1 day')->format('Y-m-d');
+           
+        $exitCode = Artisan::call('providers:perform', [
+            'provider' => $providerName,
+            '--update-correlationtable' => true,
+            '--update-adserving' => true,
+            '--update-admargin' => true,
+            '--mode' => 'publish',
+            '--date' => $params['date']
+        ]);
+
+        Log::debug(__CLASS__ . ', Artisan call: ', ['exit code' => $exitCode]);
         
+        echo 'Command Performed, exit code: ' . $exitCode;
+    }
+
     public function call(Request $request, $providerName)
     {
         try {
@@ -42,6 +83,7 @@ class DispatcherController extends Controller
             throw $exception;
         }
 
+        
         //TODO: Filter the request->all using request->only or request->except if needed
         $params = $request->all();
         //Converting the start and end parameters into DateTime objects
