@@ -201,7 +201,7 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
         $val = (int)$prises * (float)$cpm / 1000;
       }
       
-      $row["revenu"] = number_format((float)$val, 4, '.', '');
+      $row["revenu"] = number_format((float)$val, 10, '.', '');
       
       return $row;
     }

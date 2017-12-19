@@ -93,7 +93,7 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
       "date" => $this->convertDate($line["date"]),
       "impressions reçues" => $line["impressions"],
       "impressions prises" => $line["paid_impression"],
-      "revenu" => number_format(0.85 * (float)$line["revenue"], 2, '.', ''),
+      "revenu" => number_format(0.85 * (float)$line["revenue"], 10, '.', ''),
       "key" => $line["zone_id"] . "-" . $line["size_id"],
       "inventaire" => $configData['inventaire'],
       "partenaire" => ucfirst($configData['name'])
