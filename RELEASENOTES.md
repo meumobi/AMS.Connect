@@ -15,6 +15,13 @@ Use Resume of Changes from previous command on commit message
 1. $ git tag v1.0.0
 2. $ git push origin v1.0.0
 
+<a name="v1.2.0"></a>
+# v1.2.0
+* ENHANCE: remove obsolet adserving pid lock
+* FEATURE: Closes #82, Commands online to perform providers
+* FIX: Closes #97, missing 'revenu net' field on premium raws
+* FIX: Closes #96, revenu net is not computed from unplugged records of the day
+
 <a name="v1.1.0"></a>
 # v1.1.0
 * ENHANCE: add github issue template
