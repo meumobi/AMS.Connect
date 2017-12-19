@@ -39,15 +39,6 @@ class AdservingService extends AMSService implements AMSServiceInterface
             return;
         }
         
-        //Checking the PID Lock and Data Date
-        $dataDate = $this->getDateOfData($response);
-        $pidDate = $this->getDateOfPidLock();
-        
-        if ($pidDate >= $dataDate) {
-            echo 'Request Error: This date was already imported';
-            return;
-        }
-        
         //Getting the formated content to append in the file
         $formatedContent = $this->presenter->format($response, $configData['date_format']);
         if (!$formatedContent) {
@@ -59,43 +50,11 @@ class AdservingService extends AMSService implements AMSServiceInterface
         $filePath = Storage::disk('public')->url($configData['file_name']);
         Log::debug('File Path of Adserving file: ' . $filePath);    
         
-        $adservingFile = fopen($filePath, 'a+');
+        $adservingFile = fopen($filePath, 'w+');
         fwrite($adservingFile, $formatedContent);
         fclose($adservingFile);
         
-        $this->updateLockFile($dataDate);
-
         Log::info(ucfirst($configData['name']) . ' Service Performed', ['Number of lines' => count(file($filePath))]);
-    }
-    
-    private function getDateOfData($data)
-    {
-        if (!empty($data)) {
-            return (new DateTime)->createFromFormat('d/m/Y', $data[0]['par jour'])
-            ->setTime(0, 0, 0);
-        }
-        return null;
-    }
-    
-    private function getDateOfPidLock()
-    {
-        $pidFilePath = Storage::disk('public')->url(config('AMS.provider.pid_lock_file'));
-        Log::debug('File Path of pid File: ' . $pidFilePath);
-        $pidDate = file_get_contents($pidFilePath);
-        if ($pidDate) {
-            return (new DateTime)->createFromFormat('d/m/Y', $pidDate)
-            ->setTime(0, 0, 0);
-        }
-        return null;
-    }
-    
-    private function updateLockFile($dataDate)
-    {
-        $pidFilePath = Storage::disk('public')->url(config('AMS.provider.pid_lock_file'));
-        file_put_contents(
-            $pidFilePath,
-            $dataDate->format('d/m/Y')
-        );
     }
     
     protected function callStub($date, $email_to, $delimiter)

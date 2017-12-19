@@ -74,7 +74,6 @@ class AdservingPresenter extends AMSPresenter implements AMSPresenterInterface
     }
     
     $fileData = file($strTempFile);
-    array_shift($fileData);
     $formated = join("", $fileData);
     
     // Delete the temp file
