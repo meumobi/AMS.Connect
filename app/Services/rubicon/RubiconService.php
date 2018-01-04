@@ -55,6 +55,23 @@ class RubiconService extends AMSService implements AMSServiceInterface
     Log::debug(ucfirst($configData['name']) . ' Service Performed');
   }
   
+  protected function callStub($url, $user, $pass)
+  {
+      $response = [];
+      $error = false;
+      
+      /*
+      From browser path=public/examples/...
+      From cli path=examples/...
+      */
+      $strTempFile = "public/examples/rubicon.json";
+      $response = file_get_contents($strTempFile);
+      
+      Log::debug('Request finished', ['response'=>$response]);
+      
+      return [$response, $error];
+  }
+
   protected function call($url, $user, $pass)
   {
     $curl = curl_init();
