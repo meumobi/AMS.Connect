@@ -50,7 +50,13 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
         },
         []
       );
-      
+      Log::debug('Data mapping done');
+    } catch (ErrorException $exception) {
+      Log::error('Can\'t do mapping of data', ['exception'=>$exception->getMessage()]);
+    } finally {
+      $this->_data = [];
+    } 
+    try {
       foreach ($this->_data as $line) {
         $array = $this->adjustFields($line);
         if (empty($firstLineKeys)) {
@@ -73,7 +79,6 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
         echo 'Mapping Error, field does not exists '.$exception->getMessage();
         return false;
       }
-      throw $exception;
     } finally {
       fclose($tempFile);
     }
