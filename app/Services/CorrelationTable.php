@@ -16,20 +16,24 @@ class CorrelationTable
     
     $filePath = Storage::disk('public')->url(self::FILE_NAME);
     Log::info('Lines of CorrelationTable: ' . count(file($filePath)));
-    
-    $csv = array_map('str_getcsv', file($filePath));
-    $header = array_map('strtolower', array_shift($csv));
-    $this->_tableData = array_reduce(
-      $csv,
-      function ($data, $row) use ($header) {
-        $row = array_combine($header, $row);
-        $data[$row['key']] = $row;
-        return $data;
-      },
-      []
-    );
-    
-    Log::debug('CorrelationTable initialized');
+
+    try {
+      $csv = array_map('str_getcsv', file($filePath));
+      $header = array_map('strtolower', array_shift($csv));
+      $this->_tableData = array_reduce(
+        $csv,
+        function ($data, $row) use ($header) {
+          $row = array_combine($header, $row);
+          $data[$row['key']] = $row;
+          return $data;
+        },
+        []
+      );
+      
+      Log::debug('Correlation table initialized');
+    } catch (ErrorException $exception) {
+      Log::error('Can\'t initialize correlation table', ['exception'=>$exception->getMessage()]);
+    } finally {} 
   }
   
   public function getRow($key)

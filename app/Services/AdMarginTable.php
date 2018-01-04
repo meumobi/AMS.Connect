@@ -17,19 +17,23 @@ class AdMarginTable
     $filePath = Storage::disk('public')->url(self::FILE_NAME);
     Log::info('Lines of AdMarginTable: ' . count(file($filePath)));
     
-    $csv = array_map('str_getcsv', file($filePath));
-    $header = array_map('strtolower', array_shift($csv));
-    $this->_tableData = array_reduce(
-      $csv,
-      function ($data, $row) use ($header) {
-        $row = array_combine($header, $row);
-        $tableKey = $row['site'] . $row['inventaire'] . $row['date'];
-        $data[$tableKey] = array('marge' => $row['taux de marge editeur']);
-        return $data;
-      },
-      []
-    );
-    Log::debug('AdMarginTable initialized');
+    try {
+      $csv = array_map('str_getcsv', file($filePath));
+      $header = array_map('strtolower', array_shift($csv));
+      $this->_tableData = array_reduce(
+        $csv,
+        function ($data, $row) use ($header) {
+          $row = array_combine($header, $row);
+          $tableKey = $row['site'] . $row['inventaire'] . $row['date'];
+          $data[$tableKey] = array('marge' => $row['taux de marge editeur']);
+          return $data;
+        },
+        []
+      );
+      Log::debug('Admargin table initialized');
+    } catch (ErrorException $exception) {
+      Log::error('Can\'t initialize Admargin table', ['exception'=>$exception->getMessage()]);
+    } finally {} 
   }
   
   public function getRow($key)

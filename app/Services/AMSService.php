@@ -61,7 +61,7 @@ class AMSService
         $data
       );
     } catch (ErrorException $exception) {
-      Log::error('File Error', ['exception'=>$exception->getMessage()]);
+      Log::error('Can\'t convert csv to array', ['exception'=>$exception->getMessage()]);
       /*
         Return empty array if an error occurred
       */
