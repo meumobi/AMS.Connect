@@ -48,10 +48,24 @@ class DispatcherController extends Controller
         }
         //TODO: Filter the request->all using request->only or request->except if needed
         $params = $request->all();
-        //Converting the start and end parameters into DateTime objects
-        $params['date'] = $request->has('date')
-            ? $request->input('date')
-            : (new DateTime)->modify('-1 day')->format('Y-m-d');
+
+        /*
+            date could be setted on date or text (from slack slash command) param
+        */
+
+        $date = null;
+
+        if ($request->has('date')) {
+            $date = $request->input('date');
+        } elseif ($request->has('text')) {
+            $date = $request->input('text');
+        } else {
+            $date = (new DateTime)->modify('-1 day')->format('Y-m-d');
+        }
+
+        $params['date'] = $date;
+
+        Log::debug('Date of reports: ' . $params['date']);
            
         $exitCode = Artisan::call('providers:perform', [
             'provider' => $providerName,
