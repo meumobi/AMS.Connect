@@ -53,8 +53,8 @@ class RubiconPresenter extends AMSPresenter implements AMSPresenterInterface
       Log::debug('Data mapping done');
     } catch (ErrorException $exception) {
       Log::error('Can\'t do mapping of data', ['exception'=>$exception->getMessage()]);
-    } finally {
       $this->_data = [];
+    } finally {
     } 
     try {
       foreach ($this->_data as $line) {
