@@ -46,6 +46,6 @@ class DailyReportsPublishing extends Job
     $serviceHandler->perform($params);
 
     Log::info('Job Performed: ' . $this->providerName);
-    sleep(5);
+    sleep(2);
   }
 }
