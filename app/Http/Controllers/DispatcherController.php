@@ -20,7 +20,7 @@ class DispatcherController extends Controller
      */
     public function __construct(Request $request)
     {
-        Log::info('Initializing Controller', ['url' => $request->fullUrl()]);
+        Log::debug('Initializing Controller', []);
     }
 
     public function index()
