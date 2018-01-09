@@ -15,7 +15,7 @@ class AdMarginTable
   private function __construct()
   {
     $filePath = Storage::disk('public')->url(self::FILE_NAME);
-    Log::info('Lines of AdMarginTable: ' . count(file($filePath)));
+    Log::debug('Lines of AdMarginTable: ' . count(file($filePath)));
     
     try {
       $csv = array_map('str_getcsv', file($filePath));

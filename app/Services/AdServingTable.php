@@ -14,7 +14,7 @@ class AdServingTable
   private function __construct()
   {
     $filePath = Storage::disk('public')->url(self::FILE_NAME);
-    Log::info('Lines of AdservingTable: ' . count(file($filePath)));
+    Log::debug('Lines of AdservingTable: ' . count(file($filePath)));
     
     try {
       $csv = array_map('str_getcsv', file($filePath));

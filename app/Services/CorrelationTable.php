@@ -15,7 +15,7 @@ class CorrelationTable
   {
     
     $filePath = Storage::disk('public')->url(self::FILE_NAME);
-    Log::info('Lines of CorrelationTable: ' . count(file($filePath)));
+    Log::debug('Lines of CorrelationTable: ' . count(file($filePath)));
 
     try {
       $csv = array_map('str_getcsv', file($filePath));
