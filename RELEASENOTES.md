@@ -15,6 +15,17 @@ Use Resume of Changes from previous command on commit message
 1. $ git tag v1.0.0
 2. $ git push origin v1.0.0
 
+<a name="v1.2.1"></a>
+# v1.2.1
+* ENAHNCE: Closes #100, improve logs when raise ErrorException: array_combine()
+* ENHANCE: add rubicon stub
+* ENHANCE: Closes #101, improve logs when ErrorException:: array_reduce() in RubiconPresenter
+* ENHANCE: Closes #103, accept 'text' param as date for GET requests to /providers/perform/(providerName)
+* ENHANCE: increase number fo decimals on revenue to prevent equal 0 when impressions is greater than 0
+* ENHANCE: reduce log level of some messages
+* FIX: Closes #99, remove controller url from logs to prevent loop when LOG_CHANNEL=slack
+* FIX: none rubicon raws imported
+
 <a name="v1.2.0"></a>
 # v1.2.0
 * ENHANCE: remove obsolet adserving pid lock
