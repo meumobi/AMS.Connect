@@ -93,11 +93,11 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
       "annonceur" => $line["annonceur"],
       "impressions envoyees" => $this->getImprEnvoyees($line),
       "impressions facturables" => $this->getImprFacturables($line), 
-      "campagne" => $line["flight description"],
+      "campagne" => $line["(master) campaign"],
       "inventaire" => $configData['inventaire'],
       "partenaire" => ucfirst($configData['name'])
     );
-    
+
     $array += $this->getImprPrises(
       $line["campaign flat fee"],
       $array["impressions envoyees"],
