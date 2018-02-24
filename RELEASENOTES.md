@@ -15,6 +15,11 @@ Use Resume of Changes from previous command on commit message
 1. $ git tag v1.0.0
 2. $ git push origin v1.0.0
 
+<a name="v1.2.2"></a>
+# v1.2.2
+* UPGRADE: Closes #106, Update adtech key for concat("Emplacement", "ID du flight", "Bannière ID")
+* UPGRADE: Closes #107, adtech: for 'campagne' field replace 'flight description' by '(Master) Campaign'
+
 <a name="v1.2.1"></a>
 # v1.2.1
 * ENAHNCE: Closes #100, improve logs when raise ErrorException: array_combine()
