@@ -16,9 +16,10 @@ Use Resume of Changes from previous command on commit message
 2. $ git push origin v1.0.0
 
 <a name="v1.2.2"></a>
-# v1.2.2
+# [v1.2.2](https://github.com/meumobi/infomobi/compare/v1.2.1...v1.2.2)
 * UPGRADE: Closes #106, Update adtech key for concat("Emplacement", "ID du flight", "Bannière ID")
 * UPGRADE: Closes #107, adtech: for 'campagne' field replace 'flight description' by '(Master) Campaign'
+* FIX: remove firebase DatabaseUri from pushToFirebase to switch INT, PROD accounts by setting config FIREBASE_CONFIG_PATH
 
 <a name="v1.2.1"></a>
 # v1.2.1
