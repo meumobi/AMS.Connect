@@ -63,7 +63,6 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
     } catch (ErrorException $exception) {
       if (strpos($exception->getMessage(), 'Undefined index:') !== false) {
         Log::error('Mapping Error, field does not exists', ['exception'=>$exception->getMessage(), $line]);
-        echo 'Mapping Error, field does not exists '.$exception->getMessage();
         return false;
       }
       throw $exception;
@@ -81,6 +80,11 @@ class AdtechPresenter extends AMSPresenter implements AMSPresenterInterface
   private function mapping($line)
   {
     $configData = config('AMS.provider');
+
+    // Guarantee retro-compatibility with previous adtech format where "id du flight" and "bannière id" fields where missing
+    isset($line["id du flight"]) or $line["id du flight"] = "Unknown";
+    isset($line["bannière id"]) or $line["bannière id"] = "Unknown";
+    isset($line["(master) campaign"]) or $line["(master) campaign"] = $line["flight description"];
 
     $array = array(
       "date" => $this->convertDate($line["par jour"]),
