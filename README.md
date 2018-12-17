@@ -16,6 +16,18 @@ mv composer.phar /usr/local/bin/composer
 php -r "unlink('composer-setup.php');"
 ```
 
+###Run composer
+When run ```$ composer install``` if you got 
+```bash
+ Problem 1
+    - The requested PHP extension ext-imap * is missing from your system. Install or enable PHP's imap extension.
+  Problem 2
+    - The requested PHP extension ext-memcached * is missing from your system. Install or enable PHP's memcached extension.
+```
+```php
+$ composer install --ignore-platform-reqs
+```
+
 ## Installing Lumen
 [Lumen](https://lumen.laravel.com/) is a php micro framework to develope fast services. 
 `composer global require "laravel/lumen-installer"`
