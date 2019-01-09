@@ -1,6 +1,6 @@
 {
   "name": "ams-connect",
-  "version": "1.0.0",
+  "version": "1.2.2",
   "description": "AdMySports Module to Connect to Reporting Platforms",
   "main": "gulpfile.js",
   "scripts": {
