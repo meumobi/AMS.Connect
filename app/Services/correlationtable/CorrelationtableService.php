@@ -20,7 +20,7 @@ class CorrelationtableService extends AMSService implements AMSServiceInterface
   {
     $configData = config('AMS.provider');
     
-    list($response, $error) = $this->call($configData['tdc_url']);
+    list($response, $error) = $this->call(env('TDC_URL'));
     
     if ($error) {
       Log::warning('Request Error', ['error' => $error]);
