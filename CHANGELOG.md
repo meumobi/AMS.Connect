@@ -1,3 +1,12 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/meumobi/AMS.Connect/compare/v1.2.2...v1.2.3) (2019-01-09)
+
+
+
 <a name="v1.2.2"></a>
 # [v1.2.2](https://github.com/meumobi/infomobi/compare/v1.2.1...v1.2.2)
 * UPGRADE: Closes #106, Update adtech key for concat("Emplacement", "ID du flight", "Bannière ID")
