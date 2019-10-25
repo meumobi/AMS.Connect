@@ -24,7 +24,7 @@ class ProvidersPerform extends Command
     */
   protected $description = 'Connect to providers to fetch reports and save them on AMS db';
 
-  private $providers = ["Rubicon", "Sublime", "Adsense", "Adtech", "Criteowf", "Criteohb" , "Unplugged"];
+  private $providers = ["Rubicon", "Sublime", "Adsense", "Adtech", "Criteohb" , "Unplugged"];
 
   /**
     * Create a new command instance.
