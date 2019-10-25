@@ -26,7 +26,7 @@ config(
                     'refresh_token'=> '1/wvex4l8GJcIR7-UjwB5tlEnne2qgeUHtMrtOr-rdrQ8',
                     'created'=> 1485836663
             ],
-            'inventaire' => 'AdNetwork Fill'
+            'inventaire' => 'AMS Market Place'
         ]
     ]
 );
